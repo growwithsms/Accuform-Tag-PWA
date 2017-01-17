@@ -1,5 +1,7 @@
 {
 	"name": "Collect, Quote, and Save!",
+	"short_name": "CQS!",
+	"start_url": "/index.html",
 	"icons": [
 		{
 			"src": "\/android-chrome-192x192.png",
@@ -14,5 +16,5 @@
 	],
 	"theme_color": "#0069AB",
 	"background_color": "#0069AB",
-	"display": "standalone"
+	"display": "fullscreen"
 }
