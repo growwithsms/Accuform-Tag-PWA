@@ -29,6 +29,9 @@
 .mdl-dialog .mdl-textfield {
     padding-bottom: 10px;
 }
+.mdl-dialog .mdl-textfield__label:after {
+	bottom: 10px;
+}
 .mdl-dialog__actions {
     padding-bottom: 0;
 }
