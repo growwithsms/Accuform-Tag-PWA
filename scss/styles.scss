@@ -1,0 +1,36 @@
+@import 'material';
+@import 'material.theme';
+
+/* Base */
+.page-content {
+    max-width: 600px;
+    margin: auto;
+    width: 100%;
+}
+
+/* Header */
+.mdl-layout-title {
+    font-stretch: condensed;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Body */
+.mdl-dialog {
+    padding: 0;
+}
+.mdl-dialog__content {
+    padding: 0;
+}
+.mdl-dialog .mdl-cell {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.mdl-dialog .mdl-textfield {
+    padding-bottom: 10px;
+}
+.mdl-dialog__actions {
+    padding-bottom: 0;
+}
+
+/* Footer */
