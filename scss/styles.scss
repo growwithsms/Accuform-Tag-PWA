@@ -1,8 +1,11 @@
 @import 'material';
 @import 'dialog-polyfill';
 
-html {
-	height: auto;
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 
+    "Segoe UI", "Roboto", "Oxygen", 
+    "Ubuntu", "Cantarell", "Fira Sans", 
+    "Droid Sans", "Helvetica Neue", sans-serif;
 }
 /* Base */
 .page-content {
@@ -19,6 +22,14 @@ html {
 }
 
 /* Body */
+.mdl-layout__content {
+    display: flex;
+    flex-wrap: wrap;
+}
+.mdl-layout__tab-panel {
+    width: 100%;
+}
+
 .mdl-dialog {
     padding: 0;
 }
@@ -57,3 +68,8 @@ legend {
 	z-index: -1;
 }
 /* Footer */
+.mdl-mini-footer {
+	margin-top: 2em;
+    width: 100%;
+    align-self: flex-end;
+}
