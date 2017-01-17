@@ -1,6 +1,9 @@
 @import 'material';
 @import 'dialog-polyfill';
 
+html {
+	height: auto;
+}
 /* Base */
 .page-content {
     max-width: 600px;
@@ -54,8 +57,3 @@ legend {
 	z-index: -1;
 }
 /* Footer */
-.mdl-mini-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
