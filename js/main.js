@@ -8,6 +8,7 @@
 | Contact Form Fields 		 |
 |----------------------------|
 */
+
 var yourName				= document.querySelector('#user-name'),
 	yourEmail				= document.querySelector('#user-email'),
 	distributorName			= document.querySelector('#distributor-name'),
@@ -26,16 +27,16 @@ var yourName				= document.querySelector('#user-name'),
 var distributorNextButton 	= document.querySelector('.next-tab[href="#distributor"]'),
 	userNextButton 			= document.querySelector('.next-tab[href="#end-user"]'),
 	tagsNextButton 			= document.querySelector('.next-tab[href="#tags"]'),
-	
 	tabs 					= $(".mdl-layout__tab"),
 	distributorTab			= document.querySelector('.mdl-layout__tab[href="#distributor"]'),
 	userTab					= document.querySelector('.mdl-layout__tab[href="#end-user"]'),
 	tagsTab					= document.querySelector('.mdl-layout__tab[href="#tags"]'),
-
 	tabPanels				= $(".mdl-layout__tab-panel"),
 	distributorTabPanel		= document.querySelector('#distributor'),
 	userTabPanel			= document.querySelector('#end-user'),
 	tagsTabPanel			= document.querySelector('#tags');
+
+// Continue to Distributor
 distributorNextButton.addEventListener("click", 
 	function() {
 	tabs.removeClass("is-active");
@@ -43,12 +44,16 @@ distributorNextButton.addEventListener("click",
 	distributorTab.classList.add("is-active");
 	distributorTabPanel.classList.add("is-active");
 });
+
+// Continue to User
 userNextButton.addEventListener("click", function() {
 	tabs.removeClass("is-active");
 	tabPanels.removeClass("is-active");
 	userTab.classList.add("is-active");
 	userTabPanel.classList.add("is-active");
 });
+
+// Continue to Tags
 tagsNextButton.addEventListener("click", function() {
 	tabs.removeClass("is-active");
 	tabPanels.removeClass("is-active");
@@ -125,14 +130,7 @@ dialog.querySelector('.save-tag').addEventListener('click', function() {
 		tagBackImage: tagImageBack.value,
 		tagFinishing: tagFinishing.value,
 		tagNotes: tagNotes.value
-	}).catch(function(error) {
-		//
-		// Finally don't forget to catch any error
-		// that could have happened anywhere in the
-		// code blocks above.
-		//
-		alert ("Ooops: " + error);
-    });
+	});
 
 	// Output Chip to DOM
 	$('.tags-wrapper').append('<span class="mdl-chip mdl-chip--deletable tag"><span class="mdl-chip__text">' + tagName.value + '</span><button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button></span>');
@@ -145,3 +143,5 @@ dialog.querySelector('.save-tag').addEventListener('click', function() {
 	dialog.close();
 
 });
+
+// Edit or Delete a Tag
