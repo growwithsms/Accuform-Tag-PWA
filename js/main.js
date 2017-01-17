@@ -36,7 +36,8 @@ var distributorNextButton 	= document.querySelector('.next-tab[href="#distributo
 	distributorTabPanel		= document.querySelector('#distributor'),
 	userTabPanel			= document.querySelector('#end-user'),
 	tagsTabPanel			= document.querySelector('#tags');
-distributorNextButton.addEventListener("click", function() {
+distributorNextButton.addEventListener("click", 
+	function() {
 	tabs.removeClass("is-active");
 	tabPanels.removeClass("is-active");
 	distributorTab.classList.add("is-active");
@@ -77,11 +78,6 @@ db.open().catch(function(error) {
 	alert('Uh oh : ' + error);
 });
 
-// Add to database on submit quote
-//db.you.add({
-
-//});
-
 /*
 |----------------------------|
 | Tag Model Window			 |
@@ -95,11 +91,15 @@ if (!dialog.showModal) {
      dialogPolyfill.registerDialog(dialog);
 }
 
+// Open Dialog Window
 showModalButton.addEventListener('click', function() {
     dialog.showModal();
 });
 
+// Save Tag
 dialog.querySelector('.save-tag').addEventListener('click', function() {
+
+	// Get input values
     var tagName 			= document.querySelector('#tag-name'),
 		tagMaterial 		= document.querySelector('#tag-material'),
 		tagHeight			= document.querySelector('#tag-height'),
@@ -111,7 +111,37 @@ dialog.querySelector('.save-tag').addEventListener('click', function() {
 		tagImageBack		= document.querySelector('#tag-image-back'),
 		tagFinishing		= document.querySelector('#tag-finishing'),
 		tagNotes 			= document.querySelector('#tag-notes');
+
+	// Add values to database
+	db.tags.add({
+		tagName: tagName.value,
+		tagMaterial: tagMaterial.value,
+		tagHeight: tagHeight.value,
+		tagWidth: tagWidth.value,
+		tagUnitOfMeasure: tagUnitOfMeasure.value,
+		tagOrderQuantity: tagOrderQuantity.value,
+		tagAnnualUsage: tagAnnualUsage.value,
+		tagFrontImage: tagImageFront.value,
+		tagBackImage: tagImageBack.value,
+		tagFinishing: tagFinishing.value,
+		tagNotes: tagNotes.value
+	}).catch(function(error) {
+		//
+		// Finally don't forget to catch any error
+		// that could have happened anywhere in the
+		// code blocks above.
+		//
+		alert ("Ooops: " + error);
+    });
+
+	// Output Chip to DOM
 	$('.tags-wrapper').append('<span class="mdl-chip mdl-chip--deletable tag"><span class="mdl-chip__text">' + tagName.value + '</span><button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button></span>');
 
+	// Reset fields for future tags
+	$('dialog').find('input, textarea').val('');
+	$('dialog').find('select').find('option:eq(0)').prop('selected', true);
+
+	// Close dialog
 	dialog.close();
+
 });

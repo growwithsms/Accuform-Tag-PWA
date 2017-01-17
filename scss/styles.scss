@@ -36,7 +36,9 @@ body {
     margin-bottom: 0;
 }
 
-
+.tags-wrapper {
+    margin-bottom: 1em;
+}
 .mdl-dialog {
     padding: 0;
 }
@@ -51,11 +53,6 @@ body {
 }
 .mdl-dialog__actions {
     padding-bottom: 0;
-}
-legend {
-    margin: 0;
-    padding: 0;
-    font-weight: 700;
 }
 .file__label {
 	display: block;
