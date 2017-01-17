@@ -163,12 +163,16 @@
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <select class="mdl-textfield__input" id="tag-material">
-                                    <option>Material 1</option>
-                                    <option>Material 2</option>
-                                    <option>Material 3</option>
-                                    <option>Material 4</option>
-                                    <option>Material 5</option>
-                                    <option>Material 6</option>
+                                    <option>PF-Cardstock (10-MIL)</option>
+                                    <option>RP-Plastic (15-MIL)</option>
+                                    <option>HS-Laminate (24-MIL)</option>
+                                    <option>TYVEK ™</option>
+                                    <option>Self Laminating PF Cardstock</option>
+                                    <option>Site Tag ®</option>
+                                    <option>Self-Laminating RP-Plastic</option>
+                                    <option>Fluorescent RV-Plastic Tags (15-MIL)</option>
+                                    <option>RS-Flexcard (9-MIL)</option>
+                                    <option>Self-Laminating RS-Flexcard</option>
                                 </select>
                                 <label class="mdl-textfield__label" for="tag-material">Material</label>
                             </div>
@@ -228,17 +232,23 @@
 	                        <input type="file" accept="image/*" id="tag-image-back" capture="camera" class="file__input">
 	                    </div>
 	                    <div class="mdl-cell mdl-cell--12-col">
-		                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="tag-finishing-1">
-							  <input type="checkbox" id="tag-finishing-1" class="mdl-checkbox__input" checked>
-							  <span class="mdl-checkbox__label">Finishing</span>
-							</label>
-							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="tag-finishing-2">
-							  <input type="checkbox" id="tag-finishing-2" class="mdl-checkbox__input">
-							  <span class="mdl-checkbox__label">Finishing 2</span>
-							</label>
-	                    </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								<select class="mdl-textfield__input" id="tag-finishing" multiple>
+									<option selected>Plastic Twist Ties (Installed)</option>
+									<option>String Ties (Installed)</option>
+									<option>Wire Ties (Installed)</option>
+									<option>Small Metal Grommet (1/4")</option>
+									<option>Standard Metal Grommet (3/8")</option>
+									<option>Large Metal Grommet (5/8")</option>
+									<option>Plastic (Black) Grommet (1/2")</option>
+									<option>Perforation</option>
+									<option>Consecutive Numbering</option>
+								</select>
+								<label class="mdl-textfield__label" for="tag-finishing">Finishing</label>
+	                    	</div>
+                    	</div>
 	                    <div class="mdl-cell mdl-cell--12-col">
-						  <div class="mdl-textfield mdl-js-textfield">
+						  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 						    <textarea class="mdl-textfield__input" type="text" rows= "3" id="tag-notes" ></textarea>
 						    <label class="mdl-textfield__label" for="tag-notes">Notes for Quote Team...</label>
 						  </div>
