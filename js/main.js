@@ -2,7 +2,27 @@
 //@prepros-prepend vendor/material.js
 //@prepros-prepend vendor/dialog-polyfill.js
 
-// Next Buttons
+
+/*
+|----------------------------|
+| Contact Form Fields 		 |
+|----------------------------|
+*/
+var yourName				= document.querySelector('#user-name'),
+	yourEmail				= document.querySelector('#user-email'),
+	distributorName			= document.querySelector('#distributor-name'),
+	distributorContact		= document.querySelector('#distributor-contact'),
+	distributorEmail		= document.querySelector('#distributor-email'),
+	endUserName				= document.querySelector('#end-user-name'),
+	endUserContact			= document.querySelector('#end-user-contact'),
+	endUserEmail			= document.querySelector('#end-user-email');
+
+/*
+|----------------------------|
+| Tabs - Continue Buttons 	 |
+|----------------------------|
+*/
+
 var distributorNextButton 	= document.querySelector('.next-tab[href="#distributor"]'),
 	userNextButton 			= document.querySelector('.next-tab[href="#end-user"]'),
 	tagsNextButton 			= document.querySelector('.next-tab[href="#tags"]'),
@@ -16,7 +36,6 @@ var distributorNextButton 	= document.querySelector('.next-tab[href="#distributo
 	distributorTabPanel		= document.querySelector('#distributor'),
 	userTabPanel			= document.querySelector('#end-user'),
 	tagsTabPanel			= document.querySelector('#tags');
-
 distributorNextButton.addEventListener("click", function() {
 	tabs.removeClass("is-active");
 	tabPanels.removeClass("is-active");
@@ -36,18 +55,63 @@ tagsNextButton.addEventListener("click", function() {
 	tagsTabPanel.classList.add("is-active");
 });
 
-// Tag Model Form
+
+/*
+|----------------------------|
+| Quote Database for History |
+|----------------------------|
+*/
+
+var db = new Dexie('quotes');
+
+// Define a schema
+db.version(1).stores({
+	you: 			'yourName, yourEmail',
+	distributor: 	'distributor, distributorName, distributorEmail',
+	endUser: 		'endUser, endUserName, endUserEmail',
+	tags: 			'tagName, tagMaterial, tagHeight, tagWidth, tagUnitOfMeasure, tagOrderQuantity, tagAnnualUsage, tagFrontImage, tagBackImage, tagFinishing, tagNotes'
+});
+
+// Open the database
+db.open().catch(function(error) {
+	alert('Uh oh : ' + error);
+});
+
+// Add to database on submit quote
+//db.you.add({
+
+//});
+
+/*
+|----------------------------|
+| Tag Model Window			 |
+|----------------------------|
+*/
+
 var dialog = document.querySelector('dialog');
-var showModalButton = document.querySelector('.show-modal');
+var showModalButton = document.querySelector('.add-tag');
 
 if (!dialog.showModal) {
-    dialogPolyfill.registerDialog(dialog);
+     dialogPolyfill.registerDialog(dialog);
 }
 
 showModalButton.addEventListener('click', function() {
     dialog.showModal();
 });
 
-dialog.querySelector('.save').addEventListener('click', function() {
+dialog.querySelector('.save-tag').addEventListener('click', function() {
+    var tagName 			= document.querySelector('#tag-name'),
+		tagMaterial 		= document.querySelector('#tag-material'),
+		tagHeight			= document.querySelector('#tag-height'),
+		tagWidth			= document.querySelector('#tag-width'),
+		tagUnitOfMeasure 	= $('input[name="tag-size-unit"]:checked'),
+		tagOrderQuantity 	= document.querySelector('#tag-quantity'),
+		tagAnnualUsage 		= document.querySelector('#tag-usage'),
+		tagImageFront		= document.querySelector('#tag-image-front'),
+		tagImageBack		= document.querySelector('#tag-image-back'),
+		tagFinishing		= document.querySelector('#tag-finishing'),
+		tagNotes 			= document.querySelector('#tag-notes');
+	$('.tags-wrapper').append('<span class="mdl-chip mdl-chip--deletable tag"><span class="mdl-chip__text">' + tagName.value + '</span><button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button></span>');
+
 	dialog.close();
 });

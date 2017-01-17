@@ -22,6 +22,7 @@ body {
 }
 
 /* Body */
+
 .mdl-layout__content {
     display: flex;
     flex-wrap: wrap;
@@ -30,15 +31,17 @@ body {
     width: 100%;
 }
 
+.mdl-cell {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
 .mdl-dialog {
     padding: 0;
 }
 .mdl-dialog__content {
     padding: 0;
-}
-.mdl-dialog .mdl-cell {
-    margin-top: 0;
-    margin-bottom: 0;
 }
 .mdl-dialog .mdl-textfield {
     padding-bottom: 10px;
@@ -66,6 +69,13 @@ legend {
 	overflow: hidden;
 	position: absolute;
 	z-index: -1;
+}
+
+
+.submit-quote {
+    width: 100%;
+    display: block;
+    margin: 2em 0;
 }
 /* Footer */
 .mdl-mini-footer {
