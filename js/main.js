@@ -1,5 +1,6 @@
 //@prepros-prepend vendor/dexie.js
 //@prepros-prepend vendor/material.js
+//@prepros-prepend vendor/dialog-polyfill.js
 
 // Tag Model Form
 var dialog = document.querySelector('dialog');

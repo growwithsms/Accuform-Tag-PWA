@@ -1,5 +1,5 @@
 @import 'material';
-@import 'material.theme';
+@import 'dialog-polyfill';
 
 /* Base */
 .page-content {
@@ -32,5 +32,17 @@
 .mdl-dialog__actions {
     padding-bottom: 0;
 }
-
+.file__label {
+	display: block;
+	text-align: center;
+	margin: 8px 0;
+}
+.file__input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
 /* Footer */
