@@ -102,7 +102,7 @@ db.open().catch(function(error) {
 
 /*
 |----------------------------|
-| Tag Modal Window			 |
+| Tag Model Window			 |
 |----------------------------|
 */
 
@@ -121,7 +121,7 @@ showModalButton.addEventListener('click', function() {
 // Save Tag
 dialog.querySelector('.save-tag').addEventListener('click', function() {
 
-    // Get input values
+/*    // Get input values
     var tagName = document.querySelector('#tag-name'),
         tagMaterial = document.querySelector('#tag-material'),
         tagHeight = document.querySelector('#tag-height'),
@@ -133,6 +133,21 @@ dialog.querySelector('.save-tag').addEventListener('click', function() {
         tagImageBack = document.querySelector('#tag-image-back'),
         tagFinishing = document.querySelector('#tag-finishing'),
         tagNotes = document.querySelector('#tag-notes');
+
+    // Add values to database
+    db.tags.add({
+        tagName: tagName.value,
+        tagMaterial: tagMaterial.value,
+        tagHeight: tagHeight.value,
+        tagWidth: tagWidth.value,
+        tagUnitOfMeasure: tagUnitOfMeasure.value,
+        tagOrderQuantity: tagOrderQuantity.value,
+        tagAnnualUsage: tagAnnualUsage.value,
+        tagFrontImage: tagImageFront.value,
+        tagBackImage: tagImageBack.value,
+        tagFinishing: tagFinishing.value,
+        tagNotes: tagNotes.value
+    });*/
 
     // Output Chip to DOM
     $('.tags-wrapper').append('<span class="mdl-chip mdl-chip--deletable tag"><span class="mdl-chip__text">' + tagName.value + '</span><button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button></span>');

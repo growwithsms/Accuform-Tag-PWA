@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Collect, Quote, and Save!</title>
+    <meta name="description" content="Tag quoting tool by Accuform">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Collect, Quote, and Save!">
+    <link rel="icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+    <meta name="apple-mobile-web-app-title" content="Collect, Quote, and Save!">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#ffffff">
+
+	<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#0168ab">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/vendor/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+    <!-- Simple header with scrollable tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Collect, Quote, and Save!</span>
+            </div>
+            <!-- Tabs -->
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                <a href="#me" class="mdl-layout__tab is-active">You</a>
+                <a href="#distributor" class="mdl-layout__tab">Distributor</a>
+                <a href="#end-user" class="mdl-layout__tab">End-User</a>
+                <a href="#tags" class="mdl-layout__tab">Tags</a>
+            </div>
+        </header>
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Quote History</span>
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href="">Quote 1</a>
+				<a class="mdl-navigation__link" href="">Quote 2</a>
+				<a class="mdl-navigation__link" href="">Quote 3</a>
+				<a class="mdl-navigation__link" href="">Quote 4</a>
+			</nav>
+		</div>
+        <main class="mdl-layout__content">
+            <section class="mdl-layout__tab-panel is-active" id="me">
+                <div class="page-content">
+                    <div class="mdl-grid">
+                    	<div class="mdl-cell mdl-cell--12-col">
+                    		<p>Add your name and email below so you can verify the quote after it has been sent.</p>
+                    	</div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="user-name">
+                                <label class="mdl-textfield__label" for="user-name">Your Name</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="user-email">
+                                <label class="mdl-textfield__label" for="user-email">Your Email</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <a href="#distributor" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect next-tab">
+                                Continue <i class="material-icons">keyboard_arrow_right</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="distributor">
+                <div class="page-content">
+                    <div class="mdl-grid">
+                    	<div class="mdl-cell mdl-cell--12-col">
+                    		<p>Next, add the distributor and distributor contact (sales person) info below.</p>
+                    	</div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="distributor-name">
+                                <label class="mdl-textfield__label" for="distributor-name">Distributor</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="distributor-contact">
+                                <label class="mdl-textfield__label" for="distributor-contact">Distributor Contact</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="distributor-email">
+                                <label class="mdl-textfield__label" for="distributor-email">Distributor Email</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+	                        <a href="#end-user" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect next-tab">
+	                            Continue <i class="material-icons">keyboard_arrow_right</i>
+	                        </a>
+	                    </div>
+                    </div>
+                </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="end-user">
+                <div class="page-content">
+                    <div class="mdl-grid">
+                    	<div class="mdl-cell mdl-cell--12-col">
+                    		<p>Now, simply add the end-user's information.</p>
+                    	</div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="end-user-name">
+                                <label class="mdl-textfield__label" for="end-user-name">End-user</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="end-user-contact">
+                                <label class="mdl-textfield__label" for="end-user-contact">End-user Contact</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="end-user-email">
+                                <label class="mdl-textfield__label" for="end-user-email">End-user Email</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <a href="#tags" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect next-tab">
+                                Continue <i class="material-icons">keyboard_arrow_right</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="tags">
+                <div class="page-content">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="tags-wrapper">
+
+                            </div>
+                            <p><button type="button" class="mdl-button mdl-js-button mdl-button--raised add-tag">Create New Tag <i class="material-icons">add</i></button></p>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                    		<p>Once you've added all the tags needed, click below to send the quote to Accuform's sales team.</p>
+	                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent submit-quote">
+							  Submit Quote <i class="material-icons">send</i>
+							</button>
+							<div id="toast-message" class="mdl-js-snackbar mdl-snackbar">
+								<div class="mdl-snackbar__text"></div>
+								<button class="mdl-snackbar__action" type="button"></button>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+	        <footer class="mdl-mini-footer">
+	            <div class="mdl-mini-footer__left-section">
+	                <div class="mdl-logo">Collect, Quote, and Save!</div>
+	                <ul class="mdl-mini-footer__link-list">
+	                    <li><a href="https://www.collectquotesave.com/">Help &amp; Support</a></li>
+	                    <li><a href="http://www.accuform.com/">Accuform</a></li>
+	                </ul>
+	            </div>
+	        </footer>            
+        </main>
+    </div>
+    <dialog class="mdl-dialog" data-tag="1">
+        <div class="mdl-dialog__content">
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="tag-name">
+                        <label class="mdl-textfield__label" for="tag-name">Tag Name</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <select class="mdl-textfield__input" id="tag-material">
+                            <option>PF-Cardstock (10-MIL)</option>
+                            <option>RP-Plastic (15-MIL)</option>
+                            <option>HS-Laminate (24-MIL)</option>
+                            <option>TYVEK ™</option>
+                            <option>Self Laminating PF Cardstock</option>
+                            <option>Site Tag ®</option>
+                            <option>Self-Laminating RP-Plastic</option>
+                            <option>Fluorescent RV-Plastic Tags (15-MIL)</option>
+                            <option>RS-Flexcard (9-MIL)</option>
+                            <option>Self-Laminating RS-Flexcard</option>
+                        </select>
+                        <label class="mdl-textfield__label" for="tag-material">Material</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="number" id="tag-height">
+                        <label class="mdl-textfield__label" for="tag-height">Height</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="number" id="tag-width">
+                        <label class="mdl-textfield__label" for="tag-width">Width</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--1-col-phone">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="tag-size-unit-in">
+                        <input type="radio" id="tag-size-unit-in" class="mdl-radio__button" name="tag-size-unit" value="1" checked>
+                        <span class="mdl-radio__label">In</span>
+                    </label>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="tag-size-unit-cm">
+                        <input type="radio" id="tag-size-unit-cm" class="mdl-radio__button" name="tag-size-unit" value="2">
+                        <span class="mdl-radio__label">Cm</span>
+                    </label>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--2-col-phone">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="tag-size-unit-mm">
+                        <input type="radio" id="tag-size-unit-mm" class="mdl-radio__button" name="tag-size-unit" value="2">
+                        <span class="mdl-radio__label">Mm</span>
+                    </label>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="number" id="tag-quantity">
+                        <label class="mdl-textfield__label" for="tag-quantity">Order Quantity</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="number" id="tag-usage">
+                        <label class="mdl-textfield__label" for="tag-usage">Annual Usage</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                	<label for="tag-image-front" class="file__label"><i class="material-icons">add_a_photo</i><br>Front Image</label>
+                    <input type="file" accept="image/*" id="tag-image-front" capture="camera" class="file__input">
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                	<label for="tag-image-back" class="file__label"><i class="material-icons">add_a_photo</i><br>Back Image</label>
+                    <input type="file" accept="image/*" id="tag-image-back" capture="camera" class="file__input">
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+						<select class="mdl-textfield__input" id="tag-finishing" multiple>
+							<option selected>Plastic Twist Ties (Installed)</option>
+							<option>String Ties (Installed)</option>
+							<option>Wire Ties (Installed)</option>
+							<option>Small Metal Grommet (1/4")</option>
+							<option>Standard Metal Grommet (3/8")</option>
+							<option>Large Metal Grommet (5/8")</option>
+							<option>Plastic (Black) Grommet (1/2")</option>
+							<option>Perforation</option>
+							<option>Consecutive Numbering</option>
+						</select>
+						<label class="mdl-textfield__label" for="tag-finishing">Finishing</label>
+                	</div>
+            	</div>
+                <div class="mdl-cell mdl-cell--12-col">
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+				    <textarea class="mdl-textfield__input" type="text" rows= "3" id="tag-notes" ></textarea>
+				    <label class="mdl-textfield__label" for="tag-notes">Notes for Quote Team...</label>
+				  </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+            <button type="button" class="mdl-button save-tag">Save Tag</button>
+        </div>
+    </dialog>
+    <script src="js/main.min.js"></script>
+</body>
+</html>
