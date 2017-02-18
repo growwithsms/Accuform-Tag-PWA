@@ -22,7 +22,7 @@ if ('serviceWorker' in navigator) {
 
 /*
 |----------------------------|
-| Contact Form Fields 		 |
+|  Form Fields 		 |
 |----------------------------|
 */
 
@@ -34,6 +34,17 @@ var yourName = document.querySelector('#user-name'),
     endUserName = document.querySelector('#end-user-name'),
     endUserContact = document.querySelector('#end-user-contact'),
     endUserEmail = document.querySelector('#end-user-email');
+    tagName = document.querySelector('#tag-name'),
+    tagMaterial = document.querySelector('#tag-material'),
+    tagHeight = document.querySelector('#tag-height'),
+    tagWidth = document.querySelector('#tag-width'),
+    tagUnitOfMeasure = $('input[name="tag-size-unit"]:checked'),
+    tagOrderQuantity = document.querySelector('#tag-quantity'),
+    tagAnnualUsage = document.querySelector('#tag-usage'),
+    tagImageFront = document.querySelector('#tag-image-front'),
+    tagImageBack = document.querySelector('#tag-image-back'),
+    tagFinishing = document.querySelector('#tag-finishing'),
+    tagNotes = document.querySelector('#tag-notes');
 
 /*
 |----------------------------|
@@ -43,7 +54,7 @@ var yourName = document.querySelector('#user-name'),
 
 var distributorNextButton = document.querySelector('.next-tab[href="#distributor"]'),
     userNextButton = document.querySelector('.next-tab[href="#end-user"]'),
-    tagsNextButton = document.querySelector('.next-tab[href="#tags"]'),
+    tagsNextButton = document.querySelector('.next-tab[href="#tag"]'),
     tabs = $(".mdl-layout__tab"),
     distributorTab = document.querySelector('.mdl-layout__tab[href="#distributor"]'),
     userTab = document.querySelector('.mdl-layout__tab[href="#end-user"]'),
@@ -51,7 +62,7 @@ var distributorNextButton = document.querySelector('.next-tab[href="#distributor
     tabPanels = $(".mdl-layout__tab-panel"),
     distributorTabPanel = document.querySelector('#distributor'),
     userTabPanel = document.querySelector('#end-user'),
-    tagsTabPanel = document.querySelector('#tags');
+    tagsTabPanel = document.querySelector('#tag');
 
 // Continue to Distributor
 distributorNextButton.addEventListener("click",
@@ -85,85 +96,24 @@ tagsNextButton.addEventListener("click", function() {
 |----------------------------|
 */
 
-var db = new Dexie('quotes');
+// var db = new Dexie('quotes');
 
-// Define a schema
-db.version(1).stores({
-    you: 'yourName, yourEmail',
-    distributor: 'distributor, distributorName, distributorEmail',
-    endUser: 'endUser, endUserName, endUserEmail',
-    tags: 'tagName, tagMaterial, tagHeight, tagWidth, tagUnitOfMeasure, tagOrderQuantity, tagAnnualUsage, tagFrontImage, tagBackImage, tagFinishing, tagNotes'
-});
+// // Define a schema
+// db.version(1).stores({
+//     you: 'yourName, yourEmail',
+//     distributor: 'distributor, distributorName, distributorEmail',
+//     endUser: 'endUser, endUserName, endUserEmail',
+//     tags: 'tagName, tagMaterial, tagHeight, tagWidth, tagUnitOfMeasure, tagOrderQuantity, tagAnnualUsage, tagFrontImage, tagBackImage, tagFinishing, tagNotes'
+// });
 
-// Open the database
-db.open().catch(function(error) {
-    alert('Uh oh : ' + error);
-});
+// // Open the database
+// db.open().catch(function(error) {
+//     alert('Uh oh : ' + error);
+// });
 
-/*
-|----------------------------|
-| Tag Modal Window			 |
-|----------------------------|
-*/
-
-var dialog = document.querySelector('dialog');
-var showModalButton = document.querySelector('.add-tag');
-
-if (!dialog.showModal) {
-    dialogPolyfill.registerDialog(dialog);
-}
-
-// Open Dialog Window
-showModalButton.addEventListener('click', function() {
-    dialog.showModal();
-});
-
-// Save Tag
-dialog.querySelector('.save-tag').addEventListener('click', function() {
-
-    // Get input values
-    var tagName = document.querySelector('#tag-name'),
-        tagMaterial = document.querySelector('#tag-material'),
-        tagHeight = document.querySelector('#tag-height'),
-        tagWidth = document.querySelector('#tag-width'),
-        tagUnitOfMeasure = $('input[name="tag-size-unit"]:checked'),
-        tagOrderQuantity = document.querySelector('#tag-quantity'),
-        tagAnnualUsage = document.querySelector('#tag-usage'),
-        tagImageFront = document.querySelector('#tag-image-front'),
-        tagImageBack = document.querySelector('#tag-image-back'),
-        tagFinishing = document.querySelector('#tag-finishing'),
-        tagNotes = document.querySelector('#tag-notes');
-
-    // Output Chip to DOM
-    $('.tags-wrapper').append('<span class="mdl-chip mdl-chip--deletable tag"><span class="mdl-chip__text">' + tagName.value + '</span><button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button></span>');
-
-    // Reset fields for future tags
-    $('dialog').find('input, textarea').val('');
-    $('dialog').find('select').find('option:eq(0)').prop('selected', true);
-
-    // Close dialog
-    dialog.close();
-
-});
-
-// Delete a Tag
-$('.tags-wrapper').on('click', '.mdl-chip__action', function() {
-
-    // Remove self from DB
-
-    // Remove self from DOM
-    $(this).parent().remove();
-
-});
-
-// Edit a Tag
-$('.tags-wrapper').on('click', '.mdl-chip__text', function() {
-
-    // Enable Dialog
-    console.log('dialog pops up now!');
-
-});
-
+// if (!dialog.showModal) {
+//     dialogPolyfill.registerDialog(dialog);
+// }
 
 /*
 |----------------------------|

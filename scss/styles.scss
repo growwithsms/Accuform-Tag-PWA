@@ -7,6 +7,8 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", 
     "Droid Sans", "Helvetica Neue", sans-serif;
 }
+
+
 /* Base */
 .page-content {
     max-width: 600px;
@@ -27,33 +29,12 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-.mdl-layout__tab-panel {
+
+.mdl-layout__tab-panel,
+.mdl-textfield {
     width: 100%;
 }
 
-.mdl-cell {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.tags-wrapper {
-    margin-bottom: 1em;
-}
-.mdl-dialog {
-    padding: 0;
-}
-.mdl-dialog__content {
-    padding: 0;
-}
-.mdl-dialog .mdl-textfield {
-    padding-bottom: 10px;
-}
-.mdl-dialog .mdl-textfield__label:after {
-	bottom: 10px;
-}
-.mdl-dialog__actions {
-    padding-bottom: 0;
-}
 .file__label {
 	display: block;
 	text-align: center;
@@ -68,15 +49,40 @@ body {
 	z-index: -1;
 }
 
-
 .submit-quote {
     width: 100%;
     display: block;
     margin: 2em 0;
 }
+
+
 /* Footer */
 .mdl-mini-footer {
 	margin-top: 2em;
     width: 100%;
     align-self: flex-end;
+}
+
+
+/* Login Screen */
+.login {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #2a68a7;
+    color: #fff;
+    padding: 1em;
+    .mdl-textfield__input {
+        border-bottom-color: rgba(255,255,255,.5);
+    }
+    .mdl-textfield__label {
+        color: rgba(255,255,255,1);
+    }
+
+    .mdl-button--raised {
+        background: #fff;
+    }
 }
