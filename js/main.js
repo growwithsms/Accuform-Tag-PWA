@@ -1,6 +1,7 @@
 //@prepros-prepend vendor/dexie.js
 //@prepros-prepend vendor/material.js
 //@prepros-prepend vendor/dialog-polyfill.js
+//@prepros-prepend vendor/textfield.js
 
 /*
 |----------------------------|
@@ -95,7 +96,8 @@ db.version(1).stores({
 });
 
 
-$('.login form').on('submit', function(){
+$('.login form').on('submit', function(e){
+    e.preventDefault();
 
     var userName  = yourName.value,
         userEmail = yourEmail.value;
@@ -105,6 +107,8 @@ $('.login form').on('submit', function(){
     });
 
     $('body').addClass('userRegistered');
+
+    return false;
 
 });
 
