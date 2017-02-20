@@ -52,26 +52,14 @@ var yourName = document.querySelector('#user-name'),
 |----------------------------|
 */
 
-var distributorNextButton = document.querySelector('.next-tab[href="#distributor"]'),
-    userNextButton = document.querySelector('.next-tab[href="#end-user"]'),
-    tagsNextButton = document.querySelector('.next-tab[href="#tag"]'),
+var userNextButton = document.querySelector('.next-tab[href="#end-user"]'),
+    tagNextButton = document.querySelector('.next-tab[href="#tag"]'),
     tabs = $(".mdl-layout__tab"),
-    distributorTab = document.querySelector('.mdl-layout__tab[href="#distributor"]'),
     userTab = document.querySelector('.mdl-layout__tab[href="#end-user"]'),
-    tagsTab = document.querySelector('.mdl-layout__tab[href="#tags"]'),
+    tagTab = document.querySelector('.mdl-layout__tab[href="#tag"]'),
     tabPanels = $(".mdl-layout__tab-panel"),
-    distributorTabPanel = document.querySelector('#distributor'),
     userTabPanel = document.querySelector('#end-user'),
-    tagsTabPanel = document.querySelector('#tag');
-
-// Continue to Distributor
-distributorNextButton.addEventListener("click",
-    function() {
-        tabs.removeClass("is-active");
-        tabPanels.removeClass("is-active");
-        distributorTab.classList.add("is-active");
-        distributorTabPanel.classList.add("is-active");
-    });
+    tagTabPanel = document.querySelector('#tag');
 
 // Continue to User
 userNextButton.addEventListener("click", function() {
@@ -81,53 +69,49 @@ userNextButton.addEventListener("click", function() {
     userTabPanel.classList.add("is-active");
 });
 
-// Continue to Tags
-tagsNextButton.addEventListener("click", function() {
+// Continue to Tag
+tagNextButton.addEventListener("click", function() {
     tabs.removeClass("is-active");
     tabPanels.removeClass("is-active");
-    tagsTab.classList.add("is-active");
-    tagsTabPanel.classList.add("is-active");
+    tagTab.classList.add("is-active");
+    tagTabPanel.classList.add("is-active");
 });
 
 
 /*
-|----------------------------|
-| Quote Database for History |
-|----------------------------|
+|--------------------------------------|
+| Database - see dexie.js @ dexie.org |
+|------------------------------------|
 */
 
-// var db = new Dexie('quotes');
+// Define the database
+var db = new Dexie('quote_database');
+// Define a schema
+db.version(1).stores({
+    users: 'yourName,yourEmail',
+    distributors: 'distributor,distributorName,distributorEmail',
+    endUsers: 'endUser,endUserName,endUserEmail',
+    tags: 'tagName,tagMaterial,tagHeight,tagWidth,tagUnitOfMeasure,tagOrderQuantity,tagAnnualUsage,tagFrontImage,tagBackImage,tagFinishing,tagNotes'
+});
 
-// // Define a schema
-// db.version(1).stores({
-//     you: 'yourName, yourEmail',
-//     distributor: 'distributor, distributorName, distributorEmail',
-//     endUser: 'endUser, endUserName, endUserEmail',
-//     tags: 'tagName, tagMaterial, tagHeight, tagWidth, tagUnitOfMeasure, tagOrderQuantity, tagAnnualUsage, tagFrontImage, tagBackImage, tagFinishing, tagNotes'
-// });
 
-// // Open the database
-// db.open().catch(function(error) {
-//     alert('Uh oh : ' + error);
-// });
+$('.login form').on('submit', function(){
 
-// if (!dialog.showModal) {
-//     dialogPolyfill.registerDialog(dialog);
-// }
+    var userName  = yourName.value,
+        userEmail = yourEmail.value;
+
+    db.users.put({yourName: userName, yourEmail: userEmail}).catch(function(error) {
+        alert ("Ooops: " + error);
+    });
+
+    $('body').addClass('userRegistered');
+
+});
+
+
 
 /*
 |----------------------------|
 | Submit Quote 				 |
 |----------------------------|
 */
-r(function(){
-  'use strict';
-	var snackbarContainer = document.querySelector('#toast-message');
-	var submitQuote = document.querySelector('.submit-quote');
-	submitQuote.addEventListener('click', function() {
-		'use strict';
-	    var data = { message: 'Quote Sent to Accuform Sales!' };
-	    snackbarContainer.MaterialSnackbar.showSnackbar(data);
-	});
-});
-function r(f){/in/.test(document.readyState)?setTimeout('r('+f+')',9):f()}

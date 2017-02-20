@@ -10,10 +10,17 @@ body {
 
 
 /* Base */
+img {
+    max-width: 100%;
+}
 .page-content {
     max-width: 600px;
     margin: auto;
     width: 100%;
+}
+.mdl-cell {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 /* Header */
@@ -71,18 +78,45 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%;
-    background: #2a68a7;
+    background: #0068AC;
     color: #fff;
     padding: 1em;
+    opacity: 1;
+    visibility: visible;
+    transition: all 200ms ease;
     .mdl-textfield__input {
         border-bottom-color: rgba(255,255,255,.5);
     }
     .mdl-textfield__label {
         color: rgba(255,255,255,1);
     }
-
+    .is-focused .mdl-textfield__label {
+        color: rgba(255,255,255,.75);
+    }
     .mdl-button--raised {
         background: #fff;
     }
+}
+.userRegistered .login {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 200ms ease;
+}
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.history-title {
+    width: 100%;
+    font-size: 1.5em;
+    margin-bottom: .5rem
+}
+.history-ditributor {
+    margin-right: 1rem;
+}
+.history-ditributor,
+.history-user {
+    font-size: .8rem;
 }

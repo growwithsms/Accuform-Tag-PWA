@@ -33,28 +33,28 @@
 <body>
 
     <section class="login">
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--12-col">
-                <img src="/android-chrome-512x512.png">
-            </div>
-            <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="user-name">
-                    <label class="mdl-textfield__label" for="user-name">Your Name</label>
+        <img src="/android-chrome-512x512.png">
+        <form>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="user-name">
+                        <label class="mdl-textfield__label" for="user-name">Your Name</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="user-email">
+                        <label class="mdl-textfield__label" for="user-email">Your Email</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                    Save</button>
+                </a>
                 </div>
             </div>
-            <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="user-email">
-                    <label class="mdl-textfield__label" for="user-email">Your Email</label>
-                </div>
-            </div>
-            <div class="mdl-cell mdl-cell--12-col">
-                <a href="#distributor" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect next-tab">
-                Continue <i class="material-icons">keyboard_arrow_right</i>
-            </a>
-            </div>
-        </div>
+        </form>
     </section>
 
     <!-- Simple header with scrollable tabs. -->
@@ -74,10 +74,11 @@
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">Quote History</span>
             <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="">Quote 1</a>
-                <a class="mdl-navigation__link" href="">Quote 2</a>
-                <a class="mdl-navigation__link" href="">Quote 3</a>
-                <a class="mdl-navigation__link" href="">Quote 4</a>
+                <a class="mdl-navigation__link" href="#restore">
+                    <span class="history-title">Quote 1</span>
+                    <span class="history-ditributor">Distributor Name</span>
+                    <span class="history-user">End-User Name</span>
+                </a>
             </nav>
         </div>
         <main class="mdl-layout__content">
@@ -154,7 +155,7 @@
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col">
-                            <a href="#tags" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect next-tab">
+                            <a href="#tag" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect next-tab">
                                 Continue <i class="material-icons">keyboard_arrow_right</i>
                             </a>
                         </div>
@@ -163,7 +164,7 @@
             </section>
             <section class="mdl-layout__tab-panel" id="tag">
                 <div class="page-content">
-                    <div class="mdl-grid mdl-grid--no-spacing">
+                    <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="tag-name">
@@ -265,8 +266,10 @@
                                 <label class="mdl-textfield__label" for="tag-notes">Notes for Quote Team...</label>
                             </div>
                         </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <button type="button" class="submit-quote mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit Quote</button>
+                        </div>
                     </div>
-                    <button type="button" class="submit-quote mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit Quote</button>
                 </div>
             </section>
             <footer class="mdl-mini-footer">
