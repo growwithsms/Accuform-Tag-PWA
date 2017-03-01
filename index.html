@@ -25,15 +25,102 @@
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#0168ab">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/vendor/jquery-3.1.1.min.js"></script>
 </head>
 
-<body>
-
-    <section class="login">
-        <img src="/android-chrome-512x512.png">
+<body class="quote-page">
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <symbol id="icon-environment" viewBox="0 0 24 24">
+                <title>environment</title>
+                <path d="M12.539 19.479c-0.142-0.139-0.337-0.225-0.552-0.225s-0.41 0.086-0.552 0.226l-1.104 1.104c-0.098 0.13-0.158 0.295-0.158 0.473 0 0.436 0.353 0.789 0.789 0.789 0.178 0 0.343-0.059 0.475-0.159l1.102-1.103c0.139-0.142 0.225-0.337 0.225-0.552s-0.086-0.41-0.226-0.552zM15.772 20.819c-0.424 0.014-0.763 0.362-0.763 0.788 0 0.009 0 0.019 0 0.028l-0 1.602c0 0.436 0.353 0.789 0.789 0.789s0.789-0.353 0.789-0.789v-1.63c0-0 0-0 0-0 0-0.436-0.353-0.789-0.789-0.789-0.009 0-0.018 0-0.028 0zM21.345 20.556l-1.104-1.104c-0.13-0.098-0.295-0.158-0.473-0.158-0.436 0-0.789 0.353-0.789 0.789 0 0.178 0.059 0.343 0.159 0.475l1.103 1.102c0.142 0.139 0.337 0.225 0.552 0.225s0.41-0.086 0.552-0.226c0.166-0.145 0.27-0.358 0.27-0.594 0-0.183-0.062-0.351-0.167-0.485zM22.87 15.299h-1.525c-0.436 0-0.789 0.353-0.789 0.789s0.353 0.789 0.789 0.789h1.604c0.436 0 0.789-0.353 0.789-0.789s-0.353-0.789-0.789-0.789zM21.45 10.515c-0.142-0.139-0.337-0.225-0.552-0.225s-0.41 0.086-0.552 0.226l-1.104 1.104c-0.098 0.13-0.158 0.295-0.158 0.473 0 0.436 0.353 0.789 0.789 0.789 0.178 0 0.343-0.059 0.475-0.159l1.102-1.103c0.139-0.142 0.225-0.337 0.225-0.552s-0.086-0.41-0.226-0.552zM16.193 12.933l-3.444 3.575c0.19 1.578 1.52 2.789 3.133 2.789 1.742 0 3.154-1.412 3.154-3.154 0-1.605-1.199-2.93-2.749-3.129z"></path>
+                <path d="M14.484 14.8h0.315v-0.315z"></path>
+                <path d="M7.387 0l-7.387 4.443v1.472h1.472v7.413h-1.472v1.472h7.518l1.472-1.472 1.525-1.498 2.786-2.813v-3.102h1.472v-1.472zM5.915 11.829h-1.472v-5.915h1.472zM10.357 11.829h-1.472v-5.915h1.472z"></path>
+            </symbol>
+            <symbol id="icon-indoor" viewBox="0 0 24 24">
+                <title>indoor</title>
+                <path d="M21.607 9.595h2.442v-2.271l-12.061-7.325-11.988 7.325v2.442h2.442v11.841h-2.442v2.442h24v-2.442h-2.442zM9.595 19.19h-2.271v-9.595h2.442zM14.478 19.19v-9.595h2.442v9.595z"></path>
+            </symbol>
+            <symbol id="icon-circle" viewBox="0 0 24 24">
+                <title>circle</title>
+                <path d="M19.5 12c0 4.142-3.358 7.5-7.5 7.5s-7.5-3.358-7.5-7.5c0-4.142 3.358-7.5 7.5-7.5s7.5 3.358 7.5 7.5z"></path>
+            </symbol>
+            <symbol id="icon-diecut" viewBox="0 0 24 24">
+                <title>diecut</title>
+                <path d="M8.655 12.33l-1.5-0.63-1.5 0.63c-0.053 0.024-0.114 0.039-0.179 0.039-0.184 0-0.341-0.114-0.405-0.276l-0.661-1.593-1.5-0.63c-0.164-0.065-0.279-0.222-0.279-0.406 0-0.065 0.014-0.126 0.040-0.182l0.629-1.497-0.63-1.5c-0.024-0.053-0.039-0.114-0.039-0.179 0-0.184 0.114-0.341 0.276-0.405l1.503-0.631 0.63-1.5c0.065-0.164 0.222-0.279 0.406-0.279 0.065 0 0.126 0.014 0.182 0.040l1.497 0.629 1.5-0.63c0.053-0.024 0.114-0.039 0.179-0.039 0.184 0 0.341 0.114 0.405 0.276l0.631 1.503 1.5 0.63c0.164 0.065 0.279 0.222 0.279 0.406 0 0.065-0.014 0.126-0.040 0.182l-0.629 1.497 0.63 1.5c0.024 0.053 0.039 0.114 0.039 0.179 0 0.184-0.114 0.341-0.276 0.405l-1.503 0.631-0.63 1.5c-0.041 0.201-0.217 0.349-0.426 0.349-0.046 0-0.090-0.007-0.132-0.020z"></path>
+                <path d="M12.51 12.255l-4.41 7.62c-0.063 0.108-0.101 0.237-0.101 0.375 0 0.414 0.336 0.75 0.75 0.75 0.004 0 0.007-0 0.011-0h8.789c0.003 0 0.007 0 0.011 0 0.414 0 0.75-0.336 0.75-0.75 0-0.138-0.037-0.267-0.102-0.379l-4.393-7.616c-0.131-0.229-0.374-0.38-0.652-0.38s-0.521 0.152-0.651 0.377z"></path>
+                <path d="M17.55 3.66l-3.48 2.655c-0.176 0.139-0.288 0.352-0.288 0.591 0 0.078 0.012 0.154 0.034 0.225l1.334 4.345c0.098 0.304 0.375 0.52 0.704 0.525h4.261c0.33-0.005 0.607-0.221 0.704-0.52l1.336-4.355c0.021-0.066 0.033-0.141 0.033-0.219 0-0.239-0.112-0.452-0.286-0.589l-3.452-2.656c-0.124-0.094-0.28-0.15-0.45-0.15s-0.326 0.056-0.452 0.151z"></path>
+            </symbol>
+            <symbol id="icon-oval" viewBox="0 0 24 24">
+                <title>oval</title>
+                <path d="M22.5 12c0 3.314-4.701 6-10.5 6s-10.5-2.686-10.5-6c0-3.314 4.701-6 10.5-6s10.5 2.686 10.5 6z"></path>
+            </symbol>
+            <symbol id="icon-rectangle" viewBox="0 0 24 24">
+                <title>rectangle</title>
+                <path d="M2.25 6h19.5c0.414 0 0.75 0.336 0.75 0.75v10.5c0 0.414-0.336 0.75-0.75 0.75h-19.5c-0.414 0-0.75-0.336-0.75-0.75v-10.5c0-0.414 0.336-0.75 0.75-0.75z"></path>
+            </symbol>
+            <symbol id="icon-roll" viewBox="0 0 24 24">
+                <title>roll</title>
+                <path d="M7.5 15c-0.622-0.552-1.012-1.354-1.012-2.247 0-0.628 0.193-1.212 0.523-1.694 0.443-0.433 1.060-0.707 1.742-0.707 0.774 0 1.466 0.354 1.923 0.908 0.625 0.556 1.015 1.358 1.015 2.251 0 0.628-0.193 1.212-0.523 1.694-0.441 0.437-1.060 0.714-1.743 0.714-0.776 0-1.468-0.357-1.922-0.915zM13.050 18c0.166-0.145 0.313-0.302 0.444-0.472 1.896-2.213 1.416-6.008-1.074-8.468-1.121-1.204-2.715-1.955-4.484-1.955-0.409 0-0.808 0.040-1.195 0.117-0.876 0.217-1.656 0.704-2.237 1.368-1.894 2.21-1.414 6.005 1.076 8.465 0.809 0.818 1.819 1.436 2.951 1.772l8.854 2.173 5.55-3.75-6.135-1.5h-0.225z"></path>
+                <path d="M14.31 16.845l2.64-1.74c0.568-0.961 0.904-2.119 0.904-3.355 0-1.909-0.801-3.631-2.086-4.848-1.035-1.204-2.556-1.96-4.254-1.96-1.136 0-2.193 0.339-3.075 0.92l-1.689 1.157c0.442-0.122 0.949-0.193 1.473-0.193 1.768 0 3.348 0.8 4.399 2.059 1.431 1.256 2.325 3.077 2.325 5.107 0 1.041-0.235 2.027-0.655 2.908z"></path>
+            </symbol>
+            <symbol id="icon-sign" viewBox="0 0 24 24">
+                <title>sign</title>
+                <path d="M1.5 6.75v10.5c0 0.414 0.336 0.75 0.75 0.75h19.5c0.414 0 0.75-0.336 0.75-0.75v-10.5c0-0.414-0.336-0.75-0.75-0.75h-19.5c-0.414 0-0.75 0.336-0.75 0.75zM3.75 16.5c-0.414 0-0.75-0.336-0.75-0.75s0.336-0.75 0.75-0.75c0.414 0 0.75 0.336 0.75 0.75s-0.336 0.75-0.75 0.75zM3.75 9c-0.414 0-0.75-0.336-0.75-0.75s0.336-0.75 0.75-0.75c0.414 0 0.75 0.336 0.75 0.75s-0.336 0.75-0.75 0.75zM20.25 16.5c-0.414 0-0.75-0.336-0.75-0.75s0.336-0.75 0.75-0.75c0.414 0 0.75 0.336 0.75 0.75s-0.336 0.75-0.75 0.75zM20.25 9c-0.414 0-0.75-0.336-0.75-0.75s0.336-0.75 0.75-0.75c0.414 0 0.75 0.336 0.75 0.75s-0.336 0.75-0.75 0.75z"></path>
+            </symbol>
+            <symbol id="icon-square" viewBox="0 0 24 24">
+                <title>square</title>
+                <path d="M6.75 6h10.5c0.414 0 0.75 0.336 0.75 0.75v10.5c0 0.414-0.336 0.75-0.75 0.75h-10.5c-0.414 0-0.75-0.336-0.75-0.75v-10.5c0-0.414 0.336-0.75 0.75-0.75z"></path>
+            </symbol>
+            <symbol id="icon-swipe" viewBox="0 0 24 24">
+                <title>swipe</title>
+                <path d="M8.46 14.505c-0.825-1.5-1.62-1.35-2.25-1.005s-1.005 0.975-0.495 2.25c1.256 3.157 2.868 5.882 4.832 8.31l6.703-0.060c2.37-1.755 4.275-10.125 1.005-10.5-0.030-0.002-0.066-0.003-0.102-0.003-0.335 0-0.647 0.096-0.91 0.262 0.007-0.009 0.007-0.014 0.007-0.020 0-0.669-0.534-1.213-1.199-1.23l-0.002-0c-0.464 0.024-0.853 0.326-1.003 0.742-0.001-0.010-0.001-0.031-0.001-0.053 0-0.663-0.537-1.2-1.2-1.2-0.011 0-0.022 0-0.033 0l-0.103-0c-0.531 0.020-0.99 0.313-1.241 0.743l-0.004-5.243c0-0.828-0.672-1.5-1.5-1.5s-1.5 0.672-1.5 1.5v9z"></path>
+                <path d="M7.215 1.5c-0.003-0-0.006-0-0.009-0-0.133 0-0.253 0.058-0.335 0.15l-2.25 2.25c-0.081 0.093-0.135 0.212-0.15 0.342-0.001 0.012-0.001 0.022-0.001 0.032 0 0.127 0.059 0.241 0.15 0.315l2.251 2.251c0.087 0.090 0.21 0.146 0.345 0.146s0.258-0.056 0.345-0.146l-0.060-0c0.090-0.087 0.146-0.21 0.146-0.345s-0.056-0.258-0.146-0.345l-0-0-1.395-1.395h9.6l-1.395 1.395c-0.090 0.087-0.146 0.21-0.146 0.345s0.056 0.258 0.146 0.345l0 0c0.093 0.084 0.217 0.136 0.352 0.136s0.26-0.052 0.353-0.136l2.25-2.25c0.081-0.093 0.135-0.212 0.15-0.342 0.001-0.012 0.001-0.022 0.001-0.032 0-0.127-0.059-0.241-0.15-0.315l-2.266-2.251c-0.087-0.090-0.21-0.146-0.345-0.146s-0.258 0.056-0.345 0.146l-0 0c-0.090 0.087-0.146 0.21-0.146 0.345s0.056 0.258 0.146 0.345l0 0 1.395 1.395h-9.54l1.335-1.38c0.090-0.087 0.146-0.21 0.146-0.345s-0.056-0.258-0.146-0.345l-0-0c-0.072-0.084-0.17-0.143-0.282-0.165z"></path>
+            </symbol>
+            <symbol id="icon-sheet" viewBox="0 0 24 24">
+                <title>sheet</title>
+                <path d="M12 15.984c-3.001-2.328-5.991-4.665-9-6.984l9-6.984 9 6.984c-3.009 2.319-5.999 4.657-9 6.984zM12 18.563l7.359-5.766 1.641 1.266-9 6.984-9-6.984 1.641-1.266z"></path>
+            </symbol>
+            <symbol id="icon-send" viewBox="0 0 24 24">
+                <title>send</title>
+                <path d="M2.016 21v-6.984l15-2.016-15-2.016v-6.984l21 9z"></path>
+            </symbol>
+            <symbol id="icon-outdoor" viewBox="0 0 24 24">
+                <title>outdoor</title>
+                <path d="M3.563 18.563l1.781-1.828 1.406 1.406-1.781 1.828zM11.016 22.453v-2.953h1.969v2.953h-1.969zM12 5.484c3.328 0 6 2.672 6 6s-2.672 6-6 6-6-2.672-6-6 2.672-6 6-6zM20.016 10.5h3v2.016h-3v-2.016zM17.25 18.141l1.406-1.359 1.781 1.781-1.406 1.406zM20.438 4.453l-1.781 1.781-1.406-1.406 1.781-1.781zM12.984 0.563v2.953h-1.969v-2.953h1.969zM3.984 10.5v2.016h-3v-2.016h3zM6.75 4.828l-1.406 1.406-1.781-1.781 1.406-1.406z"></path>
+            </symbol>
+            <symbol id="icon-tag" viewBox="0 0 20 24">
+                <title>tag</title>
+                <path d="M6 6c0-0.951-0.763-1.714-1.714-1.714s-1.714 0.763-1.714 1.714 0.763 1.714 1.714 1.714 1.714-0.763 1.714-1.714zM20.29 13.714c0 0.455-0.188 0.897-0.496 1.205l-6.576 6.589c-0.321 0.308-0.763 0.496-1.219 0.496s-0.897-0.188-1.205-0.496l-9.576-9.589c-0.683-0.67-1.219-1.969-1.219-2.92v-5.571c0-0.938 0.777-1.714 1.714-1.714h5.571c0.951 0 2.25 0.536 2.933 1.219l9.576 9.563c0.308 0.321 0.496 0.763 0.496 1.219z"></path>
+            </symbol>
+            <symbol id="icon-quote" viewBox="0 0 25 24">
+                <title>quote</title>
+                <path d="M6 6c0-0.951-0.763-1.714-1.714-1.714s-1.714 0.763-1.714 1.714 0.763 1.714 1.714 1.714 1.714-0.763 1.714-1.714zM20.29 13.714c0 0.455-0.188 0.897-0.496 1.205l-6.576 6.589c-0.321 0.308-0.763 0.496-1.219 0.496s-0.897-0.188-1.205-0.496l-9.576-9.589c-0.683-0.67-1.219-1.969-1.219-2.92v-5.571c0-0.938 0.777-1.714 1.714-1.714h5.571c0.951 0 2.25 0.536 2.933 1.219l9.576 9.563c0.308 0.321 0.496 0.763 0.496 1.219zM25.433 13.714c0 0.455-0.188 0.897-0.496 1.205l-6.576 6.589c-0.321 0.308-0.763 0.496-1.219 0.496-0.696 0-1.045-0.321-1.5-0.79l6.295-6.295c0.308-0.308 0.496-0.75 0.496-1.205s-0.188-0.897-0.496-1.219l-9.576-9.563c-0.683-0.683-1.982-1.219-2.933-1.219h3c0.951 0 2.25 0.536 2.933 1.219l9.576 9.563c0.308 0.321 0.496 0.763 0.496 1.219z"></path>
+            </symbol>
+            <symbol id="icon-camera" viewBox="0 0 26 24">
+                <title>camera</title>
+                <path d="M12.857 9c2.129 0 3.857 1.728 3.857 3.857s-1.728 3.857-3.857 3.857-3.857-1.728-3.857-3.857 1.728-3.857 3.857-3.857zM22.286 3.429c1.888 0 3.429 1.54 3.429 3.429v12c0 1.888-1.54 3.429-3.429 3.429h-18.857c-1.888 0-3.429-1.54-3.429-3.429v-12c0-1.888 1.54-3.429 3.429-3.429h3l0.683-1.821c0.335-0.884 1.379-1.607 2.317-1.607h6.857c0.938 0 1.982 0.723 2.317 1.607l0.683 1.821h3zM12.857 18.857c3.308 0 6-2.692 6-6s-2.692-6-6-6-6 2.692-6 6 2.692 6 6 6z"></path>
+            </symbol>
+            <symbol id="icon-history" viewBox="0 0 21 24">
+                <title>history</title>
+                <path d="M20.571 12c0 5.665-4.621 10.286-10.286 10.286-3.067 0-5.96-1.353-7.915-3.71-0.134-0.174-0.121-0.429 0.027-0.576l1.835-1.848c0.094-0.080 0.214-0.121 0.335-0.121 0.121 0.013 0.241 0.067 0.308 0.161 1.313 1.701 3.281 2.665 5.411 2.665 3.777 0 6.857-3.080 6.857-6.857s-3.080-6.857-6.857-6.857c-1.754 0-3.415 0.67-4.661 1.835l1.835 1.848c0.254 0.241 0.321 0.616 0.188 0.924-0.134 0.321-0.442 0.536-0.79 0.536h-6c-0.469 0-0.857-0.388-0.857-0.857v-6c0-0.348 0.214-0.656 0.536-0.79 0.308-0.134 0.683-0.067 0.924 0.188l1.741 1.728c1.888-1.781 4.446-2.839 7.085-2.839 5.665 0 10.286 4.621 10.286 10.286zM12 8.143v6c0 0.241-0.188 0.429-0.429 0.429h-4.286c-0.241 0-0.429-0.188-0.429-0.429v-0.857c0-0.241 0.188-0.429 0.429-0.429h3v-4.714c0-0.241 0.188-0.429 0.429-0.429h0.857c0.241 0 0.429 0.188 0.429 0.429z"></path>
+            </symbol>
+            <symbol id="icon-label" viewBox="0 0 21 24">
+                <title>label</title>
+                <path d="M13.714 16.714v5.571h-12.429c-0.71 0-1.286-0.576-1.286-1.286v-18c0-0.71 0.576-1.286 1.286-1.286h18c0.71 0 1.286 0.576 1.286 1.286v12.429h-5.571c-0.71 0-1.286 0.576-1.286 1.286zM15.429 17.143h5.103c-0.121 0.643-0.469 1.366-0.871 1.768l-2.464 2.464c-0.402 0.402-1.125 0.75-1.768 0.871v-5.103z"></path>
+            </symbol>
+            <symbol id="icon-profile" viewBox="0 0 24 24">
+                <title>profile</title>
+                <path d="M20.397 17.933c-0.348-2.504-1.366-4.728-3.643-5.036-1.179 1.286-2.879 2.103-4.754 2.103s-3.576-0.817-4.754-2.103c-2.277 0.308-3.295 2.531-3.643 5.036 1.862 2.625 4.929 4.353 8.397 4.353s6.536-1.728 8.397-4.353zM17.143 8.571c0-2.839-2.304-5.143-5.143-5.143s-5.143 2.304-5.143 5.143 2.304 5.143 5.143 5.143 5.143-2.304 5.143-5.143zM24 12c0 6.603-5.357 12-12 12-6.629 0-12-5.384-12-12 0-6.629 5.371-12 12-12s12 5.371 12 12z"></path>
+            </symbol>
+            <symbol id="icon-close" viewBox="0 0 24 24">
+                <title>close</title>
+                <path d="M18.984 6.422l-5.578 5.578 5.578 5.578-1.406 1.406-5.578-5.578-5.578 5.578-1.406-1.406 5.578-5.578-5.578-5.578 1.406-1.406 5.578 5.578 5.578-5.578z"></path>
+            </symbol>
+        </defs>
+    </svg>
+    <section class="login dark-bg">
+        <img src="/android-chrome-512x512.png" height="512" width="512" alt="Collect, Quote, and Save!">
         <form>
             <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
@@ -50,238 +137,316 @@
                 </div>
                 <div class="mdl-cell mdl-cell--12-col">
                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                    Save</button>
-                </a>
+                        Save Profile</button>
+                    </a>
                 </div>
             </div>
         </form>
     </section>
-
-    <!-- Simple header with scrollable tabs. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
-                <!-- Title -->
                 <span class="mdl-layout-title">Collect, Quote, and Save!</span>
             </div>
-            <!-- Tabs -->
-            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-                <a href="#distributor" class="mdl-layout__tab is-active">Distributor</a>
-                <a href="#end-user" class="mdl-layout__tab">End-User</a>
-                <a href="#tag" class="mdl-layout__tab">Tag</a>
-            </div>
         </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Quote History</span>
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="#restore">
-                    <span class="history-title">Quote 1</span>
-                    <span class="history-ditributor">Distributor Name</span>
-                    <span class="history-user">End-User Name</span>
-                </a>
-            </nav>
-        </div>
         <main class="mdl-layout__content">
-            <section class="mdl-layout__tab-panel is-active" id="distributor">
-                <div class="page-content">
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--12-col">
-                            <p>Add the distributor and distributor contact (sales person) or select an existing distributor below.</p>
-                        </div>
-                        <div class="mdl-cell mdl-cell--12-col">
-                           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <select class="mdl-textfield__input" id="existing-distributor">
-                                    <option>Select an Existing Distributor</option>
-                                </select>
-                                <label class="mdl-textfield__label" for="tag-material">Existing Distributor</label>
+            <div class="page-content dark-bg">
+                <form>
+                    <div class="quote-carousel">
+                        <fieldset class="quote-get-started">
+                            <h2>To Get Started...</h2>
+                            <p class="subheader">Select a product to quote</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <input type="radio" name="productType" id="product-type-tag">
+                                    <label for="product-type-tag">
+                                        <svg class="icon icon-tag">
+                                            <use xlink:href="#icon-tag"></use>
+                                        </svg>
+                                        Tag
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="productType" id="product-type-label">
+                                    <label for="product-type-label">
+                                        <svg class="icon icon-label">
+                                            <use xlink:href="#icon-label"></use>
+                                        </svg>
+                                        Label
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="productType" id="product-type-sign">
+                                    <label for="product-type-sign">
+                                        <svg class="icon icon-sign">
+                                            <use xlink:href="#icon-sign"></use>
+                                        </svg>
+                                        Sign
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="distributor-name" required>
-                                <label class="mdl-textfield__label" for="distributor-name">Distributor</label>
+                        </fieldset>
+                        <fieldset class="quote-environment">
+                            <h2>Environment</h2>
+                            <p class="subheader">Where will the <span data-dynamic="product">tba</span> be used?</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <input type="radio" name="environment" id="environment-indoor">
+                                    <label for="environment-indoor">
+                                        <svg class="icon icon-indoor">
+                                            <use xlink:href="#icon-indoor"></use>
+                                        </svg>
+                                        Indoor
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="environment" id="environment-outdoor">
+                                    <label for="environment-outdoor">
+                                        <svg class="icon icon-outdoor">
+                                            <use xlink:href="#icon-outdoor"></use>
+                                        </svg>
+                                        Outdoor
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="environment" id="environment-other">
+                                    <label for="environment-other">
+                                        <svg class="icon icon-environment">
+                                            <use xlink:href="#icon-environment"></use>
+                                        </svg>
+                                        Other
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="distributor-contact" required>
-                                <label class="mdl-textfield__label" for="distributor-contact">Distributor Contact</label>
+                        </fieldset>
+                        <fieldset class="quote-shape">
+                            <h2>Shape</h2>
+                            <p class="subheader">Select the <span data-dynamic="product">tba</span> shape</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <input type="radio" name="shape" id="shape-circle">
+                                    <label for="shape-circle">
+                                        <svg class="icon icon-circle">
+                                            <use xlink:href="#icon-circle"></use>
+                                        </svg>
+                                        Circle
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="shape" id="shape-oval">
+                                    <label for="shape-oval">
+                                        <svg class="icon icon-oval">
+                                            <use xlink:href="#icon-oval"></use>
+                                        </svg>
+                                        Oval
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="shape" id="shape-rectangle">
+                                    <label for="shape-rectangle">
+                                        <svg class="icon icon-rectangle">
+                                            <use xlink:href="#icon-rectangle"></use>
+                                        </svg>
+                                        Rectangle
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="shape" id="shape-square">
+                                    <label for="shape-square">
+                                        <svg class="icon icon-square">
+                                            <use xlink:href="#icon-square"></use>
+                                        </svg>
+                                        Square
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="shape" id="shape-other">
+                                    <label for="shape-other">
+                                        <svg class="icon icon-diecut">
+                                            <use xlink:href="#icon-diecut"></use>
+                                        </svg>
+                                        Other <small>(e.g. triangle, die-cut)</small>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="distributor-email" required>
-                                <label class="mdl-textfield__label" for="distributor-email">Distributor Email</label>
+                        </fieldset>
+                        <fieldset class="quote-material">
+                            <h2>Material</h2>
+                            <p class="subheader">Select the <span data-dynamic="product">tba</span>'s material</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <div class="mdl-textfield mdl-js-textfield">
+                                        <select class="mdl-textfield__input" name="material">
+                                            <option>- Make a Selection -</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--12-col">
-                            <a href="#end-user" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect next-tab">
-                                Continue <i class="material-icons">keyboard_arrow_right</i>
-                            </a>
-                        </div>
+                        </fieldset>
+                        <fieldset class="quote-style">
+                            <h2>Style</h2>
+                            <p class="subheader">Select the label style</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <input type="radio" name="style" id="style-roll">
+                                    <label for="style-roll">
+                                        <svg class="icon icon-roll">
+                                            <use xlink:href="#icon-roll"></use>
+                                        </svg>
+                                        Roll
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="style" id="style-sheet">
+                                    <label for="style-sheet">
+                                        <svg class="icon icon-sheet">
+                                            <use xlink:href="#icon-sheet"></use>
+                                        </svg>
+                                        Sheet
+                                    </label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="radio" name="style" id="style-individual">
+                                    <label for="style-individual">
+                                        <svg class="icon icon-label">
+                                            <use xlink:href="#icon-label"></use>
+                                        </svg>
+                                        Individual
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="quote-size">
+                            <h2>Size</h2>
+                            <p class="subheader">Input <span data-dynamic="product">tba</span> size</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="width" name="width">
+                                        <label class="mdl-textfield__label" for="width">Width</label>
+                                        <span class="mdl-textfield__error">Input is not a number!</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell">
+                                    <svg class="icon icon-close">
+                                        <use xlink:href="#icon-close"></use>
+                                    </svg>
+                                </div>
+                                <div class="mdl-cell">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="height" name="height">
+                                        <label class="mdl-textfield__label" for="height">Height</label>
+                                        <span class="mdl-textfield__error">Input is not a number!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="quote-usage">
+                            <h2>Usage</h2>
+                            <p class="subheader">Input annual usage</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="usage" name="usage">
+                                        <label class="mdl-textfield__label" for="usage">Usage</label>
+                                        <span class="mdl-textfield__error">Input is not a number!</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell">
+                                    <p><span data-dynamic="style">tba</span> used annually
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="quote-quantity">
+                            <h2>Quantity</h2>
+                            <p class="subheader">Input per order quantity</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="quantity" name="quantity">
+                                        <label class="mdl-textfield__label" for="quantity">Quantity</label>
+                                        <span class="mdl-textfield__error">Input is not a number!</span>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell">
+                                    <p><span data-dynamic="style">tba</span> per order
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="quote-photo">
+                            <h2>Photo</h2>
+                            <p class="subheader">Take a photo of the <span data-dynamic="product">tba</span> </p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <input type="file" accept="image/*;capture=camera" name="photoFront" id="photoFront">
+                                    <label for="photoFront">
+                                        <svg class="icon icon-camera">
+                                            <use xlink:href="#icon-camera"></use>
+                                        </svg>
+                                        Front Photo</label>
+                                </div>
+                                <div class="mdl-cell">
+                                    <input type="file" accept="image/*;capture=camera" name="photoBack" id="photoBack">
+                                    <label for="photoBack">
+                                        <svg class="icon icon-camera">
+                                            <use xlink:href="#icon-camera"></use>
+                                        </svg>
+                                        Back Photo</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="quote-end-user">
+                            <h2>End-User</h2>
+                            <p class="subheader">Input your end user's info</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserName">
+                                        <label class="mdl-textfield__label" for="endUserName">End-user name</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserEmail">
+                                        <label class="mdl-textfield__label" for="endUserEmail">End-user email</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserCompany">
+                                        <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="quote-submit">
+                        </fieldset>
                     </div>
-                </div>
-            </section>
-            <section class="mdl-layout__tab-panel" id="end-user">
-                <div class="page-content">
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--12-col">
-                            <p>Add the end-user, or select an existing end-user below.</p>
-                        </div>
-                        <div class="mdl-cell mdl-cell--12-col">
-                           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <select class="mdl-textfield__input" id="existing-distributor">
-                                    <option>Select an Existing End-user</option>
-                                </select>
-                                <label class="mdl-textfield__label" for="tag-material">Existing End User</label>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="end-user-name" required>
-                                <label class="mdl-textfield__label" for="end-user-name">End-user</label>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="end-user-contact" required>
-                                <label class="mdl-textfield__label" for="end-user-contact">End-user Contact</label>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="end-user-email" required>
-                                <label class="mdl-textfield__label" for="end-user-email">End-user Email</label>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--12-col">
-                            <a href="#tag" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect next-tab">
-                                Continue <i class="material-icons">keyboard_arrow_right</i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="mdl-layout__tab-panel" id="tag">
-                <div class="page-content">
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--12-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="tag-name" required>
-                                <label class="mdl-textfield__label" for="tag-name">Tag Name</label>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--12-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <select class="mdl-textfield__input" id="tag-material">
-                                    <option>PF-Cardstock (10-MIL)</option>
-                                    <option>RP-Plastic (15-MIL)</option>
-                                    <option>HS-Laminate (24-MIL)</option>
-                                    <option>TYVEK ™</option>
-                                    <option>Self Laminating PF Cardstock</option>
-                                    <option>Site Tag ®</option>
-                                    <option>Self-Laminating RP-Plastic</option>
-                                    <option>Fluorescent RV-Plastic Tags (15-MIL)</option>
-                                    <option>RS-Flexcard (9-MIL)</option>
-                                    <option>Self-Laminating RS-Flexcard</option>
-                                </select>
-                                <label class="mdl-textfield__label" for="tag-material">Material</label>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="tag-height" required>
-                                <label class="mdl-textfield__label" for="tag-height">Height</label>
-                                <span class="mdl-textfield__error">Input is not a number!</span>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="tag-width" required>
-                                <label class="mdl-textfield__label" for="tag-width">Width</label>
-                                <span class="mdl-textfield__error">Input is not a number!</span>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--1-col-phone">
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="tag-size-unit-in">
-                                <input type="radio" id="tag-size-unit-in" class="mdl-radio__button" name="tag-size-unit" value="1" checked>
-                                <span class="mdl-radio__label">In</span>
-                            </label>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone">
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="tag-size-unit-cm">
-                                <input type="radio" id="tag-size-unit-cm" class="mdl-radio__button" name="tag-size-unit" value="2">
-                                <span class="mdl-radio__label">Cm</span>
-                            </label>
-                        </div>
-                        <div class="mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--1-col-phone">
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="tag-size-unit-mm">
-                                <input type="radio" id="tag-size-unit-mm" class="mdl-radio__button" name="tag-size-unit" value="2">
-                                <span class="mdl-radio__label">Mm</span>
-                            </label>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="tag-quantity">
-                                <label class="mdl-textfield__label" for="tag-quantity">Order Quantity</label>
-                                <span class="mdl-textfield__error">Input is not a number!</span>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="tag-usage">
-                                <label class="mdl-textfield__label" for="tag-usage">Annual Usage</label>
-                                <span class="mdl-textfield__error">Input is not a number!</span>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <label for="tag-image-front" class="file__label"><i class="material-icons">add_a_photo</i>
-                                <br>Front Image</label>
-                            <input type="file" accept="image/*" id="tag-image-front" capture="camera" class="file__input">
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">
-                            <label for="tag-image-back" class="file__label"><i class="material-icons">add_a_photo</i>
-                                <br>Back Image</label>
-                            <input type="file" accept="image/*" id="tag-image-back" capture="camera" class="file__input">
-                        </div>
-                        <div class="mdl-cell mdl-cell--12-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <select class="mdl-textfield__input" id="tag-finishing" multiple>
-                                    <option selected>Plastic Twist Ties (Installed)</option>
-                                    <option>String Ties (Installed)</option>
-                                    <option>Wire Ties (Installed)</option>
-                                    <option>Small Metal Grommet (1/4")</option>
-                                    <option>Standard Metal Grommet (3/8")</option>
-                                    <option>Large Metal Grommet (5/8")</option>
-                                    <option>Plastic (Black) Grommet (1/2")</option>
-                                    <option>Perforation</option>
-                                    <option>Consecutive Numbering</option>
-                                </select>
-                                <label class="mdl-textfield__label" for="tag-finishing">Finishing</label>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--12-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <textarea class="mdl-textfield__input" type="text" rows="3" id="tag-notes"></textarea>
-                                <label class="mdl-textfield__label" for="tag-notes">Notes for Quote Team...</label>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--12-col">
-                            <button type="button" class="submit-quote mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Submit Quote <i class="material-icons">send</i></button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <footer class="mdl-mini-footer">
-                <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">Collect, Quote, and Save!</div>
-                    <ul class="mdl-mini-footer__link-list">
-                        <li><a href="https://www.collectquotesave.com/">Help &amp; Support</a></li>
-                        <li><a href="http://www.accuform.com/">Accuform</a></li>
-                    </ul>
-                </div>
-            </footer>
+                </form>
+            </div>
         </main>
+        <nav class="bottom-nav">
+            <ul>
+                <li>
+                    <a href="/history">
+                        <svg class="icon icon-history">
+                            <use xlink:href="#icon-history"></use>
+                        </svg> History</a>
+                </li>
+                <li>
+                    <a href="/" class="active">
+                        <svg class="icon icon-quote">
+                            <use xlink:href="#icon-quote"></use>
+                        </svg> Quote</a>
+                </li>
+                <li>
+                    <a href="/profile">
+                        <svg class="icon icon-profile">
+                            <use xlink:href="#icon-profile"></use>
+                        </svg> Profile</a>
+                </li>
+            </ul>
+        </nav>
     </div>
     <script src="js/main.min.js"></script>
 </body>

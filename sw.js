@@ -1,10 +1,11 @@
 
-var CACHE_NAME = 'my-site-cache-v1.1';
+var CACHE_NAME = 'cqs-app-cache';
 var urlsToCache = [
   '/',
+  '/history',
+  '/profile',
   '/css/styles.css',
-  '/js/main.min.js',
-  '/js/vendor/jquery-3.1.1.min.js'
+  '/js/main.min.js'
 ];
 
 self.addEventListener('install', function(event) {

@@ -1,5 +1,6 @@
 @import 'material';
 @import 'dialog-polyfill';
+@import 'flickity';
 
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 
@@ -8,19 +9,24 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+/* Colors */
+$primaryColor: #0069AB;
+$accentColor: #0095DA;
+$grey: #ECECEC;
+$darkGrey: #424242;
 
 /* Base */
 img {
     max-width: 100%;
+    height: auto;
 }
-.page-content {
-    max-width: 600px;
-    margin: auto;
-    width: 100%;
-}
-.mdl-cell {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
 }
 
 /* Header */
@@ -29,44 +35,101 @@ img {
     font-style: italic;
     font-weight: bold;
 }
-
-/* Body */
-
-.mdl-layout__content {
-    display: flex;
-    flex-wrap: wrap;
+.mdl-layout__header-row {
+    padding-left: 16px;
+    /* to override the extra padding caused by having no top menu */
 }
 
-.mdl-layout__tab-panel,
-.mdl-textfield {
+/* Body */
+.page-content {
+    padding: 16px;
+    padding-bottom: 5em;
+    min-height: calc(100vh - 56px);
+}
+
+.dark-bg {
+    background-color: $primaryColor;
+    color:#fff;
+    .mdl-textfield .mdl-textfield__input {
+        border-bottom-color: rgba(255,255,255,.5);
+    }
+    .mdl-textfield .mdl-textfield__label {
+        color: rgba(255,255,255,1);
+    }
+    .mdl-textfield.is-focused .mdl-textfield__label,
+    .mdl-textfield--floating-label .mdl-textfield__label {
+        color: rgba(255,255,255,.75);
+    }
+    .mdl-textfield__label:after {
+        background-color: $accentColor;
+    }
+    .mdl-button--raised {
+        background: #fff;
+    }
+}
+
+.quote-carousel {
+    height: 100%;
+}
+.quote-carousel fieldset {
     width: 100%;
 }
 
 .file__label {
-	display: block;
-	text-align: center;
-	margin: 8px 0;
+    display: block;
+    text-align: center;
+    margin: 8px 0;
 }
 .file__input {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
-.submit-quote {
+/* Footer Navigation */
+.bottom-nav {
+    border-top: 1px solid #eee;
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    display: block;
-}
-
-
-/* Footer */
-.mdl-mini-footer {
-	margin-top: 2em;
-    width: 100%;
-    align-self: flex-end;
+    background: #fff;
+    z-index: 1;
+    ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+    }
+    li {
+        flex-grow: 1;
+    }
+    a {
+        text-decoration: none;
+        color: #888;
+        display: block;
+        padding: 5px 16px 0;
+        font-weight: 300;
+        font-size: .815em;
+        &:hover,
+        &:focus {
+            color: $primaryColor;
+        }
+        &.active {
+            color: $accentColor;
+        }
+    }
+    svg {
+        display: block;
+        margin: auto;
+        font-size: 2em;
+    }
 }
 
 
@@ -78,8 +141,6 @@ img {
     left: 0;
     right: 0;
     height: 100%;
-    background: #0068AB;
-    color: #fff;
     padding: 1em;
     opacity: 1;
     visibility: visible;
@@ -87,40 +148,16 @@ img {
     img {
         display: block;
         margin: auto;
+        max-width: 256px;
     }
-    .mdl-textfield__input {
-        border-bottom-color: rgba(255,255,255,.5);
-    }
-    .mdl-textfield__label {
-        color: rgba(255,255,255,1);
-    }
-    .is-focused .mdl-textfield__label {
-        color: rgba(255,255,255,.75);
-    }
-    .mdl-button--raised {
-        background: #fff;
+    form {
+        max-width: 400px;
+        margin: auto;
     }
 }
+
 .userRegistered .login {
     opacity: 0;
     visibility: hidden;
     transition: all 200ms ease;
-}
-
-.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.history-title {
-    width: 100%;
-    font-size: 1.5em;
-    margin-bottom: .5rem
-}
-.history-ditributor {
-    margin-right: 1rem;
-}
-.history-ditributor,
-.history-user {
-    font-size: .8rem;
 }
