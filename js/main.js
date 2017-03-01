@@ -1,8 +1,8 @@
-//@prepros-prepend vendor/jquery-3.1.1.min.js
 //@prepros-prepend vendor/dexie.js
 //@prepros-prepend vendor/material.js
 //@prepros-prepend vendor/dialog-polyfill.js
 //@prepros-prepend vendor/textfield.js
+//@prepros-prepend vendor/jquery-3.1.1.min.js
 //@prepros-prepend vendor/flickity.pkgd.min.js
 
 /*
@@ -28,7 +28,7 @@
 |------------------------------------|
 */
 
-Define the database
+// Define the database
 var db = new Dexie('quote_database');
 db.version(1).stores({
     users: 'yourName,yourEmail',
@@ -37,23 +37,26 @@ db.version(1).stores({
     tags: 'tagName,tagMaterial,tagHeight,tagWidth,tagUnitOfMeasure,tagOrderQuantity,tagAnnualUsage,tagFrontImage,tagBackImage,tagFinishing,tagNotes'
 });
 
+$(document).ready(function() {
 
-$('.login form').on('submit', function(e){
-    e.preventDefault();
+    $('.login form').on('submit', function(e){
+        e.preventDefault();
 
-    var userName  = yourName.value,
-        userEmail = yourEmail.value;
+        var userName  = $('#user-name').value,
+            userEmail = $('#user-email').value;
 
-    db.users.put({yourName: userName, yourEmail: userEmail}).catch(function(error) {
-        alert ("Ooops: " + error);
+        db.users.put({yourName: userName, yourEmail: userEmail}).catch(function(error) {
+            alert ("Ooops: " + error);
+        });
+
+        $('body').addClass('userRegistered');
+
+        return false;
     });
 
-    $('body').addClass('userRegistered');
 
-    return false;
-});
+    $('.quote-carousel').flickity({
+    	prevNextButtons: false
+    });
 
-
-$('.quote-carousel').flickity({
-	prevNextButtons: false
 });
