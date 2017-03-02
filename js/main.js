@@ -64,5 +64,6 @@ if (Cookies.get('user') != 'registered') {
 // Quote Carousel
 $('.quote-carousel').flickity({
     prevNextButtons: false,
-    imagesLoaded: true
+    imagesLoaded: true,
+    setGallerySize: false
 });
