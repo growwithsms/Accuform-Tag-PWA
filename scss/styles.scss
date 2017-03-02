@@ -41,15 +41,10 @@ img {
 }
 
 /* Body */
-.page-content {
-    padding: 16px;
-    padding-bottom: 5em;
-    min-height: calc(100vh - 56px);
-}
-
 .dark-bg {
     background-color: $primaryColor;
     color:#fff;
+    /* Lighten forms */
     .mdl-textfield .mdl-textfield__input {
         border-bottom-color: rgba(255,255,255,.5);
     }
@@ -67,28 +62,9 @@ img {
         background: #fff;
     }
 }
-
-.quote-carousel {
-    height: 100%;
-}
-.quote-carousel fieldset {
+.mdl-textfield {
     width: 100%;
 }
-
-.file__label {
-    display: block;
-    text-align: center;
-    margin: 8px 0;
-}
-.file__input {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
-
 /* Footer Navigation */
 .bottom-nav {
     border-top: 1px solid #eee;
@@ -160,4 +136,63 @@ img {
     opacity: 0;
     visibility: hidden;
     transition: all 200ms ease;
+}
+
+/* Quotes Page */
+.quote-page {
+    .flickity-page-dots {
+        bottom: 3em;
+        .dot {
+            background: #fff;
+        }
+    }
+    .quote-carousel {
+        min-height: calc(100vh - 2em);
+    }
+    .quote-carousel fieldset {
+        width: 100%;
+    }
+    .mdl-grid--no-spacing {
+        padding: 0 16px;
+        >.mdl-cell {
+            text-align: center;
+            &.mdl-cell--2-col {
+                width: 16.666%;
+            }
+            &.mdl-cell--4-col {
+                width: 33.333%;
+            }
+            &.mdl-cell--5-col {
+                width: 41.666%;
+            }
+            &.mdl-cell--6-col {
+                width: 50%;
+            }
+            &.mdl-cell--8-col {
+                width: 66.666%;
+            }
+        }
+    }
+    h2, p {
+        padding: 0 16px;
+    }
+    /* Custom Form Inputs */
+    input[type="radio"] {
+        position: absolute;
+        visibility: hidden;
+        &:checked ~ label {
+            background: darken($primaryColor, 10%)
+        }
+        ~ label {
+            display: block;
+            text-align: center;
+            padding: .5em 1em;
+            border-radius: .5em;
+            svg {
+                display: block;
+                font-size: 4em;
+                margin: auto;
+            }
+        }
+    }
 }

@@ -2,8 +2,6 @@
 var CACHE_NAME = 'cqs-app-cache';
 var urlsToCache = [
   '/',
-  '/history',
-  '/profile',
   '/css/styles.css',
   '/js/main.min.js'
 ];

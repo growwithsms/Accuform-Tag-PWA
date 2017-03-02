@@ -143,8 +143,8 @@
             </div>
         </form>
     </section>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
+    <div class="mdl-layout mdl-js-layout">
+        <header class="mdl-layout__header" style="display: none;">
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title">Collect, Quote, and Save!</span>
             </div>
@@ -157,7 +157,7 @@
                             <h2>To Get Started...</h2>
                             <p class="subheader">Select a product to quote</p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="productType" id="product-type-tag">
                                     <label for="product-type-tag">
                                         <svg class="icon icon-tag">
@@ -166,7 +166,7 @@
                                         Tag
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="productType" id="product-type-label">
                                     <label for="product-type-label">
                                         <svg class="icon icon-label">
@@ -175,7 +175,7 @@
                                         Label
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="productType" id="product-type-sign">
                                     <label for="product-type-sign">
                                         <svg class="icon icon-sign">
@@ -190,7 +190,7 @@
                             <h2>Environment</h2>
                             <p class="subheader">Where will the <span data-dynamic="product">tba</span> be used?</p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="environment" id="environment-indoor">
                                     <label for="environment-indoor">
                                         <svg class="icon icon-indoor">
@@ -199,7 +199,7 @@
                                         Indoor
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="environment" id="environment-outdoor">
                                     <label for="environment-outdoor">
                                         <svg class="icon icon-outdoor">
@@ -208,7 +208,7 @@
                                         Outdoor
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="environment" id="environment-other">
                                     <label for="environment-other">
                                         <svg class="icon icon-environment">
@@ -223,7 +223,7 @@
                             <h2>Shape</h2>
                             <p class="subheader">Select the <span data-dynamic="product">tba</span> shape</p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="shape" id="shape-circle">
                                     <label for="shape-circle">
                                         <svg class="icon icon-circle">
@@ -232,7 +232,7 @@
                                         Circle
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="shape" id="shape-oval">
                                     <label for="shape-oval">
                                         <svg class="icon icon-oval">
@@ -241,7 +241,7 @@
                                         Oval
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="shape" id="shape-rectangle">
                                     <label for="shape-rectangle">
                                         <svg class="icon icon-rectangle">
@@ -250,7 +250,7 @@
                                         Rectangle
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--6-col">
                                     <input type="radio" name="shape" id="shape-square">
                                     <label for="shape-square">
                                         <svg class="icon icon-square">
@@ -259,7 +259,7 @@
                                         Square
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--6-col">
                                     <input type="radio" name="shape" id="shape-other">
                                     <label for="shape-other">
                                         <svg class="icon icon-diecut">
@@ -274,7 +274,7 @@
                             <h2>Material</h2>
                             <p class="subheader">Select the <span data-dynamic="product">tba</span>'s material</p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--12-col">
                                     <div class="mdl-textfield mdl-js-textfield">
                                         <select class="mdl-textfield__input" name="material">
                                             <option>- Make a Selection -</option>
@@ -287,7 +287,7 @@
                             <h2>Style</h2>
                             <p class="subheader">Select the label style</p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="style" id="style-roll">
                                     <label for="style-roll">
                                         <svg class="icon icon-roll">
@@ -296,7 +296,7 @@
                                         Roll
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="style" id="style-sheet">
                                     <label for="style-sheet">
                                         <svg class="icon icon-sheet">
@@ -305,7 +305,7 @@
                                         Sheet
                                     </label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--4-col">
                                     <input type="radio" name="style" id="style-individual">
                                     <label for="style-individual">
                                         <svg class="icon icon-label">
@@ -320,19 +320,19 @@
                             <h2>Size</h2>
                             <p class="subheader">Input <span data-dynamic="product">tba</span> size</p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--5-col">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="width" name="width">
                                         <label class="mdl-textfield__label" for="width">Width</label>
                                         <span class="mdl-textfield__error">Input is not a number!</span>
                                     </div>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--2-col mdl-cell--middle">
                                     <svg class="icon icon-close">
                                         <use xlink:href="#icon-close"></use>
                                     </svg>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--5-col">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="height" name="height">
                                         <label class="mdl-textfield__label" for="height">Height</label>
@@ -345,14 +345,14 @@
                             <h2>Usage</h2>
                             <p class="subheader">Input annual usage</p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--6-col">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="usage" name="usage">
                                         <label class="mdl-textfield__label" for="usage">Usage</label>
                                         <span class="mdl-textfield__error">Input is not a number!</span>
                                     </div>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
                                     <p><span data-dynamic="style">tba</span> used annually
                                 </div>
                             </div>
@@ -361,14 +361,14 @@
                             <h2>Quantity</h2>
                             <p class="subheader">Input per order quantity</p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--6-col">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="quantity" name="quantity">
                                         <label class="mdl-textfield__label" for="quantity">Quantity</label>
                                         <span class="mdl-textfield__error">Input is not a number!</span>
                                     </div>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
                                     <p><span data-dynamic="style">tba</span> per order
                                 </div>
                             </div>
@@ -377,7 +377,7 @@
                             <h2>Photo</h2>
                             <p class="subheader">Take a photo of the <span data-dynamic="product">tba</span> </p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--6-col">
                                     <input type="file" accept="image/*;capture=camera" name="photoFront" id="photoFront">
                                     <label for="photoFront">
                                         <svg class="icon icon-camera">
@@ -385,7 +385,7 @@
                                         </svg>
                                         Front Photo</label>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--6-col">
                                     <input type="file" accept="image/*;capture=camera" name="photoBack" id="photoBack">
                                     <label for="photoBack">
                                         <svg class="icon icon-camera">
@@ -399,19 +399,19 @@
                             <h2>End-User</h2>
                             <p class="subheader">Input your end user's info</p>
                             <div class="mdl-grid mdl-grid--no-spacing">
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--12-col">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserName">
                                         <label class="mdl-textfield__label" for="endUserName">End-user name</label>
                                     </div>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--12-col">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserEmail">
                                         <label class="mdl-textfield__label" for="endUserEmail">End-user email</label>
                                     </div>
                                 </div>
-                                <div class="mdl-cell">
+                                <div class="mdl-cell mdl-cell--12-col">
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                         <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserCompany">
                                         <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
@@ -420,6 +420,24 @@
                             </div>
                         </fieldset>
                         <fieldset class="quote-submit">
+                            <h2>That's It!</h2>
+                            <p class="subheader">Add any final notes and submit your quote</p>
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <textarea class="mdl-textfield__input" type="text" rows="3" id="notes"></textarea>
+                                        <label class="mdl-textfield__label" for="notes">Notes for sales...</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--12-col">
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                        Submit Quote 
+                                        <svg class="icon icon-send">
+                                            <use xlink:href="#icon-send"></use>
+                                        </svg> 
+                                    </button>
+                                </div>
+                            </div>
                         </fieldset>
                     </div>
                 </form>
