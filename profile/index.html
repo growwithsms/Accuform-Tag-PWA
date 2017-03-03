@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Collect, Quote, and Save!</title>
     <meta name="description" content="Tag quoting tool by Accuform">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height"/>
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
     <!-- Web Application Manifest -->
@@ -17,7 +17,7 @@
     <link rel="icon" sizes="180x180" href="/apple-touch-icon.png">
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0069AB">
     <meta name="apple-mobile-web-app-title" content="Collect, Quote, and Save!">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <!-- Color the status bar on mobile devices -->
@@ -25,10 +25,9 @@
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0168ab">
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
+    <link rel="stylesheet" href="/css/styles.css"></head>
 
-<body class="quote-page">
+<body class="profile-page">
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
             <symbol id="icon-environment" viewBox="0 0 24 24">
@@ -119,32 +118,40 @@
             </symbol>
         </defs>
     </svg>
-    <section class="login dark-bg">
-        <img src="/android-chrome-512x512.png" height="512" width="512" alt="Collect, Quote, and Save!">
-        <form>
-            <div class="mdl-grid mdl-grid--no-spacing">
-                <div class="mdl-cell mdl-cell--12-col">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="user-name" required>
-                        <label class="mdl-textfield__label" for="user-name">Your Name</label>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-cell--12-col">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="user-email" required>
-                        <label class="mdl-textfield__label" for="user-email">Your Email</label>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-cell--12-col">
-                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                        Save Profile</button>
-                    </a>
-                </div>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Collect, Quote, and Save!</span>
             </div>
-        </form>
-    </section>
-    <section class="page-content dark-bg">
-        <h1>Profile Page</h1>
+        </header>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <h1><svg class="icon icon-profile"><use xlink:href="#icon-profile"></use></svg> Profile</h1>
+                <form>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="user-name" required>
+                                <label class="mdl-textfield__label" for="user-name">Your Name</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="user-email" required>
+                                <label class="mdl-textfield__label" for="user-email">Your Email</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Update Profile</button>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
         <nav class="bottom-nav">
             <ul>
                 <li>
@@ -167,7 +174,6 @@
                 </li>
             </ul>
         </nav>
-    </section>
     <script type="text/javascript" async src="/js/main.min.js"></script>
 </body>
 

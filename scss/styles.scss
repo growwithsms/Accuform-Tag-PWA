@@ -1,65 +1,82 @@
 @import 'material';
 @import 'dialog-polyfill';
 @import 'flickity';
-
 body {
-	font-family: -apple-system, BlinkMacSystemFont, 
-    "Segoe UI", "Roboto", "Oxygen", 
-    "Ubuntu", "Cantarell", "Fira Sans", 
-    "Droid Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+
 /* Colors */
+
 $primaryColor: #0069AB;
 $accentColor: #0095DA;
 $grey: #ECECEC;
 $darkGrey: #424242;
 
 /* Base */
-html,body {
+
+html,
+body {
     height: 100%;
 }
+
 img {
     max-width: 100%;
     height: auto;
 }
+
 .icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  stroke-width: 0;
-  stroke: currentColor;
-  fill: currentColor;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
 }
 
+
 /* Header */
+
 .mdl-layout-title {
     font-stretch: condensed;
     font-style: italic;
     font-weight: bold;
 }
+
 .mdl-layout__header-row {
     padding-left: 16px;
     /* to override the extra padding caused by having no top menu */
 }
 
+
 /* Body */
+h1 {
+    font-size: 3em;
+    opacity: .5;
+    margin-top: 0;
+}
 .page-content {
     height: 100%;
+    padding: 16px;
 }
+
+.mdl-textfield {
+    width: 100%;
+}
+
 .dark-bg {
     background-color: $primaryColor;
-    color:#fff;
+    color: #fff;
     /* Lighten forms */
     .mdl-textfield .mdl-textfield__input {
-        border-bottom-color: rgba(255,255,255,.5);
+        border-bottom-color: rgba(255, 255, 255, .5);
     }
     .mdl-textfield .mdl-textfield__label {
-        color: rgba(255,255,255,1);
+        color: rgba(255, 255, 255, 1);
     }
     .mdl-textfield.is-focused .mdl-textfield__label,
     .mdl-textfield--floating-label .mdl-textfield__label {
-        color: rgba(255,255,255,.75);
+        color: rgba(255, 255, 255, .75);
     }
     .mdl-textfield__label:after {
         background-color: $accentColor;
@@ -67,14 +84,17 @@ img {
     .mdl-button--raised {
         background: #fff;
     }
+    option {
+        color: #212121;
+    }
 }
-.mdl-textfield {
-    width: 100%;
-}
+
+
 /* Footer Navigation */
+
 .bottom-nav {
     border-top: 1px solid #eee;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -116,6 +136,7 @@ img {
 
 
 /* Login Screen */
+
 .login {
     position: fixed;
     z-index: 9999;
@@ -126,11 +147,9 @@ img {
     padding: 1em;
     opacity: 1;
     visibility: visible;
-    transition: all 200ms ease;
     img {
         display: block;
         margin: auto;
-        max-width: 256px;
     }
     form {
         max-width: 300px;
@@ -138,25 +157,27 @@ img {
     }
 }
 
-.userRegistered .login {
-    opacity: 0;
-    visibility: hidden;
-    transition: all 200ms ease;
-}
 
 /* Quotes Page */
+
 .quote-page {
-    form {
-        height: 100%;
+    .page-content {
+        padding: 0;
+        h2,
+        p {
+            padding: 0 16px;
+        }
     }
-    h2, p {
-        padding: 0 16px;
+    .quote-form {
+        height: 100%;
     }
     .quote-carousel {
         height: 100%;
         fieldset {
             width: 100%;
             height: 100%;
+            max-width: 600px;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
     }
     .flickity-page-dots {
@@ -187,14 +208,16 @@ img {
         }
     }
     /* Custom Form Inputs */
-    input[type="radio"] {
+    input[type="radio"],
+    input[type="file"] {
         width: 0.1px;
         height: 0.1px;
         opacity: 0;
         overflow: hidden;
         position: absolute;
         z-index: -1;
-        &:checked ~ label {
+        &:checked ~ label,
+        &:focus ~ label {
             background: darken($primaryColor, 10%)
         }
         ~ label {
@@ -202,6 +225,7 @@ img {
             text-align: center;
             padding: .5em 1em;
             border-radius: .5em;
+            position: relative;
             svg {
                 display: block;
                 font-size: 4em;
@@ -209,4 +233,78 @@ img {
             }
         }
     }
+    .icon-check {
+        position: absolute;
+        opacity: 0;
+        font-size: .5em;
+        left: 50%;
+        top: 40%;
+        transition: transform 200ms ease .5s, opacity 150ms ease .5s;
+        transform-origin: center;
+        transform: scale(0) translate(-50%, -50%);
+    }
+    .uploaded .icon-check {
+        opacity: 1;
+        transform: scale(1) translate(-50%, -50%);
+    }
+    .icon-camera {
+        opacity: 1;
+        transform: scale(1);
+        transition: all 100ms ease .25s;
+    }
+    .uploaded .icon-camera {
+        opacity: 0;
+        transform: scale(0)
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
+    }
+    100% {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+.fadeOut {
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+
+.mdl-dialog h4,
+.mdl-dialog p {
+    opacity: 0;
+    transition: all 100ms ease;
+}
+.quote-sent .mdl-dialog h4,
+.quote-sent .mdl-dialog p {
+    opacity: 1;
+}
+.mdl-spinner {
+    display: block;
+    margin: auto;
+    position: absolute;
+    left: 40%;
 }

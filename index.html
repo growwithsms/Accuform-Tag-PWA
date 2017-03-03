@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Collect, Quote, and Save!</title>
     <meta name="description" content="Tag quoting tool by Accuform">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height" />
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
     <!-- Web Application Manifest -->
@@ -17,7 +17,7 @@
     <link rel="icon" sizes="180x180" href="/apple-touch-icon.png">
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0069AB">
     <meta name="apple-mobile-web-app-title" content="Collect, Quote, and Save!">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <!-- Color the status bar on mobile devices -->
@@ -31,6 +31,10 @@
 <body class="quote-page">
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
+            <symbol id="icon-check" viewBox="0 0 28 28">
+                <title>check</title>
+                <path d="M26.109 8.844c0 0.391-0.156 0.781-0.438 1.062l-13.438 13.438c-0.281 0.281-0.672 0.438-1.062 0.438s-0.781-0.156-1.062-0.438l-7.781-7.781c-0.281-0.281-0.438-0.672-0.438-1.062s0.156-0.781 0.438-1.062l2.125-2.125c0.281-0.281 0.672-0.438 1.062-0.438s0.781 0.156 1.062 0.438l4.594 4.609 10.25-10.266c0.281-0.281 0.672-0.438 1.062-0.438s0.781 0.156 1.062 0.438l2.125 2.125c0.281 0.281 0.438 0.672 0.438 1.062z"></path>
+            </symbol>
             <symbol id="icon-environment" viewBox="0 0 24 24">
                 <title>environment</title>
                 <path d="M12.539 19.479c-0.142-0.139-0.337-0.225-0.552-0.225s-0.41 0.086-0.552 0.226l-1.104 1.104c-0.098 0.13-0.158 0.295-0.158 0.473 0 0.436 0.353 0.789 0.789 0.789 0.178 0 0.343-0.059 0.475-0.159l1.102-1.103c0.139-0.142 0.225-0.337 0.225-0.552s-0.086-0.41-0.226-0.552zM15.772 20.819c-0.424 0.014-0.763 0.362-0.763 0.788 0 0.009 0 0.019 0 0.028l-0 1.602c0 0.436 0.353 0.789 0.789 0.789s0.789-0.353 0.789-0.789v-1.63c0-0 0-0 0-0 0-0.436-0.353-0.789-0.789-0.789-0.009 0-0.018 0-0.028 0zM21.345 20.556l-1.104-1.104c-0.13-0.098-0.295-0.158-0.473-0.158-0.436 0-0.789 0.353-0.789 0.789 0 0.178 0.059 0.343 0.159 0.475l1.103 1.102c0.142 0.139 0.337 0.225 0.552 0.225s0.41-0.086 0.552-0.226c0.166-0.145 0.27-0.358 0.27-0.594 0-0.183-0.062-0.351-0.167-0.485zM22.87 15.299h-1.525c-0.436 0-0.789 0.353-0.789 0.789s0.353 0.789 0.789 0.789h1.604c0.436 0 0.789-0.353 0.789-0.789s-0.353-0.789-0.789-0.789zM21.45 10.515c-0.142-0.139-0.337-0.225-0.552-0.225s-0.41 0.086-0.552 0.226l-1.104 1.104c-0.098 0.13-0.158 0.295-0.158 0.473 0 0.436 0.353 0.789 0.789 0.789 0.178 0 0.343-0.059 0.475-0.159l1.102-1.103c0.139-0.142 0.225-0.337 0.225-0.552s-0.086-0.41-0.226-0.552zM16.193 12.933l-3.444 3.575c0.19 1.578 1.52 2.789 3.133 2.789 1.742 0 3.154-1.412 3.154-3.154 0-1.605-1.199-2.93-2.749-3.129z"></path>
@@ -119,19 +123,19 @@
             </symbol>
         </defs>
     </svg>
-    <section class="login dark-bg">
-        <img src="/android-chrome-512x512.png" height="512" width="512" alt="Collect, Quote, and Save!">
+    <div class="login dark-bg" style="display: none;">
+        <img src="/android-chrome-192x192.png" height="96" width="96" alt="Collect, Quote, and Save!">
         <form>
             <div class="mdl-grid mdl-grid--no-spacing">
                 <div class="mdl-cell mdl-cell--12-col">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="user-name" required>
+                        <input class="mdl-textfield__input" type="text" id="user-name" name="user-name" required>
                         <label class="mdl-textfield__label" for="user-name">Your Name</label>
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--12-col">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="user-email" required>
+                        <input class="mdl-textfield__input" type="text" id="user-email" name="user-email" required>
                         <label class="mdl-textfield__label" for="user-email">Your Email</label>
                     </div>
                 </div>
@@ -142,15 +146,16 @@
                 </div>
             </div>
         </form>
-    </section>
+    </div>
     <section class="page-content dark-bg">
-        <form class="quote-carousel">
+        <form class="quote-form">
+            <div class="quote-carousel fadeIn">
             <fieldset class="quote-get-started">
                 <h2>To Get Started...</h2>
                 <p class="subheader">Select a product to quote</p>
                 <div class="mdl-grid mdl-grid--no-spacing">
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="productType" id="product-type-tag">
+                        <input type="radio" name="productType" id="product-type-tag" value="Tag">
                         <label for="product-type-tag">
                             <svg class="icon icon-tag">
                                 <use xlink:href="#icon-tag"></use>
@@ -159,7 +164,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="productType" id="product-type-label">
+                        <input type="radio" name="productType" id="product-type-label" value="Label">
                         <label for="product-type-label">
                             <svg class="icon icon-label">
                                 <use xlink:href="#icon-label"></use>
@@ -168,7 +173,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="productType" id="product-type-sign">
+                        <input type="radio" name="productType" id="product-type-sign" value="Sign">
                         <label for="product-type-sign">
                             <svg class="icon icon-sign">
                                 <use xlink:href="#icon-sign"></use>
@@ -183,7 +188,7 @@
                 <p class="subheader">Where will the <span data-dynamic="product">tba</span> be used?</p>
                 <div class="mdl-grid mdl-grid--no-spacing">
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="environment" id="environment-indoor">
+                        <input type="radio" name="environment" id="environment-indoor" value="Indoor">
                         <label for="environment-indoor">
                             <svg class="icon icon-indoor">
                                 <use xlink:href="#icon-indoor"></use>
@@ -192,7 +197,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="environment" id="environment-outdoor">
+                        <input type="radio" name="environment" id="environment-outdoor" value="Outdoor">
                         <label for="environment-outdoor">
                             <svg class="icon icon-outdoor">
                                 <use xlink:href="#icon-outdoor"></use>
@@ -201,7 +206,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="environment" id="environment-other">
+                        <input type="radio" name="environment" id="environment-other" value="Other">
                         <label for="environment-other">
                             <svg class="icon icon-environment">
                                 <use xlink:href="#icon-environment"></use>
@@ -216,7 +221,7 @@
                 <p class="subheader">Select the <span data-dynamic="product">tba</span> shape</p>
                 <div class="mdl-grid mdl-grid--no-spacing">
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="shape" id="shape-circle">
+                        <input type="radio" name="shape" id="shape-circle" value="Circle">
                         <label for="shape-circle">
                             <svg class="icon icon-circle">
                                 <use xlink:href="#icon-circle"></use>
@@ -225,7 +230,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="shape" id="shape-oval">
+                        <input type="radio" name="shape" id="shape-oval" value="Oval">
                         <label for="shape-oval">
                             <svg class="icon icon-oval">
                                 <use xlink:href="#icon-oval"></use>
@@ -234,7 +239,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="shape" id="shape-rectangle">
+                        <input type="radio" name="shape" id="shape-rectangle" value="Rectangle">
                         <label for="shape-rectangle">
                             <svg class="icon icon-rectangle">
                                 <use xlink:href="#icon-rectangle"></use>
@@ -243,7 +248,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col">
-                        <input type="radio" name="shape" id="shape-square">
+                        <input type="radio" name="shape" id="shape-square" value="Square">
                         <label for="shape-square">
                             <svg class="icon icon-square">
                                 <use xlink:href="#icon-square"></use>
@@ -252,7 +257,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col">
-                        <input type="radio" name="shape" id="shape-other">
+                        <input type="radio" name="shape" id="shape-other" value="Other">
                         <label for="shape-other">
                             <svg class="icon icon-diecut">
                                 <use xlink:href="#icon-diecut"></use>
@@ -268,8 +273,51 @@
                 <div class="mdl-grid mdl-grid--no-spacing">
                     <div class="mdl-cell mdl-cell--12-col">
                         <div class="mdl-textfield mdl-js-textfield">
-                            <select class="mdl-textfield__input" name="material">
-                                <option>- Make a Selection -</option>
+                            <select class="mdl-textfield__input" name="material" id="material">
+                                <option value="">- Make a Selection -</option>
+                                <!-- Label Materials -->
+                                <option value="Aluminum_Foil" data-product="label">Aluminum Foil</option>
+                                <option value="Convex" data-product="label">Convex</option>
+                                <option value="Fluorescent_Paper" data-product="label">Fluorescent Paper</option>
+                                <option value="Fluorescent_Vinyl" data-product="label">Fluorescent Vinyl</option>
+                                <option value="High-Performance" data-product="label">High-Performance</option>
+                                <option value="Magnetic" data-product="label">Magnetic</option>
+                                <option value="Paper" data-product="label">Paper</option>
+                                <option value="Removable_Vinyl" data-product="label">Removable Vinyl</option>
+                                <option value="Reflective" data-product="label">Reflective</option>
+                                <option value="Tamper_Evident_Labels" data-product="label">Tamper Evident Labels</option>
+                                <option value="Vinyl" data-product="label">Vinyl</option>
+                                <option value="I_DONT_KNOW" data-product="label">I DON'T KNOW WHAT I NEED</option>
+                                <!-- Sign Materials -->
+                                <option value="Aluminum" data-product="sign">Aluminum</option>
+                                <option value="Plastic" data-product="sign">Plastic</option>
+                                <option value="Adhesive_Vinyl" data-product="sign">Adhesive Vinyl</option>
+                                <option value="Accu-Shield" data-product="sign">Accu-Shield™</option>
+                                <option value="Adhesive_Dura-Vinyl" data-product="sign">Adhesive Dura-Vinyl</option>
+                                <option value="Magnetic" data-product="sign">Magnetic</option>
+                                <option value="Dura Fiberglass" data-product="sign">Dura Fiberglass</option>
+                                <option value="Contractor_Preferred_Plastic" data-product="sign">Contractor Preferred Plastic</option>
+                                <option value="Contractor_Preferred_Aluminum" data-product="sign">Contractor Preferred Aluminum</option>
+                                <option value="Contractor_Preferred_Vinyl" data-product="sign">Contractor Preferred Vinyl</option>
+                                <option value="Aluma-Lite" data-product="sign">Aluma-Lite™</option>
+                                <option value="Lumi-Glow_plastic" data-product="sign">Lumi-Glow™ (plastic)</option>
+                                <option value="Lumi-Glow_vinyl" data-product="sign">Lumi-Glow™ (vinyl)</option>
+                                <option value="Engineer_Grade_Reflective_Prismatic_Aluminum" data-product="sign">Engineer Grade Reflective Prismatic Aluminum</option>
+                                <option value="High-Intensity_Prismatic_Aluminum" data-product="sign">High-Intensity Prismatic Aluminum</option>
+                                <option value="DG_High-Prism_Aluminum" data-product="sign">DG High-Prism Aluminum</option>
+                                <option value="Galvanized_Steel" data-product="sign">Galvanized Steel</option>
+                                <option value="Banner_Material" data-product="sign">Banner Material</option>
+                                <option value="Fence-Wrap_Material" data-product="sign">Fence-Wrap™ Material</option>
+                                <option value="other" data-product="sign">Other (please note)</option>
+                                <!-- Tag Materials -->
+                                <option value="PF-Cardstock_10-mil" data-product="tag">PF-Cardstock (10-MIL)</option>
+                                <option value="RP-Plastic_15-mil" data-product="tag">RP-Plastic (15-MIL)</option>
+                                <option value="HS-Laminate_24-mil" data-product="tag">HS-Laminate (24-MIL)</option>
+                                <option value="Tyvek" data-product="tag">Tyvek™</option>
+                                <option value="Self-Laminating_PF_Cardstock" data-product="tag">Self-Laminating PF Cardstock</option>
+                                <option value="Site-Tag" data-product="tag">Site-Tag®</option>
+                                <option value="Self-Laminating_RP-Plastic" data-product="tag">Self-Laminating RP-Plastic</option>
+                                <option value="Fluorescent_RV-Plastic_Tags_15-mil" data-product="tag">Fluorescent RV-Plastic Tags (15-MIL)</option>
                             </select>
                         </div>
                     </div>
@@ -280,7 +328,7 @@
                 <p class="subheader">Select the label style</p>
                 <div class="mdl-grid mdl-grid--no-spacing">
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="style" id="style-roll">
+                        <input type="radio" name="style" id="style-roll" value="Roll">
                         <label for="style-roll">
                             <svg class="icon icon-roll">
                                 <use xlink:href="#icon-roll"></use>
@@ -289,7 +337,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="style" id="style-sheet">
+                        <input type="radio" name="style" id="style-sheet" value="Sheet">
                         <label for="style-sheet">
                             <svg class="icon icon-sheet">
                                 <use xlink:href="#icon-sheet"></use>
@@ -298,7 +346,7 @@
                         </label>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="style" id="style-individual">
+                        <input type="radio" name="style" id="style-individual" value="Individual">
                         <label for="style-individual">
                             <svg class="icon icon-label">
                                 <use xlink:href="#icon-label"></use>
@@ -345,7 +393,7 @@
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
-                        <p><span data-dynamic="style">tba</span> used annually
+                        <p><span data-dynamic="style">tba</span> used annually</p>
                     </div>
                 </div>
             </fieldset>
@@ -361,7 +409,7 @@
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
-                        <p><span data-dynamic="style">tba</span> per order
+                        <p><span data-dynamic="style">tba</span> per order</p>
                     </div>
                 </div>
             </fieldset>
@@ -375,6 +423,9 @@
                             <svg class="icon icon-camera">
                                 <use xlink:href="#icon-camera"></use>
                             </svg>
+                            <svg class="icon icon-check">
+                                <use xlink:href="#icon-check"></use>
+                            </svg>
                             Front Photo</label>
                     </div>
                     <div class="mdl-cell mdl-cell--6-col">
@@ -382,6 +433,9 @@
                         <label for="photoBack">
                             <svg class="icon icon-camera">
                                 <use xlink:href="#icon-camera"></use>
+                            </svg>
+                            <svg class="icon icon-check">
+                                <use xlink:href="#icon-check"></use>
                             </svg>
                             Back Photo</label>
                     </div>
@@ -399,13 +453,13 @@
                     </div>
                     <div class="mdl-cell mdl-cell--12-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserEmail">
+                            <input class="mdl-textfield__input" type="text" id="endUserEmail" name="endUserEmail">
                             <label class="mdl-textfield__label" for="endUserEmail">End-user email</label>
                         </div>
                     </div>
                     <div class="mdl-cell mdl-cell--12-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserCompany">
+                            <input class="mdl-textfield__input" type="text" id="endUserCompany" name="endUserCompany">
                             <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
                         </div>
                     </div>
@@ -417,7 +471,7 @@
                 <div class="mdl-grid mdl-grid--no-spacing">
                     <div class="mdl-cell mdl-cell--12-col">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <textarea class="mdl-textfield__input" type="text" rows="3" id="notes"></textarea>
+                            <textarea class="mdl-textfield__input" type="text" rows="3" id="notes" name="notes"></textarea>
                             <label class="mdl-textfield__label" for="notes">Notes for sales...</label>
                         </div>
                     </div>
@@ -432,6 +486,7 @@
                 </div>
             </fieldset>
         </form>
+        </div>
         <nav class="bottom-nav">
             <ul>
                 <li>
@@ -455,6 +510,16 @@
             </ul>
         </nav>
     </section>
+    <dialog class="mdl-dialog">
+        <h4 class="mdl-dialog__title">Quote Sent Successully!</h4>
+        <div class="mdl-dialog__content">
+            <div class="mdl-spinner mdl-js-spinner"></div>
+            <p>Accuform's sales team will have a quote back to within a few minutes.</p>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button type="button" class="mdl-button close">Close</button>
+        </div>
+    </dialog>
     <script type="text/javascript" async src="/js/main.min.js"></script>
 </body>
 
