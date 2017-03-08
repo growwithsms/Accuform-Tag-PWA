@@ -7,20 +7,15 @@
     <title>Collect, Quote, and Save!</title>
     <meta name="description" content="Tag quoting tool by Accuform">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height" />
-    <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
-    <!-- Web Application Manifest -->
     <link rel="manifest" href="/manifest.json">
-    <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Collect, Quote, and Save!">
     <link rel="icon" sizes="180x180" href="/apple-touch-icon.png">
-    <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#0069AB">
     <meta name="apple-mobile-web-app-title" content="Collect, Quote, and Save!">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <!-- Color the status bar on mobile devices -->
     <meta name="theme-color" content="#ffffff">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -150,341 +145,652 @@
     <section class="page-content dark-bg">
         <form class="quote-form">
             <div class="quote-carousel fadeIn">
-            <fieldset class="quote-get-started">
-                <h2>To Get Started...</h2>
-                <p class="subheader">Select a product to quote</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="productType" id="product-type-tag" value="Tag">
-                        <label for="product-type-tag">
-                            <svg class="icon icon-tag">
-                                <use xlink:href="#icon-tag"></use>
-                            </svg>
-                            Tag
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="productType" id="product-type-label" value="Label">
-                        <label for="product-type-label">
-                            <svg class="icon icon-label">
-                                <use xlink:href="#icon-label"></use>
-                            </svg>
-                            Label
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="productType" id="product-type-sign" value="Sign">
-                        <label for="product-type-sign">
-                            <svg class="icon icon-sign">
-                                <use xlink:href="#icon-sign"></use>
-                            </svg>
-                            Sign
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-environment">
-                <h2>Environment</h2>
-                <p class="subheader">Where will the <span data-dynamic="product">tba</span> be used?</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="environment" id="environment-indoor" value="Indoor">
-                        <label for="environment-indoor">
-                            <svg class="icon icon-indoor">
-                                <use xlink:href="#icon-indoor"></use>
-                            </svg>
-                            Indoor
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="environment" id="environment-outdoor" value="Outdoor">
-                        <label for="environment-outdoor">
-                            <svg class="icon icon-outdoor">
-                                <use xlink:href="#icon-outdoor"></use>
-                            </svg>
-                            Outdoor
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="environment" id="environment-other" value="Other">
-                        <label for="environment-other">
-                            <svg class="icon icon-environment">
-                                <use xlink:href="#icon-environment"></use>
-                            </svg>
-                            Other
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-shape">
-                <h2>Shape</h2>
-                <p class="subheader">Select the <span data-dynamic="product">tba</span> shape</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="shape" id="shape-circle" value="Circle">
-                        <label for="shape-circle">
-                            <svg class="icon icon-circle">
-                                <use xlink:href="#icon-circle"></use>
-                            </svg>
-                            Circle
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="shape" id="shape-oval" value="Oval">
-                        <label for="shape-oval">
-                            <svg class="icon icon-oval">
-                                <use xlink:href="#icon-oval"></use>
-                            </svg>
-                            Oval
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="shape" id="shape-rectangle" value="Rectangle">
-                        <label for="shape-rectangle">
-                            <svg class="icon icon-rectangle">
-                                <use xlink:href="#icon-rectangle"></use>
-                            </svg>
-                            Rectangle
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--6-col">
-                        <input type="radio" name="shape" id="shape-square" value="Square">
-                        <label for="shape-square">
-                            <svg class="icon icon-square">
-                                <use xlink:href="#icon-square"></use>
-                            </svg>
-                            Square
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--6-col">
-                        <input type="radio" name="shape" id="shape-other" value="Other">
-                        <label for="shape-other">
-                            <svg class="icon icon-diecut">
-                                <use xlink:href="#icon-diecut"></use>
-                            </svg>
-                            Other <small>(e.g. triangle, die-cut)</small>
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-material">
-                <h2>Material</h2>
-                <p class="subheader">Select the <span data-dynamic="product">tba</span>'s material</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <select class="mdl-textfield__input" name="material" id="material">
-                                <option value="">- Make a Selection -</option>
-                                <!-- Label Materials -->
-                                <option value="Aluminum_Foil" data-product="label">Aluminum Foil</option>
-                                <option value="Convex" data-product="label">Convex</option>
-                                <option value="Fluorescent_Paper" data-product="label">Fluorescent Paper</option>
-                                <option value="Fluorescent_Vinyl" data-product="label">Fluorescent Vinyl</option>
-                                <option value="High-Performance" data-product="label">High-Performance</option>
-                                <option value="Magnetic" data-product="label">Magnetic</option>
-                                <option value="Paper" data-product="label">Paper</option>
-                                <option value="Removable_Vinyl" data-product="label">Removable Vinyl</option>
-                                <option value="Reflective" data-product="label">Reflective</option>
-                                <option value="Tamper_Evident_Labels" data-product="label">Tamper Evident Labels</option>
-                                <option value="Vinyl" data-product="label">Vinyl</option>
-                                <option value="I_DONT_KNOW" data-product="label">I DON'T KNOW WHAT I NEED</option>
-                                <!-- Sign Materials -->
-                                <option value="Aluminum" data-product="sign">Aluminum</option>
-                                <option value="Plastic" data-product="sign">Plastic</option>
-                                <option value="Adhesive_Vinyl" data-product="sign">Adhesive Vinyl</option>
-                                <option value="Accu-Shield" data-product="sign">Accu-Shield™</option>
-                                <option value="Adhesive_Dura-Vinyl" data-product="sign">Adhesive Dura-Vinyl</option>
-                                <option value="Magnetic" data-product="sign">Magnetic</option>
-                                <option value="Dura Fiberglass" data-product="sign">Dura Fiberglass</option>
-                                <option value="Contractor_Preferred_Plastic" data-product="sign">Contractor Preferred Plastic</option>
-                                <option value="Contractor_Preferred_Aluminum" data-product="sign">Contractor Preferred Aluminum</option>
-                                <option value="Contractor_Preferred_Vinyl" data-product="sign">Contractor Preferred Vinyl</option>
-                                <option value="Aluma-Lite" data-product="sign">Aluma-Lite™</option>
-                                <option value="Lumi-Glow_plastic" data-product="sign">Lumi-Glow™ (plastic)</option>
-                                <option value="Lumi-Glow_vinyl" data-product="sign">Lumi-Glow™ (vinyl)</option>
-                                <option value="Engineer_Grade_Reflective_Prismatic_Aluminum" data-product="sign">Engineer Grade Reflective Prismatic Aluminum</option>
-                                <option value="High-Intensity_Prismatic_Aluminum" data-product="sign">High-Intensity Prismatic Aluminum</option>
-                                <option value="DG_High-Prism_Aluminum" data-product="sign">DG High-Prism Aluminum</option>
-                                <option value="Galvanized_Steel" data-product="sign">Galvanized Steel</option>
-                                <option value="Banner_Material" data-product="sign">Banner Material</option>
-                                <option value="Fence-Wrap_Material" data-product="sign">Fence-Wrap™ Material</option>
-                                <option value="other" data-product="sign">Other (please note)</option>
-                                <!-- Tag Materials -->
-                                <option value="PF-Cardstock_10-mil" data-product="tag">PF-Cardstock (10-MIL)</option>
-                                <option value="RP-Plastic_15-mil" data-product="tag">RP-Plastic (15-MIL)</option>
-                                <option value="HS-Laminate_24-mil" data-product="tag">HS-Laminate (24-MIL)</option>
-                                <option value="Tyvek" data-product="tag">Tyvek™</option>
-                                <option value="Self-Laminating_PF_Cardstock" data-product="tag">Self-Laminating PF Cardstock</option>
-                                <option value="Site-Tag" data-product="tag">Site-Tag®</option>
-                                <option value="Self-Laminating_RP-Plastic" data-product="tag">Self-Laminating RP-Plastic</option>
-                                <option value="Fluorescent_RV-Plastic_Tags_15-mil" data-product="tag">Fluorescent RV-Plastic Tags (15-MIL)</option>
-                            </select>
+                <fieldset class="quote-get-started">
+                    <h2>To Get Started...</h2>
+                    <p class="subheader">Select a product to quote</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="productType" id="product-type-tag" value="tag">
+                            <label for="product-type-tag">
+                                <svg class="icon icon-tag">
+                                    <use xlink:href="#icon-tag"></use>
+                                </svg>
+                                Tag
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="productType" id="product-type-label" value="label">
+                            <label for="product-type-label">
+                                <svg class="icon icon-label">
+                                    <use xlink:href="#icon-label"></use>
+                                </svg>
+                                Label
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="productType" id="product-type-sign" value="sign">
+                            <label for="product-type-sign">
+                                <svg class="icon icon-sign">
+                                    <use xlink:href="#icon-sign"></use>
+                                </svg>
+                                Sign
+                            </label>
                         </div>
                     </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-style">
-                <h2>Style</h2>
-                <p class="subheader">Select the label style</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="style" id="style-roll" value="Roll">
-                        <label for="style-roll">
-                            <svg class="icon icon-roll">
-                                <use xlink:href="#icon-roll"></use>
-                            </svg>
-                            Roll
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="style" id="style-sheet" value="Sheet">
-                        <label for="style-sheet">
-                            <svg class="icon icon-sheet">
-                                <use xlink:href="#icon-sheet"></use>
-                            </svg>
-                            Sheet
-                        </label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <input type="radio" name="style" id="style-individual" value="Individual">
-                        <label for="style-individual">
-                            <svg class="icon icon-label">
-                                <use xlink:href="#icon-label"></use>
-                            </svg>
-                            Individual
-                        </label>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-size">
-                <h2>Size</h2>
-                <p class="subheader">Input <span data-dynamic="product">tba</span> size</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--5-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="width" name="width">
-                            <label class="mdl-textfield__label" for="width">Width</label>
-                            <span class="mdl-textfield__error">Input is not a number!</span>
+                </fieldset>
+            </div>
+            <template id="tag-quote">
+                <fieldset class="quote-material">
+                    <h2>Material</h2>
+                    <p class="subheader">Select the tag's material</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <select class="mdl-textfield__input" name="material" id="material">
+                                    <option value="">- Make a Selection -</option>
+                                    <option value="PF-Cardstock_10-mil">PF-Cardstock (10-MIL)</option>
+                                    <option value="RP-Plastic_15-mil">RP-Plastic (15-MIL)</option>
+                                    <option value="HS-Laminate_24-mil">HS-Laminate (24-MIL)</option>
+                                    <option value="Tyvek">Tyvek™</option>
+                                    <option value="Self-Laminating_PF_Cardstock">Self-Laminating PF Cardstock</option>
+                                    <option value="Site-Tag">Site-Tag®</option>
+                                    <option value="Self-Laminating_RP-Plastic">Self-Laminating RP-Plastic</option>
+                                    <option value="Fluorescent_RV-Plastic_Tags_15-mil">Fluorescent RV-Plastic Tags (15-MIL)</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--2-col mdl-cell--middle">
-                        <svg class="icon icon-close">
-                            <use xlink:href="#icon-close"></use>
-                        </svg>
-                    </div>
-                    <div class="mdl-cell mdl-cell--5-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="height" name="height">
-                            <label class="mdl-textfield__label" for="height">Height</label>
-                            <span class="mdl-textfield__error">Input is not a number!</span>
+                </fieldset>
+                <fieldset class="quote-size">
+                    <h2>Size</h2>
+                    <p class="subheader">Input tag size</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--5-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="width" name="width">
+                                <label class="mdl-textfield__label" for="width">Width</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-usage">
-                <h2>Usage</h2>
-                <p class="subheader">Input annual usage</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--6-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="usage" name="usage">
-                            <label class="mdl-textfield__label" for="usage">Usage</label>
-                            <span class="mdl-textfield__error">Input is not a number!</span>
-                        </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
-                        <p><span data-dynamic="style">tba</span> used annually</p>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-quantity">
-                <h2>Quantity</h2>
-                <p class="subheader">Input per order quantity</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--6-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="quantity" name="quantity">
-                            <label class="mdl-textfield__label" for="quantity">Quantity</label>
-                            <span class="mdl-textfield__error">Input is not a number!</span>
-                        </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
-                        <p><span data-dynamic="style">tba</span> per order</p>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-photo">
-                <h2>Photo</h2>
-                <p class="subheader">Take a photo of the <span data-dynamic="product">tba</span> </p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--6-col">
-                        <input type="file" accept="image/*;capture=camera" name="photoFront" id="photoFront">
-                        <label for="photoFront">
-                            <svg class="icon icon-camera">
-                                <use xlink:href="#icon-camera"></use>
+                        <div class="mdl-cell mdl-cell--2-col mdl-cell--middle">
+                            <svg class="icon icon-close">
+                                <use xlink:href="#icon-close"></use>
                             </svg>
-                            <svg class="icon icon-check">
-                                <use xlink:href="#icon-check"></use>
-                            </svg>
-                            Front Photo</label>
-                    </div>
-                    <div class="mdl-cell mdl-cell--6-col">
-                        <input type="file" accept="image/*;capture=camera" name="photoBack" id="photoBack">
-                        <label for="photoBack">
-                            <svg class="icon icon-camera">
-                                <use xlink:href="#icon-camera"></use>
-                            </svg>
-                            <svg class="icon icon-check">
-                                <use xlink:href="#icon-check"></use>
-                            </svg>
-                            Back Photo</label>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-end-user">
-                <h2>End-User</h2>
-                <p class="subheader">Input your end user's info</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserName">
-                            <label class="mdl-textfield__label" for="endUserName">End-user name</label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--5-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="height" name="height">
+                                <label class="mdl-textfield__label" for="height">Height</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="endUserEmail" name="endUserEmail">
-                            <label class="mdl-textfield__label" for="endUserEmail">End-user email</label>
+                </fieldset>
+                <fieldset class="quote-usage">
+                    <h2>Usage</h2>
+                    <p class="subheader">Input annual usage</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="usage" name="usage">
+                                <label class="mdl-textfield__label" for="usage">Usage</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
+                            <p>Tags used annually</p>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="endUserCompany" name="endUserCompany">
-                            <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
+                </fieldset>
+                <fieldset class="quote-quantity">
+                    <h2>Quantity</h2>
+                    <p class="subheader">Input per order quantity</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="quantity" name="quantity">
+                                <label class="mdl-textfield__label" for="quantity">Quantity</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
+                            <p>Tags per order</p>
                         </div>
                     </div>
-                </div>
-            </fieldset>
-            <fieldset class="quote-submit">
-                <h2>That's It!</h2>
-                <p class="subheader">Add any final notes and submit your quote</p>
-                <div class="mdl-grid mdl-grid--no-spacing">
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <textarea class="mdl-textfield__input" type="text" rows="3" id="notes" name="notes"></textarea>
-                            <label class="mdl-textfield__label" for="notes">Notes for sales...</label>
+                </fieldset>
+                <fieldset class="quote-photo">
+                    <h2>Photo</h2>
+                    <p class="subheader">Take a photo of the tag</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <input type="file" accept="image/*;capture=camera" name="photoFront" id="photoFront">
+                            <label for="photoFront">
+                                <svg class="icon icon-camera">
+                                    <use xlink:href="#icon-camera"></use>
+                                </svg>
+                                <svg class="icon icon-check">
+                                    <use xlink:href="#icon-check"></use>
+                                </svg>
+                                Front Photo</label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col dynamic">
+                            <input type="file" accept="image/*;capture=camera" name="photoBack" id="photoBack">
+                            <label for="photoBack">
+                                <svg class="icon icon-camera">
+                                    <use xlink:href="#icon-camera"></use>
+                                </svg>
+                                <svg class="icon icon-check">
+                                    <use xlink:href="#icon-check"></use>
+                                </svg>
+                                Back Photo</label>
                         </div>
                     </div>
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                            Submit Quote
-                            <svg class="icon icon-send">
-                                <use xlink:href="#icon-send"></use>
+                </fieldset>
+                <fieldset class="quote-end-user">
+                    <h2>End-User</h2>
+                    <p class="subheader">Input your end user's info</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserName">
+                                <label class="mdl-textfield__label" for="endUserName">End-user name</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="endUserEmail" name="endUserEmail">
+                                <label class="mdl-textfield__label" for="endUserEmail">End-user email</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="endUserCompany" name="endUserCompany">
+                                <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-submit">
+                    <h2>That's It!</h2>
+                    <p class="subheader">Add any final notes and submit your quote</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea class="mdl-textfield__input" type="text" rows="3" id="notes" name="notes"></textarea>
+                                <label class="mdl-textfield__label" for="notes">Notes for sales...</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Submit Quote
+                                <svg class="icon icon-send">
+                                    <use xlink:href="#icon-send"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </template>
+            <template id="label-quote">
+                <fieldset class="quote-environment">
+                    <h2>Environment</h2>
+                    <p class="subheader">Where will the label be used?</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="environment" id="environment-indoor" value="Indoor">
+                            <label for="environment-indoor">
+                                <svg class="icon icon-indoor">
+                                    <use xlink:href="#icon-indoor"></use>
+                                </svg>
+                                Indoor
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="environment" id="environment-outdoor" value="Outdoor">
+                            <label for="environment-outdoor">
+                                <svg class="icon icon-outdoor">
+                                    <use xlink:href="#icon-outdoor"></use>
+                                </svg>
+                                Outdoor
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="environment" id="environment-other" value="Other">
+                            <label for="environment-other">
+                                <svg class="icon icon-environment">
+                                    <use xlink:href="#icon-environment"></use>
+                                </svg>
+                                Other
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-shape">
+                    <h2>Shape</h2>
+                    <p class="subheader">Select the label's shape</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="shape" id="shape-circle" value="Circle">
+                            <label for="shape-circle">
+                                <svg class="icon icon-circle">
+                                    <use xlink:href="#icon-circle"></use>
+                                </svg>
+                                Circle
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="shape" id="shape-oval" value="Oval">
+                            <label for="shape-oval">
+                                <svg class="icon icon-oval">
+                                    <use xlink:href="#icon-oval"></use>
+                                </svg>
+                                Oval
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="shape" id="shape-rectangle" value="Rectangle">
+                            <label for="shape-rectangle">
+                                <svg class="icon icon-rectangle">
+                                    <use xlink:href="#icon-rectangle"></use>
+                                </svg>
+                                Rectangle
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <input type="radio" name="shape" id="shape-square" value="Square">
+                            <label for="shape-square">
+                                <svg class="icon icon-square">
+                                    <use xlink:href="#icon-square"></use>
+                                </svg>
+                                Square
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <input type="radio" name="shape" id="shape-other" value="Other">
+                            <label for="shape-other">
+                                <svg class="icon icon-diecut">
+                                    <use xlink:href="#icon-diecut"></use>
+                                </svg>
+                                Other <small>(e.g. triangle, die-cut)</small>
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-material">
+                    <h2>Material</h2>
+                    <p class="subheader">Select the label's material</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <select class="mdl-textfield__input" name="material" id="material">
+                                    <option value="">- Make a Selection -</option>
+                                    <option value="Aluminum_Foil" data-applies-to-products="label">Aluminum Foil</option>
+                                    <option value="Convex" data-applies-to-products="label">Convex</option>
+                                    <option value="Fluorescent_Paper" data-applies-to-products="label">Fluorescent Paper</option>
+                                    <option value="Fluorescent_Vinyl" data-applies-to-products="label">Fluorescent Vinyl</option>
+                                    <option value="High-Performance" data-applies-to-products="label">High-Performance</option>
+                                    <option value="Magnetic" data-applies-to-products="label">Magnetic</option>
+                                    <option value="Paper" data-applies-to-products="label">Paper</option>
+                                    <option value="Removable_Vinyl" data-applies-to-products="label">Removable Vinyl</option>
+                                    <option value="Reflective" data-applies-to-products="label">Reflective</option>
+                                    <option value="Tamper_Evident_Labels" data-applies-to-products="label">Tamper Evident Labels</option>
+                                    <option value="Vinyl" data-applies-to-products="label">Vinyl</option>
+                                    <option value="I_DONT_KNOW" data-applies-to-products="label">I DON'T KNOW WHAT I NEED</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-style">
+                    <h2>Style</h2>
+                    <p class="subheader">Select the label style</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="style" id="style-roll" value="Roll">
+                            <label for="style-roll">
+                                <svg class="icon icon-roll">
+                                    <use xlink:href="#icon-roll"></use>
+                                </svg>
+                                Roll
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="style" id="style-sheet" value="Sheet">
+                            <label for="style-sheet">
+                                <svg class="icon icon-sheet">
+                                    <use xlink:href="#icon-sheet"></use>
+                                </svg>
+                                Sheet
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="style" id="style-individual" value="Individual">
+                            <label for="style-individual">
+                                <svg class="icon icon-label">
+                                    <use xlink:href="#icon-label"></use>
+                                </svg>
+                                Individual
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-size">
+                    <h2>Size</h2>
+                    <p class="subheader">Input label size</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--5-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="width" name="width">
+                                <label class="mdl-textfield__label" for="width">Width</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col mdl-cell--middle">
+                            <svg class="icon icon-close">
+                                <use xlink:href="#icon-close"></use>
                             </svg>
-                        </button>
+                        </div>
+                        <div class="mdl-cell mdl-cell--5-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="height" name="height">
+                                <label class="mdl-textfield__label" for="height">Height</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </fieldset>
+                </fieldset>
+                <fieldset class="quote-usage">
+                    <h2>Usage</h2>
+                    <p class="subheader">Input annual usage</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="usage" name="usage">
+                                <label class="mdl-textfield__label" for="usage">Usage</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
+                            <p><span data-dynamic="style">tba</span>s used annually</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-quantity">
+                    <h2>Quantity</h2>
+                    <p class="subheader">Input per order quantity</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="quantity" name="quantity">
+                                <label class="mdl-textfield__label" for="quantity">Quantity</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
+                            <p><span data-dynamic="style">tba</span> per order</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-photo">
+                    <h2>Photo</h2>
+                    <p class="subheader">Take a photo of the label</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <input type="file" accept="image/*;capture=camera" name="photoFront" id="photoFront">
+                            <label for="photoFront">
+                                <svg class="icon icon-camera">
+                                    <use xlink:href="#icon-camera"></use>
+                                </svg>
+                                <svg class="icon icon-check">
+                                    <use xlink:href="#icon-check"></use>
+                                </svg>
+                                Front Photo</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-end-user">
+                    <h2>End-User</h2>
+                    <p class="subheader">Input your end user's info</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserName">
+                                <label class="mdl-textfield__label" for="endUserName">End-user name</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="endUserEmail" name="endUserEmail">
+                                <label class="mdl-textfield__label" for="endUserEmail">End-user email</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="endUserCompany" name="endUserCompany">
+                                <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-submit">
+                    <h2>That's It!</h2>
+                    <p class="subheader">Add any final notes and submit your quote</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea class="mdl-textfield__input" type="text" rows="3" id="notes" name="notes"></textarea>
+                                <label class="mdl-textfield__label" for="notes">Notes for sales...</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Submit Quote
+                                <svg class="icon icon-send">
+                                    <use xlink:href="#icon-send"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </template>
+            <template id="sign-quote">
+                <fieldset class="quote-environment">
+                    <h2>Environment</h2>
+                    <p class="subheader">Where will the sign be used?</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="environment" id="environment-indoor" value="Indoor">
+                            <label for="environment-indoor">
+                                <svg class="icon icon-indoor">
+                                    <use xlink:href="#icon-indoor"></use>
+                                </svg>
+                                Indoor
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="environment" id="environment-outdoor" value="Outdoor">
+                            <label for="environment-outdoor">
+                                <svg class="icon icon-outdoor">
+                                    <use xlink:href="#icon-outdoor"></use>
+                                </svg>
+                                Outdoor
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--4-col">
+                            <input type="radio" name="environment" id="environment-other" value="Other">
+                            <label for="environment-other">
+                                <svg class="icon icon-environment">
+                                    <use xlink:href="#icon-environment"></use>
+                                </svg>
+                                Other
+                            </label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-material">
+                    <h2>Material</h2>
+                    <p class="subheader">Select the tag's material</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <select class="mdl-textfield__input" name="material" id="material">
+                                    <option value="">- Make a Selection -</option>
+                                    <!-- Sign Materials -->
+                                    <option value="Aluminum" data-applies-to-products="sign">Aluminum</option>
+                                    <option value="Plastic" data-applies-to-products="sign">Plastic</option>
+                                    <option value="Adhesive_Vinyl" data-applies-to-products="sign">Adhesive Vinyl</option>
+                                    <option value="Accu-Shield" data-applies-to-products="sign">Accu-Shield™</option>
+                                    <option value="Adhesive_Dura-Vinyl" data-applies-to-products="sign">Adhesive Dura-Vinyl</option>
+                                    <option value="Magnetic" data-applies-to-products="sign">Magnetic</option>
+                                    <option value="Dura Fiberglass" data-applies-to-products="sign">Dura Fiberglass</option>
+                                    <option value="Contractor_Preferred_Plastic" data-applies-to-products="sign">Contractor Preferred Plastic</option>
+                                    <option value="Contractor_Preferred_Aluminum" data-applies-to-products="sign">Contractor Preferred Aluminum</option>
+                                    <option value="Contractor_Preferred_Vinyl" data-applies-to-products="sign">Contractor Preferred Vinyl</option>
+                                    <option value="Aluma-Lite" data-applies-to-products="sign">Aluma-Lite™</option>
+                                    <option value="Lumi-Glow_plastic" data-applies-to-products="sign">Lumi-Glow™ (plastic)</option>
+                                    <option value="Lumi-Glow_vinyl" data-applies-to-products="sign">Lumi-Glow™ (vinyl)</option>
+                                    <option value="Engineer_Grade_Reflective_Prismatic_Aluminum" data-applies-to-products="sign">Engineer Grade Reflective Prismatic Aluminum</option>
+                                    <option value="High-Intensity_Prismatic_Aluminum" data-applies-to-products="sign">High-Intensity Prismatic Aluminum</option>
+                                    <option value="DG_High-Prism_Aluminum" data-applies-to-products="sign">DG High-Prism Aluminum</option>
+                                    <option value="Galvanized_Steel" data-applies-to-products="sign">Galvanized Steel</option>
+                                    <option value="Banner_Material" data-applies-to-products="sign">Banner Material</option>
+                                    <option value="Fence-Wrap_Material" data-applies-to-products="sign">Fence-Wrap™ Material</option>
+                                    <option value="other" data-applies-to-products="sign">Other (please note)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-size">
+                    <h2>Size</h2>
+                    <p class="subheader">Input tag size</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--5-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="width" name="width">
+                                <label class="mdl-textfield__label" for="width">Width</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--2-col mdl-cell--middle">
+                            <svg class="icon icon-close">
+                                <use xlink:href="#icon-close"></use>
+                            </svg>
+                        </div>
+                        <div class="mdl-cell mdl-cell--5-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="height" name="height">
+                                <label class="mdl-textfield__label" for="height">Height</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-usage">
+                    <h2>Usage</h2>
+                    <p class="subheader">Input annual usage</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="usage" name="usage">
+                                <label class="mdl-textfield__label" for="usage">Usage</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
+                            <p>Signs used annually</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-quantity">
+                    <h2>Quantity</h2>
+                    <p class="subheader">Input per order quantity</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="quantity" name="quantity">
+                                <label class="mdl-textfield__label" for="quantity">Quantity</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
+                            <p>Signs per order</p>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-photo">
+                    <h2>Photo</h2>
+                    <p class="subheader">Take a photo of the sign</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--6-col">
+                            <input type="file" accept="image/*;capture=camera" name="photoFront" id="photoFront">
+                            <label for="photoFront">
+                                <svg class="icon icon-camera">
+                                    <use xlink:href="#icon-camera"></use>
+                                </svg>
+                                <svg class="icon icon-check">
+                                    <use xlink:href="#icon-check"></use>
+                                </svg>
+                                Front Photo</label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--6-col dynamic">
+                            <input type="file" accept="image/*;capture=camera" name="photoBack" id="photoBack">
+                            <label for="photoBack">
+                                <svg class="icon icon-camera">
+                                    <use xlink:href="#icon-camera"></use>
+                                </svg>
+                                <svg class="icon icon-check">
+                                    <use xlink:href="#icon-check"></use>
+                                </svg>
+                                Back Photo</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-end-user">
+                    <h2>End-User</h2>
+                    <p class="subheader">Input your end user's info</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="endUserName" name="endUserName">
+                                <label class="mdl-textfield__label" for="endUserName">End-user name</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="endUserEmail" name="endUserEmail">
+                                <label class="mdl-textfield__label" for="endUserEmail">End-user email</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" id="endUserCompany" name="endUserCompany">
+                                <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-submit">
+                    <h2>That's It!</h2>
+                    <p class="subheader">Add any final notes and submit your quote</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea class="mdl-textfield__input" type="text" rows="3" id="notes" name="notes"></textarea>
+                                <label class="mdl-textfield__label" for="notes">Notes for sales...</label>
+                            </div>
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Submit Quote
+                                <svg class="icon icon-send">
+                                    <use xlink:href="#icon-send"></use>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </template>
         </form>
         </div>
         <nav class="bottom-nav">

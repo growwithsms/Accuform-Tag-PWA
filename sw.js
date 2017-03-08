@@ -1,4 +1,4 @@
-var CACHE_NAME = 'cqs-app-cache-v11';
+var CACHE_NAME = 'cqs-app-cache-v15';
 var CACHED_URLS = [
     '/',
     '/history',

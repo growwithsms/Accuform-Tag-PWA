@@ -24,6 +24,7 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+
 /*
 |----------------------------|
 | Database                   |
@@ -43,7 +44,6 @@ db.version(1).stores({
 | Profile Login              |
 |----------------------------|
 */
-
 // Register User
 if (Cookies.get('user') != 'registered') {
     $('.login').show();
@@ -74,37 +74,78 @@ if (Cookies.get('user') != 'registered') {
 | Quotes Page                |
 |----------------------------|
 */
+var $carousel = $('.quote-carousel').flickity({
+    prevNextButtons: false
+});
+var isFlickity = true;
 
-// Quote Carousel
-$('.quote-carousel').flickity({
-    prevNextButtons: false,
-    imagesLoaded: true,
-    setGallerySize: false
+var $tagQuoteTemplate = $('#tag-quote').html().trim(),
+    $labelQuoteTemplate = $('#label-quote').html().trim(),
+    $signQuoteTemplate = $('#sign-quote').html().trim();
+
+// Product Type quote logic
+$('input[name="productType"]').on('change', function() {
+
+    // change text to selected product name in carousel
+    var productType = $(this).val();
+    $('span[data-dynamic="product"').text(productType);
+
+    // add fieldsets from template
+    if (productType == 'tag') {
+        if ( isFlickity ) {
+            $carousel.flickity('destroy');
+            $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+            $('.quote-carousel').append($tagQuoteTemplate);
+            componentHandler.upgradeDom();
+            $carousel.flickity({
+                prevNextButtons: false
+            });
+        }
+    } else if (productType == 'label') {
+        if ( isFlickity ) {
+            $carousel.flickity('destroy');
+            $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+            $('.quote-carousel').append($labelQuoteTemplate);
+            componentHandler.upgradeDom();
+            $carousel.flickity({
+                prevNextButtons: false
+            });
+        }
+    } else if (productType == 'sign') {
+        if ( isFlickity ) {
+            $carousel.flickity('destroy');
+            $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+            $('.quote-carousel').append($signQuoteTemplate);
+            componentHandler.upgradeDom();
+            $carousel.flickity({
+                prevNextButtons: false
+            });
+        }
+    }
+
 });
 
-// Dynamic Product Labels
-$('input[name="productType"]').on('change', function(){
-    var productTypeText = $(this).val();
-    $('span[data-dynamic="product"').text(productTypeText);
+// Style Type quote logic
+$('.quote-form').on('change', 'input[name="style"]', function() {
+    var styleType = $(this).val();
+    $('span[data-dynamic="style"').text(styleType);
 });
-
-// Dynamic Carousel - waiting on brad's response
-
 
 // Photo input animations
-$('#photoFront').on('change', function() {
+$('quote-form').on('change', '#photoFront', function() {
     $(this).next().addClass('uploaded');
 });
-$('#photoBack').on('change', function() {
+
+$('.quote-form').on('change', '#photoBack', function() {
     $(this).next().addClass('uploaded');
 });
 
 // Submit form
 $('.quote-form').on('submit', function(e) {
     e.preventDefault();
-    
+
     $('body').removeClass('quote-sent');
-    
+
     var loading = $('.mdl-spinner');
     loading.addClass('is-active');
 
