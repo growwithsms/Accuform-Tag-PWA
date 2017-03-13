@@ -41,43 +41,12 @@ db.version(1).stores({
 
 /*
 |----------------------------|
-| Profile Login              |
-|----------------------------|
-*/
-// Register User
-if (Cookies.get('user') != 'registered') {
-    $('.login').show();
-    $('.login form').on('submit', function(e) {
-        e.preventDefault();
-
-        var userName = document.getElementById('user-name').value,
-            userEmail = document.getElementById('user-email').value;
-
-        db.users.put({ name: userName, email: userEmail }).catch(function(error) {
-            alert("Ooops: " + error);
-        }).then(function() {
-            Cookies.set('user', 'registered');
-            $('body').addClass('userRegistered');
-        }).then(function() {
-            $('.login').addClass('fadeOut');
-        });
-
-        return false;
-    });
-} else {
-    $('body').addClass('userRegistered');
-}
-
-
-/*
-|----------------------------|
 | Quotes Page                |
 |----------------------------|
 */
 var $carousel = $('.quote-carousel').flickity({
     prevNextButtons: false
 });
-var isFlickity = true;
 
 var $tagQuoteTemplate = $('#tag-quote').html().trim(),
     $labelQuoteTemplate = $('#label-quote').html().trim(),
@@ -92,35 +61,29 @@ $('input[name="productType"]').on('change', function() {
 
     // add fieldsets from template
     if (productType == 'tag') {
-        if ( isFlickity ) {
-            $carousel.flickity('destroy');
-            $('.quote-carousel fieldset:not(.quote-get-started)').remove();
-            $('.quote-carousel').append($tagQuoteTemplate);
-            componentHandler.upgradeDom();
-            $carousel.flickity({
-                prevNextButtons: false
-            });
-        }
+        $carousel.flickity('destroy');
+        $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+        $('.quote-carousel').append($tagQuoteTemplate);
+        componentHandler.upgradeDom();
+        $carousel.flickity({
+            prevNextButtons: false
+        });
     } else if (productType == 'label') {
-        if ( isFlickity ) {
-            $carousel.flickity('destroy');
-            $('.quote-carousel fieldset:not(.quote-get-started)').remove();
-            $('.quote-carousel').append($labelQuoteTemplate);
-            componentHandler.upgradeDom();
-            $carousel.flickity({
-                prevNextButtons: false
-            });
-        }
+        $carousel.flickity('destroy');
+        $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+        $('.quote-carousel').append($labelQuoteTemplate);
+        componentHandler.upgradeDom();
+        $carousel.flickity({
+            prevNextButtons: false
+        });
     } else if (productType == 'sign') {
-        if ( isFlickity ) {
-            $carousel.flickity('destroy');
-            $('.quote-carousel fieldset:not(.quote-get-started)').remove();
-            $('.quote-carousel').append($signQuoteTemplate);
-            componentHandler.upgradeDom();
-            $carousel.flickity({
-                prevNextButtons: false
-            });
-        }
+        $carousel.flickity('destroy');
+        $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+        $('.quote-carousel').append($signQuoteTemplate);
+        componentHandler.upgradeDom();
+        $carousel.flickity({
+            prevNextButtons: false
+        });
     }
 
 });
@@ -132,7 +95,7 @@ $('.quote-form').on('change', 'input[name="style"]', function() {
 });
 
 // Photo input animations
-$('quote-form').on('change', '#photoFront', function() {
+$('.quote-form').on('change', '#photoFront', function() {
     $(this).next().addClass('uploaded');
 });
 
@@ -143,31 +106,74 @@ $('.quote-form').on('change', '#photoBack', function() {
 // Submit form
 $('.quote-form').on('submit', function(e) {
     e.preventDefault();
-
     $('body').removeClass('quote-sent');
 
+    // Loading Spinner
     var loading = $('.mdl-spinner');
     loading.addClass('is-active');
-
     var dialog = document.querySelector('dialog');
     if (!dialog.showModal) {
         dialogPolyfill.registerDialog(dialog);
     }
+
+    // Activate Modal popup
     dialog.showModal();
     dialog.querySelector('.close').addEventListener('click', function() {
         dialog.close();
     });
 
-    var url = '/mailer/mail.php';
+    // Send form data to phpmailer
+    var data = new FormData(this);
     $.ajax({
         type: 'POST',
-        url: url,
-        data: $('.quote-form').serialize(), // serializes the form's elements.
+        url: '/mailer/mail.php',
+        data: data,
+        processData: false,
+        contentType: false,
         success: function(data) {
             loading.removeClass('is-active');
             $('body').addClass('quote-sent');
+            console.log(data);
         }
     });
 
     return false;
 });
+
+
+/*
+|----------------------------|
+| Profile Login              |
+|----------------------------|
+*/
+// Register User
+if (Cookies.get('user') != 'registered') {
+
+    $('.login').show();
+    $('.login form').on('submit', function(e) {
+        e.preventDefault();
+
+        var userName = document.getElementById('userName').value,
+            userEmail = document.getElementById('userEmail').value;
+
+        db.users.put({ name: userName, email: userEmail }).catch(function(error) {
+            alert("Ooops: " + error);
+        }).then(function() {
+            Cookies.set('user', 'registered');
+            $('body').addClass('userRegistered');
+            $('.login').addClass('fadeOut');
+            $carousel.flickity('destroy');
+            $carousel.flickity({
+                prevNextButtons: false
+            });
+        });
+
+        return false;
+    });
+} else {
+    $('body').addClass('userRegistered');
+    $carousel.flickity('destroy');
+    $carousel.flickity({
+        prevNextButtons: false
+    });
+}
