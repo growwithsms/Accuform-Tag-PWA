@@ -9,6 +9,18 @@
 
 /*
 |----------------------------|
+| Virtual Keyboard FIX       |
+|----------------------------|
+*/
+$('body').on('focus', 'textarea, input[type="text"], input[type="number"]', function() {
+	$('body').addClass('position-static');
+}).on('blur', 'textarea, input', function() {
+	$('body').removeClass('position-static');
+});
+
+
+/*
+|----------------------------|
 | PWA Service Worker         |
 |----------------------------|
 */
@@ -85,13 +97,22 @@ $('input[name="productType"]').on('change', function() {
             prevNextButtons: false
         });
     }
-
 });
 
 // Style Type quote logic
 $('.quote-form').on('change', 'input[name="style"]', function() {
     var styleType = $(this).val();
     $('span[data-dynamic="style"').text(styleType);
+});
+
+// Shape Type quote logic - hide size height for circle shape
+$('.quote-form').on('change', 'input[name="shape"]', function() {
+    var shapeType = $(this).val();
+    if(shapeType == "Circle") {
+    	$('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4)').hide();
+    } else {
+    	$('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4))').show();
+    }
 });
 
 // Photo input animations
@@ -162,6 +183,7 @@ if (Cookies.get('user') != 'registered') {
             Cookies.set('user', 'registered');
             $('body').addClass('userRegistered');
             $('.login').addClass('fadeOut');
+            $('.quote-form').show();
             $carousel.flickity('destroy');
             $carousel.flickity({
                 prevNextButtons: false
@@ -172,6 +194,7 @@ if (Cookies.get('user') != 'registered') {
     });
 } else {
     $('body').addClass('userRegistered');
+    $('.quote-form').show();
     $carousel.flickity('destroy');
     $carousel.flickity({
         prevNextButtons: false

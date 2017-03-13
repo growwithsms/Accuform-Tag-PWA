@@ -18,6 +18,7 @@ $darkGrey: #424242;
 html,
 body {
     height: 100%;
+    overflow: hidden;
 }
 
 img {
@@ -87,6 +88,9 @@ h1 {
     option {
         color: #212121;
     }
+    select[name="finishing"] option {
+        color: #fff;
+    }
 }
 
 
@@ -100,6 +104,8 @@ h1 {
     width: 100%;
     background: #fff;
     z-index: 1;
+    transform: translateY(0);
+    transition: transform 400ms cubic-bezier(0.4, 0.0, 0.2, 1);
     ul {
         list-style: none;
         display: flex;
@@ -133,7 +139,10 @@ h1 {
         font-size: 2em;
     }
 }
-
+.position-static .bottom-nav {
+    transform: translateY(100%);
+    transition: transform 400ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
 
 /* Login Screen */
 
@@ -181,7 +190,8 @@ h1 {
         }
     }
     .flickity-page-dots {
-        bottom: 5em;
+        transform: translateY(-6.5em);
+        transition: transform 150ms cubic-bezier(0.4, 0.0, 0.2, 1);
         .dot {
             background: #fff;
         }
@@ -190,6 +200,9 @@ h1 {
         padding: 0 16px;
         >.mdl-cell {
             text-align: center;
+            &.mdl-cell--1-col {
+                width: 8.333%;
+            }
             &.mdl-cell--2-col {
                 width: 16.666%;
             }
@@ -239,7 +252,7 @@ h1 {
         font-size: .5em;
         left: 50%;
         top: 40%;
-        transition: transform 200ms ease .5s, opacity 150ms ease .5s;
+        transition: transform 200ms cubic-bezier(0.4, 0.0, 0.2, 1) .5s, opacity 150ms cubic-bezier(0.4, 0.0, 0.2, 1) .5s;
         transform-origin: center;
         transform: scale(0) translate(-50%, -50%);
     }
@@ -250,12 +263,34 @@ h1 {
     .icon-camera {
         opacity: 1;
         transform: scale(1);
-        transition: all 100ms ease .25s;
+        transition: all 100ms cubic-bezier(0.4, 0.0, 0.2, 1) .25s;
     }
     .uploaded .icon-camera {
         opacity: 0;
         transform: scale(0)
     }
+}
+
+
+.mdl-dialog h4,
+.mdl-dialog p {
+    opacity: 0;
+    transition: all 100ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+.quote-sent .mdl-dialog h4,
+.quote-sent .mdl-dialog p {
+    opacity: 1;
+}
+.mdl-spinner {
+    display: block;
+    margin: auto;
+    position: absolute;
+    left: 40%;
+}
+
+.position-static .flickity-page-dots {
+    transform: translateY(-2.5em);
+    transition: transform 200ms cubic-bezier(0.4, 0.0, 0.2, 1) 100ms;
 }
 
 @keyframes fadeIn {
@@ -290,21 +325,4 @@ h1 {
     animation-name: fadeOut;
     animation-duration: 1s;
     animation-fill-mode: both;
-}
-
-
-.mdl-dialog h4,
-.mdl-dialog p {
-    opacity: 0;
-    transition: all 100ms ease;
-}
-.quote-sent .mdl-dialog h4,
-.quote-sent .mdl-dialog p {
-    opacity: 1;
-}
-.mdl-spinner {
-    display: block;
-    margin: auto;
-    position: absolute;
-    left: 40%;
 }
