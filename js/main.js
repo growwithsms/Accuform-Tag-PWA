@@ -13,9 +13,9 @@
 |----------------------------|
 */
 $('body').on('focus', 'textarea, input[type="text"], input[type="number"]', function() {
-	$('body').addClass('position-static');
+    $('body').addClass('position-static');
 }).on('blur', 'textarea, input', function() {
-	$('body').removeClass('position-static');
+    $('body').removeClass('position-static');
 });
 
 
@@ -39,13 +39,12 @@ if ('serviceWorker' in navigator) {
 
 /*
 |----------------------------|
-| Database                   |
+| Quote Database                   |
 |----------------------------|
 */
 // Define the database
 var db = new Dexie('quote_database');
 db.version(1).stores({
-    users: 'name,email',
     endUsers: 'company,name,email',
     quotes: 'material,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
 });
@@ -69,7 +68,7 @@ $('input[name="productType"]').on('change', function() {
 
     // change text to selected product name in carousel
     var productType = $(this).val();
-    $('span[data-dynamic="product"').text(productType);
+    $('span[data-dynamic="product"]').text(productType);
 
     // add fieldsets from template
     if (productType == 'tag') {
@@ -108,10 +107,10 @@ $('.quote-form').on('change', 'input[name="style"]', function() {
 // Shape Type quote logic - hide size height for circle shape
 $('.quote-form').on('change', 'input[name="shape"]', function() {
     var shapeType = $(this).val();
-    if(shapeType == "Circle") {
-    	$('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4)').hide();
+    if (shapeType == "Circle") {
+        $('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4)').hide();
     } else {
-    	$('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4))').show();
+        $('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4))').show();
     }
 });
 
@@ -128,6 +127,12 @@ $('.quote-form').on('change', '#photoBack', function() {
 $('.quote-form').on('submit', function(e) {
     e.preventDefault();
     $('body').removeClass('quote-sent');
+
+    var cookieUserName  = Cookies.get('cqs-name'),
+        cookieUserEmail = Cookies.set('cqs-email');
+
+    $('#user').val(cookieUserName);
+    $('#email').val(cookieUserEmail);
 
     // Loading Spinner
     var loading = $('.mdl-spinner');
@@ -154,7 +159,13 @@ $('.quote-form').on('submit', function(e) {
         success: function(data) {
             loading.removeClass('is-active');
             $('body').addClass('quote-sent');
-            console.log(data);
+            
+            // reset quote carousel
+            $carousel.flickity('destroy');
+            $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+            $carousel.flickity({
+                prevNextButtons: false
+            });
         }
     });
 
@@ -168,7 +179,7 @@ $('.quote-form').on('submit', function(e) {
 |----------------------------|
 */
 // Register User
-if (Cookies.get('user') != 'registered') {
+if (Cookies.get('cqs-userStatus') != 'registered') {
 
     $('.login').show();
     $('.login form').on('submit', function(e) {
@@ -177,17 +188,16 @@ if (Cookies.get('user') != 'registered') {
         var userName = document.getElementById('userName').value,
             userEmail = document.getElementById('userEmail').value;
 
-        db.users.put({ name: userName, email: userEmail }).catch(function(error) {
-            alert("Ooops: " + error);
-        }).then(function() {
-            Cookies.set('user', 'registered');
-            $('body').addClass('userRegistered');
-            $('.login').addClass('fadeOut');
-            $('.quote-form').show();
-            $carousel.flickity('destroy');
-            $carousel.flickity({
-                prevNextButtons: false
-            });
+        Cookies.set('cqs-userStatus', 'registered');
+        Cookies.set('cqs-name', userName);
+        Cookies.set('cqs-email', userEmail);
+
+        $('body').addClass('userRegistered');
+        $('.login').addClass('fadeOut');
+        $('.quote-form').show();
+        $carousel.flickity('destroy');
+        $carousel.flickity({
+            prevNextButtons: false
         });
 
         return false;
