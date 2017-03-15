@@ -6,21 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Quote History | Collect, Quote, and Save!</title>
     <meta name="description" content="Tag quoting tool by Accuform">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height"/>
-    <!-- Disable tap highlight on IE -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height" />
     <meta name="msapplication-tap-highlight" content="no">
-    <!-- Web Application Manifest -->
     <link rel="manifest" href="/manifest.json">
-    <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Collect, Quote, and Save!">
     <link rel="icon" sizes="180x180" href="/apple-touch-icon.png">
-    <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#0069AB">
     <meta name="apple-mobile-web-app-title" content="Collect, Quote, and Save!">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <!-- Color the status bar on mobile devices -->
     <meta name="theme-color" content="#ffffff">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -119,30 +114,52 @@
             </symbol>
         </defs>
     </svg>
-    <!-- Always shows a header, even in smaller screens. -->
+    <div class="login dark-bg fadeIn" style="display: none;">
+        <img src="/android-chrome-192x192.png" height="96" width="96" alt="Collect, Quote, and Save!">
+        <form>
+            <div class="mdl-grid mdl-grid--no-spacing">
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="userName" name="userName" required>
+                        <label class="mdl-textfield__label" for="userName">Your Name</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="userEmail" name="userEmail" required>
+                        <label class="mdl-textfield__label" for="userEmail">Your Email</label>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        Save Profile</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
-                <!-- Title -->
                 <span class="mdl-layout-title">Collect, Quote, and Save!</span>
             </div>
         </header>
         <main class="mdl-layout__content">
             <div class="page-content">
                 <h1><svg class="icon icon-history"><use xlink:href="#icon-history"></use></svg> Quote History</h1>
-                <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Quote Name</h2>
+                <template id="history-card">
+                    <div class="history-card-wide mdl-card mdl-shadow--2dp">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Quote Name</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            Materials, finishings, etc..
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Restore Quote</a>
+                        </div>
                     </div>
-                    <div class="mdl-card__supporting-text">
-                        Materials, finishings, etc..
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                      Restore Quote
-                    </a>
-                    </div>
-                </div>
+                </template>
             </div>
         </main>
     </div>

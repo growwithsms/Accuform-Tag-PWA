@@ -7,14 +7,12 @@ body {
 
 
 /* Colors */
-
 $primaryColor: #0069AB;
 $accentColor: #0095DA;
 $grey: #ECECEC;
 $darkGrey: #424242;
 
 /* Base */
-
 html,
 body {
     height: 100%;
@@ -37,7 +35,6 @@ img {
 
 
 /* Header */
-
 .mdl-layout-title {
     font-stretch: condensed;
     font-style: italic;
@@ -95,7 +92,6 @@ h1 {
 
 
 /* Footer Navigation */
-
 .bottom-nav {
     border-top: 1px solid #eee;
     position: absolute;
@@ -145,7 +141,6 @@ h1 {
 }
 
 /* Login Screen */
-
 .login {
     position: fixed;
     z-index: 9999;
@@ -168,7 +163,6 @@ h1 {
 
 
 /* Quotes Page */
-
 .quote-page {
     .page-content {
         padding: 0;
@@ -325,4 +319,21 @@ h1 {
     animation-name: fadeOut;
     animation-duration: 1s;
     animation-fill-mode: both;
+}
+
+// History Page
+.history-card-wide.mdl-card {
+  max-width: 512px;
+  width: 100%;
+  margin-bottom: 1em;
+}
+.history-card-wide > .mdl-card__title {
+  color: #fff;
+  padding-top: 5em;
+  background-position: center;
+  background-size: cover;
+  background-color: $primaryColor;
+}
+.history-card-wide > .mdl-card__menu {
+  color: #fff;
 }
