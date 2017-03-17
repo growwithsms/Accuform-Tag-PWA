@@ -179,6 +179,12 @@
                             </label>
                         </div>
                     </div>
+                    <div class="swipe-hint">
+                        <svg class="icon icon-swipe">
+                            <use xlink:href="#icon-swipe"></use>
+                        </svg>
+                        <p>Swipe to continue...</p>
+                    </div>
                 </fieldset>
             </div>
             <template id="tag-quote">
@@ -209,7 +215,7 @@
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="width" name="width">
+                                <input class="mdl-textfield__input" type="text" id="width" name="width">
                                 <label class="mdl-textfield__label" for="width">Width</label>
                             </div>
                         </div>
@@ -220,7 +226,7 @@
                         </div>
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="height" name="height">
+                                <input class="mdl-textfield__input" type="text" id="height" name="height">
                                 <label class="mdl-textfield__label" for="height">Height</label>
                             </div>
                         </div>
@@ -229,14 +235,15 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <select class="mdl-textfield__input" name="uom" id="uom">
                                     <option value='in'>in</option>
-                                    <option value='ft'>ft</option>
+                                    <option value='mm'>mm</option>
+                                    <option value='cm'>cm</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset class="quote-usage">
-                    <h2>Usage</h2>
+                    <h2>Annual Usage</h2>
                     <p class="subheader">Input annual usage</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--6-col">
@@ -251,7 +258,7 @@
                     </div>
                 </fieldset>
                 <fieldset class="quote-quantity">
-                    <h2>Quantity</h2>
+                    <h2>Order Quantity</h2>
                     <p class="subheader">Input per order quantity</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--6-col">
@@ -316,7 +323,7 @@
                 </fieldset>
                 <fieldset class="quote-end-user">
                     <h2>End-User</h2>
-                    <p class="subheader">Input your end user's info</p>
+                    <p class="subheader">Input your end user's info (optional)</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--5-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -334,7 +341,7 @@
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="endUserCompany" name="endUserCompany">
-                                <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
+                                <label class="mdl-textfield__label" for="endUserCompany">End-user company</label>
                             </div>
                         </div>
                     </div>
@@ -509,7 +516,7 @@
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="width" name="width">
+                                <input class="mdl-textfield__input" type="text" id="width" name="width">
                                 <label class="mdl-textfield__label" for="width">Width</label>
                             </div>
                         </div>
@@ -520,7 +527,7 @@
                         </div>
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="height" name="height">
+                                <input class="mdl-textfield__input" type="text" id="height" name="height">
                                 <label class="mdl-textfield__label" for="height">Height</label>
                             </div>
                         </div>
@@ -529,14 +536,15 @@
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <select class="mdl-textfield__input" name="uom" id="uom">
                                     <option value='in'>in</option>
-                                    <option value='ft'>ft</option>
+                                    <option value='mm'>mm</option>
+                                    <option value='cm'>cm</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset class="quote-usage">
-                    <h2>Usage</h2>
+                    <h2>Annual Usage</h2>
                     <p class="subheader">Input annual usage</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--6-col">
@@ -546,12 +554,12 @@
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
-                            <p><span data-dynamic="style">tba</span>s used annually</p>
+                            <p><span data-dynamic="style">Label</span>s used annually</p>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset class="quote-quantity">
-                    <h2>Quantity</h2>
+                    <h2>Order Quantity</h2>
                     <p class="subheader">Input per order quantity</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--6-col">
@@ -561,7 +569,7 @@
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
-                            <p><span data-dynamic="style">tba</span>s per order</p>
+                            <p><span data-dynamic="style">Label</span>s per order</p>
                         </div>
                     </div>
                 </fieldset>
@@ -578,13 +586,13 @@
                                 <svg class="icon icon-check">
                                     <use xlink:href="#icon-check"></use>
                                 </svg>
-                                Front Photo</label>
+                                Photo</label>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset class="quote-end-user">
                     <h2>End-User</h2>
-                    <p class="subheader">Input your end user's info</p>
+                    <p class="subheader">Input your end user's info (optional)</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--5-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -602,7 +610,7 @@
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="endUserCompany" name="endUserCompany">
-                                <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
+                                <label class="mdl-textfield__label" for="endUserCompany">End-user company</label>
                             </div>
                         </div>
                     </div>
@@ -664,7 +672,7 @@
                 </fieldset>
                 <fieldset class="quote-material">
                     <h2>Material</h2>
-                    <p class="subheader">Select the tag's material</p>
+                    <p class="subheader">Select the sign's material</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield">
@@ -697,11 +705,11 @@
                 </fieldset>
                 <fieldset class="quote-size">
                     <h2>Size</h2>
-                    <p class="subheader">Input tag size</p>
+                    <p class="subheader">Input sign size</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="width" name="width">
+                                <input class="mdl-textfield__input" type="text" id="width" name="width">
                                 <label class="mdl-textfield__label" for="width">Width</label>
                             </div>
                         </div>
@@ -712,7 +720,7 @@
                         </div>
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="height" name="height">
+                                <input class="mdl-textfield__input" type="text" id="height" name="height">
                                 <label class="mdl-textfield__label" for="height">Height</label>
                             </div>
                         </div>
@@ -728,7 +736,7 @@
                     </div>
                 </fieldset>
                 <fieldset class="quote-usage">
-                    <h2>Usage</h2>
+                    <h2>Annual Usage</h2>
                     <p class="subheader">Input annual usage</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--6-col">
@@ -743,7 +751,7 @@
                     </div>
                 </fieldset>
                 <fieldset class="quote-quantity">
-                    <h2>Quantity</h2>
+                    <h2>Order Quantity</h2>
                     <p class="subheader">Input per order quantity</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--6-col">
@@ -787,7 +795,7 @@
                 </fieldset>
                 <fieldset class="quote-end-user">
                     <h2>End-User</h2>
-                    <p class="subheader">Input your end user's info</p>
+                    <p class="subheader">Input your end user's info (optional)</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--5-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -805,7 +813,7 @@
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="endUserCompany" name="endUserCompany">
-                                <label class="mdl-textfield__label" for="endUserCompany">End-user Company</label>
+                                <label class="mdl-textfield__label" for="endUserCompany">End-user company</label>
                             </div>
                         </div>
                     </div>

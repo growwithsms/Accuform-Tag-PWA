@@ -165,6 +165,10 @@ if ($('.quote-page').length) {
                 prevNextButtons: false
             });
         }
+
+        // Swipe for next step hint
+        $('.quote-get-started').addClass('started');
+
     });
 
     // Style Type quote logic
