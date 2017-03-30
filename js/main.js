@@ -55,7 +55,7 @@ if ('serviceWorker' in navigator) {
 var db = new Dexie('quote_database');
 db.version(1).stores({
     endUsers: 'company,name,email',
-    quotes: 'material,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
+    quotes: '++id,material,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
 });
 
 
@@ -113,7 +113,10 @@ if ($('.quote-page').length) {
 
 
     // product/quote templates
+        
     var $tagQuoteTemplate = $('#tag-quote').html().trim(),
+
+
         $labelQuoteTemplate = $('#label-quote').html().trim(),
         $signQuoteTemplate = $('#sign-quote').html().trim();
 
@@ -217,6 +220,10 @@ if ($('.quote-page').length) {
         dialog.querySelector('.close').addEventListener('click', function() {
             dialog.close();
         });
+
+        // add quote to local db via dexie
+        //endUsers: 'company,name,email',
+        //quotes: '++id,material,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
 
         // Send form data to phpmailer
         var data = new FormData(this);
@@ -335,6 +342,21 @@ if ($('.history-page').length) {
         });
     } else {
         $('body').addClass('userRegistered');
+    }
+
+    
+    var $historyCardTemplate = $('#history-card').html().trim();
+
+    function addToHistory(){
+        collection.each(function(quote){
+            var element = [quote.name];
+            for (var i = 0; i < element.length; i++){ 
+                var listed = document.createElement('li');
+                listed.textContent = element[i];
+                document.getElementById('mane').appendChild(listed);
+            }
+            //alert(element); <-- this call alerts all names in database.  
+        });
     }
 
 
