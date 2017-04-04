@@ -18,7 +18,7 @@
 
 /*
 |----------------------------|
-| Virtual Keyboard FIX       |
+| Onscreen Keyboard FIX      |
 |----------------------------|
 */
 $('body').on('focus', 'textarea, input[type="text"], input[type="number"]', function() {
@@ -55,9 +55,89 @@ if ('serviceWorker' in navigator) {
 var db = new Dexie('quote_database');
 db.version(1).stores({
     endUsers: 'company,name,email',
-    quotes: '++id,material,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
+    quotes: '++id,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
+});
+// Open the database
+db.open().catch(function(error) {
+    alert('Uh oh : ' + error);
 });
 
+/*
+|************************************************|
+|************************************************|
+| History Page                                   |
+|************************************************|
+|************************************************|
+*/
+if ($('.history-page').length) {
+
+    /*
+    |----------------------------|
+    | Profile Login Overlay      |
+    |----------------------------|
+    */
+    // Register User
+    if (Cookies.get('cqs-userStatus') != 'registered') {
+        $('.login').show();
+        $('.login form').on('submit', function(e) {
+            e.preventDefault();
+
+            var userName = document.getElementById('userName').value,
+                userEmail = document.getElementById('userEmail').value;
+
+            Cookies.set('cqs-userStatus', 'registered');
+            Cookies.set('cqs-name', userName);
+            Cookies.set('cqs-email', userEmail);
+
+            $('body').addClass('userRegistered');
+            $('.login').addClass('fadeOut');
+            return false;
+        });
+    } else {
+        $('body').addClass('userRegistered');
+    }
+
+    // Loop through previous quotes and output to dom
+    db.quotes.each(function(quote) {
+        // quotes: '++id,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
+        if (quote.product == "Label") {
+            $('.page-content').append('\
+                <div class="history-card-wide mdl-card mdl-shadow--2dp" id="' + quote.id + '">\
+                    <div class="mdl-card__title">\
+                        <h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>\
+                    </div>\
+                    <div class="mdl-card__supporting-text">\
+                        ' + quote.environment + ' ' + quote.shape + ' ' + quote.style + '\
+                    </div>\
+                </div>\
+            ');
+        } else if (quote.product == "Sign") {
+            $('.page-content').append('\
+                <div class="history-card-wide mdl-card mdl-shadow--2dp" id="' + quote.id + '">\
+                    <div class="mdl-card__title">\
+                        <h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>\
+                    </div>\
+                    <div class="mdl-card__supporting-text">\
+                        ' + quote.environment + ' ' + quote.finishing + '\
+                    </div>\
+                </div>\
+            ');
+        } else {
+            $('.page-content').append('\
+                <div class="history-card-wide mdl-card mdl-shadow--2dp" id="' + quote.id + '">\
+                    <div class="mdl-card__title">\
+                        <h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>\
+                    </div>\
+                    <div class="mdl-card__supporting-text">\
+                        ' + quote.finishing + '\
+                    </div>\
+                </div>\
+            ');
+        }
+
+    });
+
+}
 
 /*
 |************************************************|
@@ -125,7 +205,7 @@ if ($('.quote-page').length) {
         $('span[data-dynamic="product"]').text(productType);
 
         // add fieldsets from template
-        if (productType == 'tag') {
+        if (productType == 'Tag') {
             // destroy existing flickity carousel
             $carousel.flickity('destroy');
             // reset DOM
@@ -138,7 +218,8 @@ if ($('.quote-page').length) {
             $carousel.flickity({
                 prevNextButtons: false
             });
-        } else if (productType == 'label') {
+
+        } else if (productType == 'Label') {
             // destroy existing flickity carousel
             $carousel.flickity('destroy');
             // reset DOM
@@ -151,7 +232,25 @@ if ($('.quote-page').length) {
             $carousel.flickity({
                 prevNextButtons: false
             });
-        } else if (productType == 'sign') {
+
+            // Label style type text
+            $('#quote-form').on('change', 'input[name="style"]', function() {
+                var styleType = $(this).val();
+                // updates label text to appropriate style
+                $('span[data-dynamic="style"').text(styleType);
+            });
+
+            // Label shape: hides height when circle is selected
+            $('#quote-form').on('change', 'input[name="shape"]', function() {
+                var shapeType = $(this).val();
+                if (shapeType == "Circle") {
+                    $('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4)').hide();
+                } else {
+                    $('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4))').show();
+                }
+            });
+
+        } else if (productType == 'Sign') {
             // destroy existing flickity carousel
             $carousel.flickity('destroy');
             // reset DOM
@@ -164,46 +263,30 @@ if ($('.quote-page').length) {
             $carousel.flickity({
                 prevNextButtons: false
             });
+
+            // Sign materials for indoor/outdoor
+            $('#quote-form').on('change', 'input[name="environment"]', function() {
+
+                var environmentType = $(this).val(),
+                    $indoorTemplate = $('#indoor-materials').html().trim(),
+                    $outdoorTemplate = $('#outdoor-materials').html().trim(),
+                    $defaultTemplate = $('#default-materials').html().trim();
+
+                if (environmentType == "Indoor") {
+                    $('select#material').empty().html($indoorTemplate);
+                } else if (environmentType == "Outdoor") {
+                    $('select#material').empty().html($outdoorTemplate);
+                } else {
+                    $('select#material').empty().html($defaultTemplate);
+                }
+
+            });
+
         }
 
         // Swipe for next step hint
         $('.quote-get-started').addClass('started');
 
-    });
-
-    // Sign materials for indoor/outdoor
-    $('#quote-form').on('change', 'input[name="environment"]', function() {
-
-        var environmentType = $(this).val(),
-            $indoorTemplate = $('#indoor-materials').html().trim(),
-            $outdoorTemplate = $('#outdoor-materials').html().trim(),
-            $defaultTemplate = $('#default-materials').html().trim();
-
-        if (environmentType == "Indoor") {
-            $('select#material').empty().html($indoorTemplate);
-        } else if (environmentType == "Outdoor") {
-            $('select#material').empty().html($outdoorTemplate);
-        } else {
-            $('select#material').empty().html($defaultTemplate);
-        }
-
-    });
-
-    // Label style type text
-    $('#quote-form').on('change', 'input[name="style"]', function() {
-        var styleType = $(this).val();
-        // updates label text to appropriate style
-        $('span[data-dynamic="style"').text(styleType);
-    });
-
-    // Label shape: hides height when circle is selected
-    $('#quote-form').on('change', 'input[name="shape"]', function() {
-        var shapeType = $(this).val();
-        if (shapeType == "Circle") {
-            $('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4)').hide();
-        } else {
-            $('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4))').show();
-        }
     });
 
     // Photo input animations
@@ -236,10 +319,6 @@ if ($('.quote-page').length) {
             dialog.close();
         });
 
-        // add quote to local db via dexie
-        //endUsers: 'company,name,email',
-        //quotes: '++id,material,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
-
         // Send form data to phpmailer
         var data = new FormData(this);
         $.ajax({
@@ -260,6 +339,56 @@ if ($('.quote-page').length) {
                 });
             }
         });
+
+
+        ///////////////////////////////////
+        // add quote to local db via dexie
+        ///////////////////////////////////
+        // endUsers: 'company,name,email',
+        // quotes: '++id,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
+
+        // Get all values from form
+        var userNameVal = $('#user').val(),
+            userEmailVal = $('#email').val(),
+            productTypeVal = $('input[name="productType"]:checked').val(),
+            environmentVal = $('input[name="environment"]:checked').val(),
+            shapeVal = $('input[name="shape"]:checked').val(),
+            materialVal = $('#material').val(),
+            styleVal = $('input[name="style"]:checked').val(),
+            widthVal = $('#width').val(),
+            heightVal = $('#height').val(),
+            uomVal = $('#uom').val(),
+            usageVal = $('#usage').val(),
+            quantityVal = $('#quantity').val(),
+            finishingVal = $('#finishing').val(),
+            endUserNameVal = $('#endUserName').val(),
+            endUserEmailVal = $('#endUserEmail').val(),
+            endUserCompanyVal = $('#endUserCompany').val(),
+            notesVal = $('#notes').val();
+
+        // make a new quote entry in database
+        db.quotes.add({
+            product: productTypeVal,
+            environment: environmentVal,
+            shape: shapeVal,
+            material: materialVal,
+            style: styleVal,
+            height: heightVal,
+            width: widthVal,
+            uom: uomVal,
+            quantity: quantityVal,
+            usage: usageVal,
+            finishing: finishingVal,
+            notes: notesVal
+        });
+
+        // make new end user entry in database
+        db.endUsers.add({
+            company: endUserCompanyVal,
+            name: endUserNameVal,
+            email: endUserEmailVal
+        });
+
 
         return false;
     });
@@ -320,59 +449,5 @@ if ($('.profile-page').length) {
         Cookies.set('cqs-email', updatedEmail);
 
     });
-
-}
-
-
-/*
-|************************************************|
-|************************************************|
-| History Page                                   |
-|************************************************|
-|************************************************|
-*/
-if ($('.history-page').length) {
-
-    /*
-    |----------------------------|
-    | Profile Login Overlay      |
-    |----------------------------|
-    */
-    // Register User
-    if (Cookies.get('cqs-userStatus') != 'registered') {
-        $('.login').show();
-        $('.login form').on('submit', function(e) {
-            e.preventDefault();
-
-            var userName = document.getElementById('userName').value,
-                userEmail = document.getElementById('userEmail').value;
-
-            Cookies.set('cqs-userStatus', 'registered');
-            Cookies.set('cqs-name', userName);
-            Cookies.set('cqs-email', userEmail);
-
-            $('body').addClass('userRegistered');
-            $('.login').addClass('fadeOut');
-            return false;
-        });
-    } else {
-        $('body').addClass('userRegistered');
-    }
-
-
-    var $historyCardTemplate = $('#history-card').html().trim();
-
-    function addToHistory() {
-        collection.each(function(quote) {
-            var element = [quote.name];
-            for (var i = 0; i < element.length; i++) {
-                var listed = document.createElement('li');
-                listed.textContent = element[i];
-                document.getElementById('mane').appendChild(listed);
-            }
-            //alert(element); <-- this call alerts all names in database.  
-        });
-    }
-
 
 }
