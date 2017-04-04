@@ -101,38 +101,38 @@ if ($('.history-page').length) {
     db.quotes.each(function(quote) {
         // quotes: '++id,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
         if (quote.product == "Label") {
-            $('.page-content').append('\
-                <div class="history-card-wide mdl-card mdl-shadow--2dp" id="' + quote.id + '">\
-                    <div class="mdl-card__title">\
-                        <h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>\
-                    </div>\
-                    <div class="mdl-card__supporting-text">\
-                        ' + quote.environment + ' ' + quote.shape + ' ' + quote.style + '\
-                    </div>\
-                </div>\
-            ');
+            $('.page-content').append('' +
+                '<div class="history-card-wide mdl-card mdl-shadow--2dp fadeIn" id="' + quote.id + '">' + 
+                    '<div class="mdl-card__title">' + 
+                        '<h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>' +
+                    '</div>' + 
+                    '<div class="mdl-card__supporting-text">' +
+                        '<b>Environment:</b> ' + quote.environment + '&nbsp; <b>Shape:</b> ' + quote.shape + '&nbsp; <b>Style:</b> ' + quote.style +
+                    '</div>' + 
+                '</div>'
+            );
         } else if (quote.product == "Sign") {
-            $('.page-content').append('\
-                <div class="history-card-wide mdl-card mdl-shadow--2dp" id="' + quote.id + '">\
-                    <div class="mdl-card__title">\
-                        <h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>\
-                    </div>\
-                    <div class="mdl-card__supporting-text">\
-                        ' + quote.environment + ' ' + quote.finishing + '\
-                    </div>\
-                </div>\
-            ');
+            $('.page-content').append('' +
+                '<div class="history-card-wide mdl-card mdl-shadow--2dp fadeIn" id="' + quote.id + '">' +
+                    '<div class="mdl-card__title">' +
+                        '<h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>' +
+                    '</div>' + 
+                    '<div class="mdl-card__supporting-text">' +
+                        '<b>Environment:</b> ' + quote.environment + '&nbsp; <b>Finishing:</b> ' + quote.finishing + 
+                    '</div>' + 
+                '</div>'
+            );
         } else {
-            $('.page-content').append('\
-                <div class="history-card-wide mdl-card mdl-shadow--2dp" id="' + quote.id + '">\
-                    <div class="mdl-card__title">\
-                        <h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>\
-                    </div>\
-                    <div class="mdl-card__supporting-text">\
-                        ' + quote.finishing + '\
-                    </div>\
-                </div>\
-            ');
+            $('.page-content').append('' +
+                '<div class="history-card-wide mdl-card mdl-shadow--2dp fadeIn" id="' + quote.id + '">' + 
+                    '<div class="mdl-card__title">' + 
+                        '<h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>' + 
+                    '</div>' + 
+                    '<div class="mdl-card__supporting-text">' + 
+                        '<b>Finishing:</b> ' + quote.finishing + '&nbsp; <b>Size:</b> ' + quote.width + 'x' + quote.height + ' ' + quote.uom + 
+                    '</div>' + 
+                '</div>'
+            );
         }
 
     });
