@@ -307,15 +307,21 @@
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield">
                                 <select class="mdl-textfield__input" name="finishing" id="finishing" multiple>
-                                    <option value='Plastic Twist Ties (Installed)'>Plastic Twist Ties (Installed)</option>
-                                    <option value='String Ties (Installed)'>String Ties (Installed)</option>
-                                    <option value='Wire Ties (Installed)'>Wire Ties (Installed)</option>
-                                    <option value='Small Metal Grommet (1/4")'>Small Metal Grommet (1/4")</option>
-                                    <option value='Standard Metal Grommet (3/8")'>Standard Metal Grommet (3/8")</option>
-                                    <option value='Large Metal Grommet (5/8")'>Large Metal Grommet (5/8")</option>
-                                    <option value='Plastic (Black) Grommet (1/2")'>Plastic (Black) Grommet (1/2")</option>
-                                    <option value='Perforation'>Perforation</option>
-                                    <option value='Consecutive Numbering'>Consecutive Numbering</option>
+                                    <optgroup label="Hole">
+                                        <option value='1/4" Hole (NO Grommet)'>1/4" Hole (NO Grommet)</option>
+                                        <option value='3/8" Hole/Lokcout Sized (NO Grommet)'>3/8" Hole/Lokcout Sized (NO Grommet)</option>
+                                    </optgroup>
+                                    <optgroup label="Grommets">
+                                        <option value='Small Metal Grommet (1/4")'>Small Brass Grommet (1/4")</option>
+                                        <option value='Standard Metal Grommet (3/8")'>Standard Brass Grommet (3/8")</option>
+                                        <option value='Large Metal Grommet (5/8")'>Large Brass Grommet (5/8")</option>
+                                        <option value='Plastic (Black) Grommet (1/2")'>Plastic Grommet (1/2")</option>
+                                    </optgroup>
+                                    <optgroup label="Other Finishing">
+                                        <option value='Perforation'>Perforation</option>
+                                        <option value='Consecutive Numbering'>Consecutive Numbering</option>
+                                        <option value='Other (see below)'>Other (describe below)</option>
+                                    </optgroup>
                                 </select>
                             </div>
                         </div>
@@ -460,18 +466,21 @@
                             <div class="mdl-textfield mdl-js-textfield">
                                 <select class="mdl-textfield__input" name="material" id="material">
                                     <option selected="true" disabled="disabled" value="">- Make a Selection -</option>
-                                    <option value="Aluminum_Foil">Aluminum Foil</option>
-                                    <option value="Convex">Convex</option>
-                                    <option value="Fluorescent_Paper">Fluorescent Paper</option>
-                                    <option value="Fluorescent_Vinyl">Fluorescent Vinyl</option>
-                                    <option value="High-Performance">High-Performance</option>
-                                    <option value="Magnetic">Magnetic</option>
-                                    <option value="Paper">Paper</option>
-                                    <option value="Removable_Vinyl">Removable Vinyl</option>
-                                    <option value="Reflective">Reflective</option>
-                                    <option value="Tamper_Evident_Labels">Tamper Evident Labels</option>
-                                    <option value="Vinyl">Vinyl</option>
-                                    <option value="I_DONT_KNOW">I DON'T KNOW WHAT I NEED</option>
+                                    <optgroup label="Most Common Label Materials">
+                                        <option value="Convex">Convex-Cure (for Hard Hats)</option>
+                                        <option value="Fluorescent Vinyl">Fluorescent Vinyl</option>
+                                        <option value="High Performance Vinyl (Guar. 5-Years)">High Performance Vinyl (Guar. 5-Years)</option>
+                                        <option value="Paper">Paper</option>
+                                        <option value="Removable Vinyl">Removable Vinyl</option>
+                                    </optgroup>
+                                    <optgroup label="Other Label Materials">
+                                        <option value="Aluminum Foil">Aluminum Foil Labels</option>
+                                        <option value="Anodized Aluminum">Anodized Aluminum</option>
+                                        <option value="Magnetic Vinyl">Magnetic Vinyl</option>
+                                        <option value="Poly">Poly</option>
+                                        <option value="Poly Premium">Poly Premium</option>
+                                        <option value="Tamper Evident Labels">Tamper Evident Labels</option>
+                                    </optgroup>
                                 </select>
                             </div>
                         </div>
@@ -680,25 +689,91 @@
                                     <option selected="true" disabled="disabled" value="">- Make a Selection -</option>
                                     <option value="Aluminum">Aluminum</option>
                                     <option value="Plastic">Plastic</option>
-                                    <option value="Adhesive_Vinyl">Adhesive Vinyl</option>
+                                    <option value="Adhesive Vinyl">Adhesive Vinyl</option>
                                     <option value="Accu-Shield">Accu-Shield™</option>
-                                    <option value="Adhesive_Dura-Vinyl">Adhesive Dura-Vinyl</option>
+                                    <option value="Adhesive Dura-Vinyl">Adhesive Dura-Vinyl</option>
                                     <option value="Magnetic">Magnetic</option>
                                     <option value="Dura Fiberglass">Dura Fiberglass</option>
-                                    <option value="Contractor_Preferred_Plastic">Contractor Preferred Plastic</option>
-                                    <option value="Contractor_Preferred_Aluminum">Contractor Preferred Aluminum</option>
-                                    <option value="Contractor_Preferred_Vinyl">Contractor Preferred Vinyl</option>
+                                    <option value="Contractor Preferred Plastic">Contractor Preferred Plastic</option>
+                                    <option value="Contractor Preferred Aluminum">Contractor Preferred Aluminum</option>
+                                    <option value="Contractor Preferred Vinyl">Contractor Preferred Vinyl</option>
                                     <option value="Aluma-Lite">Aluma-Lite™</option>
-                                    <option value="Lumi-Glow_plastic">Lumi-Glow™ (plastic)</option>
-                                    <option value="Lumi-Glow_vinyl">Lumi-Glow™ (vinyl)</option>
-                                    <option value="Engineer_Grade_Reflective_Prismatic_Aluminum">Engineer Grade Reflective Prismatic Aluminum</option>
-                                    <option value="High-Intensity_Prismatic_Aluminum">High-Intensity Prismatic Aluminum</option>
-                                    <option value="DG_High-Prism_Aluminum">DG High-Prism Aluminum</option>
-                                    <option value="Galvanized_Steel">Galvanized Steel</option>
-                                    <option value="Banner_Material">Banner Material</option>
-                                    <option value="Fence-Wrap_Material">Fence-Wrap™ Material</option>
-                                    <option value="other">Other (please note)</option>
+                                    <option value="Lumi-Glow plastic">Lumi-Glow™ (plastic)</option>
+                                    <option value="Lumi-Glow vinyl">Lumi-Glow™ (vinyl)</option>
+                                    <option value="Engineer Grade Reflective Prismatic Aluminum">Engineer Grade Reflective Prismatic Aluminum</option>
+                                    <option value="High-Intensity Prismatic Aluminum">High-Intensity Prismatic Aluminum</option>
+                                    <option value="DG High-Prism Aluminum">DG High-Prism Aluminum</option>
+                                    <option value="Galvanized Steel">Galvanized Steel</option>
+                                    <option value="Banner Material">Banner Material</option>
+                                    <option value="Fence-Wrap Material">Fence-Wrap™ Material</option>
+                                    <option value="Other">Other (please note)</option>
                                 </select>
+                                <template id="indoor-materials">
+                                	<option selected="true" disabled="disabled" value="">- Make a Selection -</option>
+                                    <optgroup label="Most Common Indoor Materials">
+                                        <option value=".040 Aluminum (Guar. 5-Years)">.040 Aluminum (Guar. 5-Years)</option>
+                                        <option value="Adhesive Vinyl">Adhesive Vinyl</option>
+                                        <option value="Lumi-Glow™ Plastic">Lumi-Glow™ Plastic</option>
+                                        <option value="Lumi-Glow™ Flex Vinyl">Lumi-Glow™ Flex Vinyl</option>
+                                        <option value="Magnetic">Magnetic</option>
+                                        <option value="Plastic">Plastic</option>
+                                        <option value="I don't see the material I need (see below)">I don't see the material I need (Describe)</option>
+                                    </optgroup>
+                                    <optgroup label="Other Materials that can be used Indoors">
+                                        <option value="Accu-Shield™  (Guar. 15-Years)">Accu-Shield™ (Guar. 15-Years)</option>
+                                        <option value="Adhesive Dura-Vinyl™ (Guar. 5-Years)">Adhesive Dura-Vinyl™ (Guar. 5-Years)</option>
+                                        <option value="Aluma-Lite™ (Guar. 10-Years)">Aluma-Lite™ (Guar. 10-Years)</option>
+                                        <option value="Dura-Fiberglass™ (Guar. 10-Years)">Dura-Fiberglass™ (Guar. 10-Years)</option>
+                                        <option value="Dura-Plastic™  (Guar. 7-Years)">Dura-Plastic™ (Guar. 7-Years)</option>
+                                        <option value="Dura-Shield™">Dura-Shield™</option>
+                                        <option value="Galvanized Steel (Guar. 5-Years)">Galvanized Steel (Guar. 5-Years)</option>
+                                        <option value="Stainless Steel (Guar. 10-Years)">Stainless Steel (Guar. 10-Years)</option>
+                                    </optgroup>
+                                </template>
+                                <template id="outdoor-materials">
+                                	<option selected="true" disabled="disabled" value="">- Make a Selection -</option>
+                                    <optgroup label="Most Common Outdoor Materials">
+                                        <option value="Accu-Shield™  (Guar. 15-Years)">Accu-Shield™ (Guar. 15-Years)</option>
+                                        <option value="Adhesive Dura-Vinyl™ (Guar. 5-Years)">Adhesive Dura-Vinyl™ (Guar. 5-Years)</option>
+                                        <option value=".040 Aluminum (Guar. 5-Years)">.040 Aluminum (Guar. 5-Years)</option>
+                                        <option value="Aluma-Lite™ (Guar. 10-Years)">Aluma-Lite™ (Guar. 10-Years)</option>
+                                        <option value="Dura-Fiberglass™ (Guar. 10-Years)">Dura-Fiberglass™ (Guar. 10-Years)</option>
+                                        <option value="Dura-Plastic™  (Guar. 7-Years)">Dura-Plastic™ (Guar. 7-Years)</option>
+                                        <option value="Dura-Shield™">Dura-Shield™</option>
+                                        <option value="Galvanized Steel (Guar. 5-Years)">Galvanized Steel (Guar. 5-Years)</option>
+                                        <option value="Stainless Steel (Guar. 10-Years)">Stainless Steel (Guar. 10-Years)</option>
+                                    </optgroup>
+                                    <optgroup label="Other Short-Term Outdoor Materials">
+                                        <option value="Adhesive Vinyl">Adhesive Vinyl</option>
+                                        <option value="Lumi-Glow™ Plastic">Lumi-Glow™ Plastic</option>
+                                        <option value="Lumi-Glow™ Flex Vinyl">Lumi-Glow™ Flex Vinyl</option>
+                                        <option value="Magnetic">Magnetic</option>
+                                        <option value="Plastic">Plastic</option>
+                                    </optgroup>
+                                </template>
+                                <template id="default-materials">
+                                    <option selected="true" disabled="disabled" value="">- Make a Selection -</option>
+                                    <option value="Aluminum">Aluminum</option>
+                                    <option value="Plastic">Plastic</option>
+                                    <option value="Adhesive Vinyl">Adhesive Vinyl</option>
+                                    <option value="Accu-Shield">Accu-Shield™</option>
+                                    <option value="Adhesive Dura-Vinyl">Adhesive Dura-Vinyl</option>
+                                    <option value="Magnetic">Magnetic</option>
+                                    <option value="Dura Fiberglass">Dura Fiberglass</option>
+                                    <option value="Contractor Preferred Plastic">Contractor Preferred Plastic</option>
+                                    <option value="Contractor Preferred Aluminum">Contractor Preferred Aluminum</option>
+                                    <option value="Contractor Preferred Vinyl">Contractor Preferred Vinyl</option>
+                                    <option value="Aluma-Lite">Aluma-Lite™</option>
+                                    <option value="Lumi-Glow plastic">Lumi-Glow™ (plastic)</option>
+                                    <option value="Lumi-Glow vinyl">Lumi-Glow™ (vinyl)</option>
+                                    <option value="Engineer Grade Reflective Prismatic Aluminum">Engineer Grade Reflective Prismatic Aluminum</option>
+                                    <option value="High-Intensity Prismatic Aluminum">High-Intensity Prismatic Aluminum</option>
+                                    <option value="DG High-Prism Aluminum">DG High-Prism Aluminum</option>
+                                    <option value="Galvanized Steel">Galvanized Steel</option>
+                                    <option value="Banner Material">Banner Material</option>
+                                    <option value="Fence-Wrap Material">Fence-Wrap™ Material</option>
+                                    <option value="Other">Other (please note)</option>
+                                </template>
                             </div>
                         </div>
                     </div>
@@ -865,10 +940,10 @@
         </nav>
     </section>
     <dialog class="mdl-dialog">
-        <h4 class="mdl-dialog__title">Quote Sent Successully!</h4>
+        <h4 class="mdl-dialog__title">Quote Sent Successfully!</h4>
         <div class="mdl-dialog__content">
             <div class="mdl-spinner mdl-js-spinner"></div>
-            <p>Accuform's sales team will have a quote back to you within a few minutes.</p>
+            <p>Accuform's sales team will email a quote back to you within a few minutes.</p>
         </div>
         <div class="mdl-dialog__actions">
             <button type="button" class="mdl-button close">Close</button>

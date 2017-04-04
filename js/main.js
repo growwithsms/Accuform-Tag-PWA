@@ -113,10 +113,7 @@ if ($('.quote-page').length) {
 
 
     // product/quote templates
-        
     var $tagQuoteTemplate = $('#tag-quote').html().trim(),
-
-
         $labelQuoteTemplate = $('#label-quote').html().trim(),
         $signQuoteTemplate = $('#sign-quote').html().trim();
 
@@ -174,14 +171,32 @@ if ($('.quote-page').length) {
 
     });
 
-    // Style Type quote logic
+    // Sign materials for indoor/outdoor
+    $('#quote-form').on('change', 'input[name="environment"]', function() {
+
+        var environmentType = $(this).val(),
+            $indoorTemplate = $('#indoor-materials').html().trim(),
+            $outdoorTemplate = $('#outdoor-materials').html().trim(),
+            $defaultTemplate = $('#default-materials').html().trim();
+
+        if (environmentType == "Indoor") {
+            $('select#material').empty().html($indoorTemplate);
+        } else if (environmentType == "Outdoor") {
+            $('select#material').empty().html($outdoorTemplate);
+        } else {
+            $('select#material').empty().html($defaultTemplate);
+        }
+
+    });
+
+    // Label style type text
     $('#quote-form').on('change', 'input[name="style"]', function() {
         var styleType = $(this).val();
         // updates label text to appropriate style
         $('span[data-dynamic="style"').text(styleType);
     });
 
-    // Shape Type quote logic - hide size height for circle shape
+    // Label shape: hides height when circle is selected
     $('#quote-form').on('change', 'input[name="shape"]', function() {
         var shapeType = $(this).val();
         if (shapeType == "Circle") {
@@ -297,9 +312,9 @@ if ($('.profile-page').length) {
     $('#user').val(cookieUserName);
     $('#email').val(cookieUserEmail);
 
-    $('#profile-form').on('submit', function(){
-        var updatedUser     = $('#user').val(),
-            updatedEmail    = $('#email').val();
+    $('#profile-form').on('submit', function() {
+        var updatedUser = $('#user').val(),
+            updatedEmail = $('#email').val();
 
         Cookies.set('cqs-name', updatedUser);
         Cookies.set('cqs-email', updatedEmail);
@@ -344,13 +359,13 @@ if ($('.history-page').length) {
         $('body').addClass('userRegistered');
     }
 
-    
+
     var $historyCardTemplate = $('#history-card').html().trim();
 
-    function addToHistory(){
-        collection.each(function(quote){
+    function addToHistory() {
+        collection.each(function(quote) {
             var element = [quote.name];
-            for (var i = 0; i < element.length; i++){ 
+            for (var i = 0; i < element.length; i++) {
                 var listed = document.createElement('li');
                 listed.textContent = element[i];
                 document.getElementById('mane').appendChild(listed);
@@ -361,4 +376,3 @@ if ($('.history-page').length) {
 
 
 }
-

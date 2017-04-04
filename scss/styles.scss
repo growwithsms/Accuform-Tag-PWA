@@ -89,10 +89,12 @@ h2 {
     .mdl-button--raised {
         background: #fff;
     }
-    option {
+    option,
+    optgroup {
         color: #212121;
     }
-    select[name="finishing"] option {
+    select[name="finishing"] option,
+    select[name="finishing"] optgroup {
         color: #fff;
     }
 }
