@@ -101,9 +101,9 @@ if ($('.history-page').length) {
     db.quotes.each(function(quote) {
         // quotes: '++id,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
         if (quote.product == "Label") {
-            $('.page-content').append('' +
+            $('.card-grid').prepend('' +
                 '<div class="history-card-wide mdl-card mdl-shadow--2dp fadeIn" id="' + quote.id + '">' + 
-                    '<div class="mdl-card__title">' + 
+                    '<div class="mdl-card__title" style="background-image: url(' + quote.imagefront + ');">' + 
                         '<h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>' +
                     '</div>' + 
                     '<div class="mdl-card__supporting-text">' +
@@ -112,9 +112,9 @@ if ($('.history-page').length) {
                 '</div>'
             );
         } else if (quote.product == "Sign") {
-            $('.page-content').append('' +
+            $('.card-grid').prepend('' +
                 '<div class="history-card-wide mdl-card mdl-shadow--2dp fadeIn" id="' + quote.id + '">' +
-                    '<div class="mdl-card__title">' +
+                    '<div class="mdl-card__title" style="background-image: url(' + quote.imagefront + ');">' +
                         '<h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>' +
                     '</div>' + 
                     '<div class="mdl-card__supporting-text">' +
@@ -123,9 +123,9 @@ if ($('.history-page').length) {
                 '</div>'
             );
         } else {
-            $('.page-content').append('' +
+            $('.card-grid').prepend('' +
                 '<div class="history-card-wide mdl-card mdl-shadow--2dp fadeIn" id="' + quote.id + '">' + 
-                    '<div class="mdl-card__title">' + 
+                    '<div class="mdl-card__title" style="background-image: url(' + quote.imagefront + ');">' + 
                         '<h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>' + 
                     '</div>' + 
                     '<div class="mdl-card__supporting-text">' + 
@@ -366,28 +366,41 @@ if ($('.quote-page').length) {
             endUserCompanyVal = $('#endUserCompany').val(),
             notesVal = $('#notes').val();
 
-        // make a new quote entry in database
-        db.quotes.add({
-            product: productTypeVal,
-            environment: environmentVal,
-            shape: shapeVal,
-            material: materialVal,
-            style: styleVal,
-            height: heightVal,
-            width: widthVal,
-            uom: uomVal,
-            quantity: quantityVal,
-            usage: usageVal,
-            finishing: finishingVal,
-            notes: notesVal
-        });
+        // Convert photo to base64 for use in background image
+        var file = document.querySelector('input[type=file]').files[0];
+        var reader  = new FileReader();
+        reader.addEventListener("load", function () {
+            var photosrc = reader.result;
 
-        // make new end user entry in database
-        db.endUsers.add({
-            company: endUserCompanyVal,
-            name: endUserNameVal,
-            email: endUserEmailVal
-        });
+            // make a new quote entry in database
+            db.quotes.add({
+                product: productTypeVal,
+                environment: environmentVal,
+                shape: shapeVal,
+                material: materialVal,
+                style: styleVal,
+                height: heightVal,
+                width: widthVal,
+                uom: uomVal,
+                quantity: quantityVal,
+                usage: usageVal,
+                finishing: finishingVal,
+                notes: notesVal,
+                imagefront: photosrc
+            });
+            // make new end user entry in database
+            db.endUsers.add({
+                company: endUserCompanyVal,
+                name: endUserNameVal,
+                email: endUserEmailVal
+            });
+
+        }, false);
+        // once file has loaded, init the reader function
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+
 
 
         return false;
