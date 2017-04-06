@@ -122,7 +122,8 @@ h2 {
     ul {
         list-style: none;
         display: flex;
-        margin: 0;
+        margin: 0 auto;
+        max-width: 610px;
         padding: 0;
         align-items: center;
         justify-content: space-around;
@@ -138,6 +139,7 @@ h2 {
         padding: 5px 16px 0;
         font-weight: 300;
         font-size: .815em;
+        position: relative;
         &:hover,
         &:focus {
             color: $primaryColor;
@@ -146,13 +148,35 @@ h2 {
             color: $accentColor;
         }
     }
+    .count {
+        position: absolute;
+        top: 0;
+        background: red;
+        color: #fff;
+        display: block;
+        padding: 3px;
+        line-height: 1;
+        border-radius: 10px;
+        min-width: 1em;
+        height: 1em;
+        left: 51%;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        transform: scale(0);
+        animation-name: popIn;
+        animation-duration: 200ms;
+        animation-timing-function: cubic-bezier(0.09, 0.33, 0, 1.84);
+        animation-fill-mode: forwards;
+    }
     svg {
         display: block;
         margin: auto;
         font-size: 2em;
     }
 }
-
+@keyframes popIn {
+    from {transform: scale(0);}
+    to {transform: scale(1);}
+}
 .position-static .bottom-nav {
     transform: translateY(100%);
     transition: transform 400ms cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -396,7 +420,7 @@ h2 {
     .history-card-wide.mdl-card {
         margin: 0 .5em 1em;
         flex-grow: 1;
-         > .mdl-card__title {
+        > .mdl-card__title {
             color: #fff;
             padding-top: 5em;
             background-position: center;

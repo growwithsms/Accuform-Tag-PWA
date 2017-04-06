@@ -62,6 +62,13 @@ db.open().catch(function(error) {
     alert('Uh oh : ' + error);
 });
 
+// count quotes in history and output to bottom navigation
+db.quotes.toCollection().count(function (count) {
+    if(count > 0) {
+	   $('.bottom-nav li:first-child a').prepend('<span class="count">' + count + '</span>');
+    }
+});
+
 /*
 |************************************************|
 |************************************************|
