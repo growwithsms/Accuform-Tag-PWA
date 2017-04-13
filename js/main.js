@@ -329,34 +329,9 @@ if ($('.quote-page').length) {
             dialog.close();
         });
 
-        // Send form data to phpmailer
-        var data = new FormData(this);
-        $.ajax({
-            type: 'POST',
-            url: '/mailer/mail.php',
-            data: data,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                loading.removeClass('is-active');
-                $('body').addClass('quote-sent');
-
-                // reset quote carousel
-                $carousel.flickity('destroy');
-                $('.quote-carousel fieldset:not(.quote-get-started)').remove();
-                $carousel.flickity({
-                    prevNextButtons: false
-                });
-            }
-        });
-
-
         ///////////////////////////////////
         // add quote to local db via dexie
         ///////////////////////////////////
-        // endUsers: 'company,name,email',
-        // quotes: '++id,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
-
         // Get all values from form
         var userNameVal = $('#user').val(),
             userEmailVal = $('#email').val(),
@@ -378,10 +353,40 @@ if ($('.quote-page').length) {
 
         // Convert photo to base64 for use in background image
         var file = document.querySelector('input[type=file]').files[0];
-        var reader  = new FileReader();
-        reader.addEventListener("load", function () {
-            var photosrc = reader.result;
+        if ($('input[type=file]').val()) {
+            var reader  = new FileReader();
+            reader.addEventListener("load", function () {
+                var photosrc = reader.result;
 
+                // make a new quote entry in database
+                db.quotes.add({
+                    product: productTypeVal,
+                    environment: environmentVal,
+                    shape: shapeVal,
+                    material: materialVal,
+                    style: styleVal,
+                    height: heightVal,
+                    width: widthVal,
+                    uom: uomVal,
+                    quantity: quantityVal,
+                    usage: usageVal,
+                    finishing: finishingVal,
+                    notes: notesVal,
+                    imagefront: photosrc
+                });
+                // make new end user entry in database
+                db.endUsers.add({
+                    company: endUserCompanyVal,
+                    name: endUserNameVal,
+                    email: endUserEmailVal
+                });
+
+            }, false);
+            // once file has loaded, init the reader function
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        } else {
             // make a new quote entry in database
             db.quotes.add({
                 product: productTypeVal,
@@ -396,7 +401,6 @@ if ($('.quote-page').length) {
                 usage: usageVal,
                 finishing: finishingVal,
                 notes: notesVal,
-                imagefront: photosrc
             });
             // make new end user entry in database
             db.endUsers.add({
@@ -404,14 +408,29 @@ if ($('.quote-page').length) {
                 name: endUserNameVal,
                 email: endUserEmailVal
             });
-
-        }, false);
-        // once file has loaded, init the reader function
-        if (file) {
-            reader.readAsDataURL(file);
         }
+        
 
+        // Send form data to phpmailer
+        var data = new FormData(this);
+        $.ajax({
+            type: 'POST',
+            url: '/mailer/mail.php',
+            data: data,
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                loading.removeClass('is-active');
+                $('body').addClass('quote-sent');
 
+                // reset quote carousel
+                $carousel.flickity('destroy');
+                $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+                $carousel.flickity({
+                    prevNextButtons: false
+                });
+            }
+        });
 
         return false;
     });
