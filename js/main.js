@@ -5,7 +5,6 @@
 //@prepros-prepend vendor/dialog-polyfill.js
 //@prepros-prepend vendor/textfield.js
 //@prepros-prepend vendor/flickity.pkgd.min.js
-//@prepros-prepend vendor/js.cookie.js
 
 
 /*
@@ -77,7 +76,7 @@ db.quotes.toCollection().count(function (count) {
 |************************************************|
 |************************************************|
 */
-if ($('.history-page').length) {
+if ( $('.history-page').length ) {
 
     /*
     |----------------------------|
@@ -318,11 +317,11 @@ if ($('.quote-page').length) {
             dialogPolyfill.registerDialog(dialog);
         }
 
-        // get user data and put into hidden form fields
-        var cookieUserName = Cookies.get('cqs-name'),
-            cookieUserEmail = Cookies.set('cqs-email');
-        $('#user').val(cookieUserName);
-        $('#email').val(cookieUserEmail);
+        // add user data to hidden form fields
+        db.users.limit(1).each(function(user) {
+            $('#user').val(user.name).parent().addClass('is-dirty');
+            $('#email').val(user.email).parent().addClass('is-dirty');
+        });
 
         // Activate Modal popup
         dialog.showModal();
@@ -460,9 +459,8 @@ if ($('.profile-page').length) {
 
     // set values on form fields
     db.users.limit(1).each(function(user) {
-        $('#user').val(user.name);
-        $('#email').val(user.email);
-        componentHandler.upgradeDom();
+        $('#user').val(user.name).parent().addClass('is-dirty');
+        $('#email').val(user.email).parent().addClass('is-dirty');
     });
     
     $('#profile-form').on('submit', function() {
