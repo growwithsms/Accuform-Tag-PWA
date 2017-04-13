@@ -54,7 +54,8 @@ if ('serviceWorker' in navigator) {
 // Define the database
 var db = new Dexie('quote_database');
 db.version(1).stores({
-    endUsers: 'company,name,email',
+    users: 'name,email',
+    endUsers: 'name,email,company',
     quotes: '++id,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
 });
 // Open the database
@@ -83,26 +84,28 @@ if ($('.history-page').length) {
     | Profile Login Overlay      |
     |----------------------------|
     */
-    // Register User
-    if (Cookies.get('cqs-userStatus') != 'registered') {
-        $('.login').show();
-        $('.login form').on('submit', function(e) {
-            e.preventDefault();
+    db.users.toCollection().count(function (count) {
+        if ( count < 1 ) {
+            $('.login').show();
+            $('.login form').on('submit', function(e) {
+                e.preventDefault();
 
-            var userName = document.getElementById('userName').value,
-                userEmail = document.getElementById('userEmail').value;
+                var userName = document.getElementById('userName').value,
+                    userEmail = document.getElementById('userEmail').value;
 
-            Cookies.set('cqs-userStatus', 'registered');
-            Cookies.set('cqs-name', userName);
-            Cookies.set('cqs-email', userEmail);
+                db.users.add({
+                    name: userName,
+                    email: userEmail
+                });
 
+                $('body').addClass('userRegistered');
+                $('.login').addClass('fadeOut');
+                return false;
+            });
+        } else {
             $('body').addClass('userRegistered');
-            $('.login').addClass('fadeOut');
-            return false;
-        });
-    } else {
-        $('body').addClass('userRegistered');
-    }
+        }
+    });
 
     // Loop through previous quotes and output to dom
     db.quotes.each(function(quote) {
@@ -165,39 +168,40 @@ if ($('.quote-page').length) {
     | Profile Login Overlay      |
     |----------------------------|
     */
-    // Register User
-    if (Cookies.get('cqs-userStatus') != 'registered') {
 
-        $('.login').show();
-        $('.login form').on('submit', function(e) {
-            e.preventDefault();
+    db.users.toCollection().count(function (count) {
+        if ( count < 1 ) {
+            $('.login').show();
+            $('.login form').on('submit', function(e) {
+                e.preventDefault();
 
-            var userName = document.getElementById('userName').value,
-                userEmail = document.getElementById('userEmail').value;
+                var userName = document.getElementById('userName').value,
+                    userEmail = document.getElementById('userEmail').value;
 
-            Cookies.set('cqs-userStatus', 'registered');
-            Cookies.set('cqs-name', userName);
-            Cookies.set('cqs-email', userEmail);
+                db.users.add({
+                    name: userName,
+                    email: userEmail
+                });
 
+                $('body').addClass('userRegistered');
+                $('.login').addClass('fadeOut');
+                $('#quote-form').show();
+                $carousel.flickity('destroy');
+                $carousel.flickity({
+                    prevNextButtons: false
+                });
+
+                return false;
+            });
+        } else {
             $('body').addClass('userRegistered');
-            $('.login').addClass('fadeOut');
             $('#quote-form').show();
             $carousel.flickity('destroy');
             $carousel.flickity({
                 prevNextButtons: false
             });
-
-            return false;
-        });
-    } else {
-        $('body').addClass('userRegistered');
-        $('#quote-form').show();
-        $carousel.flickity('destroy');
-        $carousel.flickity({
-            prevNextButtons: false
-        });
-    }
-
+        }
+    });
 
     // product/quote templates
     var $tagQuoteTemplate = $('#tag-quote').html().trim(),
@@ -431,42 +435,42 @@ if ($('.profile-page').length) {
     | Profile Login Overlay      |
     |----------------------------|
     */
-    // Register User
-    if (Cookies.get('cqs-userStatus') != 'registered') {
-        $('.login').show();
-        $('.login form').on('submit', function(e) {
-            e.preventDefault();
+    db.users.toCollection().count(function (count) {
+        if ( count < 1 ) {
+            $('.login').show();
+            $('.login form').on('submit', function(e) {
+                e.preventDefault();
 
-            var userName = document.getElementById('userName').value,
-                userEmail = document.getElementById('userEmail').value;
+                var userName = document.getElementById('userName').value,
+                    userEmail = document.getElementById('userEmail').value;
 
-            Cookies.set('cqs-userStatus', 'registered');
-            Cookies.set('cqs-name', userName);
-            Cookies.set('cqs-email', userEmail);
+                db.users.add({
+                    name: userName,
+                    email: userEmail
+                });
 
-            $('#user').val(userName);
-            $('#email').val(userEmail);
-
+                $('body').addClass('userRegistered');
+                $('.login').addClass('fadeOut');
+                return false;
+            });
+        } else {
             $('body').addClass('userRegistered');
-            $('.login').addClass('fadeOut');
-            return false;
-        });
-    } else {
-        $('body').addClass('userRegistered');
-    }
+        }
+    });
 
     // set values on form fields
-    var cookieUserName = Cookies.get('cqs-name'),
-        cookieUserEmail = Cookies.set('cqs-email');
-    $('#user').val(cookieUserName);
-    $('#email').val(cookieUserEmail);
-
+    db.users.limit(1).each(function(user) {
+        $('#user').val(user.name);
+        $('#email').val(user.email);
+        componentHandler.upgradeDom();
+    });
+    
     $('#profile-form').on('submit', function() {
         var updatedUser = $('#user').val(),
             updatedEmail = $('#email').val();
 
-        Cookies.set('cqs-name', updatedUser);
-        Cookies.set('cqs-email', updatedEmail);
+        db.friends.update(1, {name: updatedUser});
+        db.friends.update(1, {name: updatedEmail});
 
     });
 
