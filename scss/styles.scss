@@ -35,6 +35,18 @@ img {
     fill: currentColor;
 }
 
+input,
+select,
+button {
+    -webkit-appearance:none;
+    border-radius: 0;
+}
+select.mdl-textfield__input {
+    background-image: url(/select-bg.svg);
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    background-size: 0.8em 0.8em;
+}
 
 /* Header */
 
