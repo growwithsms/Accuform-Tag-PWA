@@ -52,6 +52,11 @@ img {
     background-color: $primaryColor;
 }
 
+.icon-title-horizontal {
+    width: auto;
+    height: 1.4em;
+}
+
 /* Body */
 
 h1 {
@@ -208,7 +213,7 @@ h2 {
     visibility: visible;
     img {
         display: block;
-        margin: auto;
+        margin: 6em auto 2em;
     }
     form {
         max-width: 300px;
