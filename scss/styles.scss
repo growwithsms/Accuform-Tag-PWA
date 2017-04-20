@@ -448,6 +448,7 @@ h2 {
     .history-card-wide.mdl-card {
         margin: 0 .5em 1em;
         flex-grow: 1;
+        max-width: 500px;
         > .mdl-card__title {
             color: #fff;
             padding-top: 5em;

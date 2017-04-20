@@ -326,8 +326,8 @@ if ($('.quote-page').length) {
 
         // add user data to hidden form fields
         db.users.limit(1).each(function(user) {
-            $('#user').val(user.name).parent().addClass('is-dirty');
-            $('#email').val(user.email).parent().addClass('is-dirty');
+            $('#user').val(user.name);
+            $('#email').val(user.email);
         });
 
         // Activate Modal popup
