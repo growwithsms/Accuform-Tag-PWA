@@ -168,6 +168,12 @@ if ($('.quote-page').length) {
     var $carousel = $('.quote-carousel').flickity({
         prevNextButtons: false
     });
+    
+    // add user data to hidden form fields
+    db.users.limit(1).each(function(user) {
+        $('#user').val(user.name);
+        $('#email').val(user.email);
+    });
 
     /*
     |----------------------------|
@@ -324,12 +330,6 @@ if ($('.quote-page').length) {
             dialogPolyfill.registerDialog(dialog);
         }
 
-        // add user data to hidden form fields
-        db.users.limit(1).each(function(user) {
-            $('#user').val(user.name);
-            $('#email').val(user.email);
-        });
-
         // Activate Modal popup
         dialog.showModal();
         dialog.querySelector('.close').addEventListener('click', function() {
@@ -340,9 +340,7 @@ if ($('.quote-page').length) {
         // add quote to local db via dexie
         ///////////////////////////////////
         // Get all values from form
-        var userNameVal = $('#user').val(),
-            userEmailVal = $('#email').val(),
-            productTypeVal = $('input[name="productType"]:checked').val(),
+        var productTypeVal = $('input[name="productType"]:checked').val(),
             environmentVal = $('input[name="environment"]:checked').val(),
             shapeVal = $('input[name="shape"]:checked').val(),
             materialVal = $('#material').val(),
@@ -417,7 +415,6 @@ if ($('.quote-page').length) {
             });
         }
         
-
         // Send form data to phpmailer
         var data = new FormData(this);
         $.ajax({
@@ -440,6 +437,7 @@ if ($('.quote-page').length) {
         });
 
         return false;
+
     });
 
 }
