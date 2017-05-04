@@ -1,6 +1,6 @@
-@import 'material';
-@import 'dialog-polyfill';
-@import 'flickity';
+@import 'vendor/material';
+@import 'vendor/dialog-polyfill';
+@import 'vendor/flickity';
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
@@ -37,16 +37,39 @@ img {
 
 input,
 select,
-button {
-    -webkit-appearance:none;
+button,
+textarea {
+    -webkit-appearance: none;
     border-radius: 0;
 }
+
 select.mdl-textfield__input {
     background-image: url(/select-bg.svg);
     background-repeat: no-repeat;
     background-position: right 5px center;
     background-size: 0.8em 0.8em;
 }
+
+@media screen and (-ms-high-contrast: active),
+screen and (-ms-high-contrast: none) {
+    .ie-message {
+        display: block !important;
+        position: fixed;
+        top: 25%;
+        left: 0;
+        width: 100%;
+    }
+    .ie-message p {
+        color: #fff;
+        font-size: 2em;
+        text-align: center;
+        line-height: 1.5;
+        padding: 0 2em !important;
+        max-width: 1000px;
+        margin: auto;
+    }
+}
+
 
 /* Header */
 
@@ -60,6 +83,7 @@ select.mdl-textfield__input {
     padding-left: 16px;
     /* to override the extra padding caused by having no top menu */
 }
+
 .mdl-layout__header {
     background-color: $primaryColor;
 }
@@ -68,6 +92,7 @@ select.mdl-textfield__input {
     width: auto;
     height: 1.4em;
 }
+
 
 /* Body */
 
@@ -97,10 +122,7 @@ h2 {
 
 .dark-bg {
     background: #014b82;
-    background: -moz-linear-gradient(top, #014b82 0%, #003167 100%);
-    background: -webkit-linear-gradient(top, #014b82 0%,#003167 100%);
-    background: linear-gradient(to bottom, #014b82 0%,#003167 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#014b82', endColorstr='#003167',GradientType=0 );
+    background: linear-gradient(to bottom, #014b82 0%, #003167 100%);
     color: #fff;
     /* Lighten forms */
     .mdl-textfield .mdl-textfield__input {
@@ -119,13 +141,9 @@ h2 {
     .mdl-button--raised {
         background: #fff;
     }
-    option,
-    optgroup {
+    select:not([multiple]) option,
+    select:not([multiple]) optgroup {
         color: #212121;
-    }
-    select[name="finishing"] option,
-    select[name="finishing"] optgroup {
-        color: #fff;
     }
 }
 
@@ -196,10 +214,16 @@ h2 {
         font-size: 2em;
     }
 }
+
 @keyframes popIn {
-    from {transform: scale(0);}
-    to {transform: scale(1);}
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
 }
+
 .position-static .bottom-nav {
     transform: translateY(100%);
     transition: transform 400ms cubic-bezier(0.4, 0.0, 0.2, 1);
@@ -207,12 +231,14 @@ h2 {
 
 
 /* Login Screen */
+
 .icon-title {
     margin: auto;
     display: block;
     height: auto;
     width: auto;
 }
+
 .login {
     position: fixed;
     z-index: 9999;

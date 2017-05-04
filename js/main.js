@@ -66,7 +66,7 @@ db.version(1).stores({
 });
 // Open the database
 db.open().catch(function(error) {
-    alert('Uh oh : ' + error);
+    alert("Sorry, this app does not work in Private mode. Please switch from private browsing to standard browsing mode.");
 });
 
 // count quotes in history and output to bottom navigation

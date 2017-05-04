@@ -10,11 +10,11 @@
     <meta name="msapplication-tap-highlight" content="no">
     <link rel="manifest" href="/manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Collect, Quote, & Save!">
+    <meta name="application-name" content="CQS!">
     <link rel="icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="#014D86">
-    <meta name="apple-mobile-web-app-title" content="Collect, Quote, & Save!">
+    <meta name="apple-mobile-web-app-title" content="CQS!">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <meta name="theme-color" content="#014D86">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -190,6 +190,9 @@
         <img src="/accuform.png" alt="Accuform" width="167" height="124.5" class="accuform">
     </div>
     <section class="page-content dark-bg">
+    	<div class="ie-message" style="display: none;">
+    		<p>We're sorry, but Internet Explorer is not supported. Please switch to a modern browser such as Chrome, Firefox, Safari, or Edge.</p>
+    	</div>
         <form class="quote-form" id="quote-form" style="display: none;">
             <input type="hidden" name="user" id="user" value="">
             <input type="hidden" name="email" id="email" value="">
@@ -857,21 +860,6 @@
                         </div>
                     </div>
                 </fieldset>
-                <fieldset class="quote-usage">
-                    <h2>Annual Usage</h2>
-                    <p class="subheader">Input annual usage</p>
-                    <div class="mdl-grid mdl-grid--no-spacing">
-                        <div class="mdl-cell mdl-cell--6-col">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="number" id="usage" name="usage">
-                                <label class="mdl-textfield__label" for="usage">Usage</label>
-                            </div>
-                        </div>
-                        <div class="mdl-cell mdl-cell--6-col mdl-cell--bottom">
-                            <p>Signs used annually</p>
-                        </div>
-                    </div>
-                </fieldset>
                 <fieldset class="quote-quantity">
                     <h2>Order Quantity</h2>
                     <p class="subheader">Input per order quantity</p>
@@ -912,6 +900,22 @@
                                     <use xlink:href="#icon-check"></use>
                                 </svg>
                                 Back Photo</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="quote-finishing">
+                    <h2>Finishing</h2>
+                    <p class="subheader">Select the sign's finishing</p>
+                    <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <select class="mdl-textfield__input" name="finishing" id="finishing">
+                                    <option value='Four Corner Holes (Standard where applicable)'>Four Corner Holes (Standard where applicable)</option>
+                                    <option value='Post Mount Holes (Top/Bottom Center)'>Post Mount Holes (Top/Bottom Center)</option>
+                                    <option value='Cross Holes (Top/Bottom/Left/Right Center)'>Cross Holes (Top/Bottom/Left/Right Center)</option>
+                                    <option value='No Holes'>No Holes (Standard on all Vinyl’s)</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </fieldset>
