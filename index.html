@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Collect, Quote, &amp; Save!</title>
     <meta name="description" content="Facility ID quoting tool by Accuform">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height" />
+    <meta name="viewport" content="initial-scale=1, user-scalable=1, width=device-width, height=device-height" />
     <meta name="msapplication-tap-highlight" content="no">
     <link rel="manifest" href="/manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
@@ -265,8 +265,8 @@
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="width" name="width">
-                                <label class="mdl-textfield__label" for="width">Width</label>
+                                <input class="mdl-textfield__input" type="text" id="height" name="height">
+                                <label class="mdl-textfield__label" for="height">Height</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--1-col mdl-cell--middle">
@@ -276,8 +276,8 @@
                         </div>
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="height" name="height">
-                                <label class="mdl-textfield__label" for="height">Height</label>
+                                <input class="mdl-textfield__input" type="text" id="width" name="width">
+                                <label class="mdl-textfield__label" for="width">Width</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--1-col"></div>
@@ -359,7 +359,7 @@
                                 <select class="mdl-textfield__input" name="finishing" id="finishing" multiple>
                                     <optgroup label="Hole">
                                         <option value='1/4" Hole (NO Grommet)'>1/4" Hole (NO Grommet)</option>
-                                        <option value='3/8" Hole/Lokcout Sized (NO Grommet)'>3/8" Hole/Lokcout Sized (NO Grommet)</option>
+                                        <option value='3/8" Hole/Lockout Sized (NO Grommet)'>3/8" Hole/Lockout Sized (NO Grommet)</option>
                                     </optgroup>
                                     <optgroup label="Grommets">
                                         <option value='Small Metal Grommet (1/4")'>Small Brass Grommet (1/4")</option>
@@ -575,8 +575,8 @@
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="width" name="width">
-                                <label class="mdl-textfield__label" for="width">Width</label>
+                                <input class="mdl-textfield__input" type="text" id="height" name="height">
+                                <label class="mdl-textfield__label" for="height">Height</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--1-col mdl-cell--middle">
@@ -586,8 +586,8 @@
                         </div>
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="height" name="height">
-                                <label class="mdl-textfield__label" for="height">Height</label>
+                                <input class="mdl-textfield__input" type="text" id="width" name="width">
+                                <label class="mdl-textfield__label" for="width">Width</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--1-col"></div>
@@ -834,8 +834,8 @@
                     <div class="mdl-grid mdl-grid--no-spacing">
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="width" name="width">
-                                <label class="mdl-textfield__label" for="width">Width</label>
+                                <input class="mdl-textfield__input" type="text" id="height" name="height">
+                                <label class="mdl-textfield__label" for="height">Height</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--1-col mdl-cell--middle">
@@ -845,8 +845,8 @@
                         </div>
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="height" name="height">
-                                <label class="mdl-textfield__label" for="height">Height</label>
+                                <input class="mdl-textfield__input" type="text" id="width" name="width">
+                                <label class="mdl-textfield__label" for="width">Width</label>
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--1-col"></div>
@@ -910,6 +910,7 @@
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="mdl-textfield mdl-js-textfield">
                                 <select class="mdl-textfield__input" name="finishing" id="finishing">
+                                	<option selected="true" disabled="disabled" value="">- Make a Selection -</option>
                                     <option value='Four Corner Holes (Standard where applicable)'>Four Corner Holes (Standard where applicable)</option>
                                     <option value='Post Mount Holes (Top/Bottom Center)'>Post Mount Holes (Top/Bottom Center)</option>
                                     <option value='Cross Holes (Top/Bottom/Left/Right Center)'>Cross Holes (Top/Bottom/Left/Right Center)</option>
