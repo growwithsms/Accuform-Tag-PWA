@@ -373,23 +373,17 @@ h2 {
         transition: opacity 2s ease 1.5s;
     }
     @keyframes swiping {
-        0% {
+        0%,
+        100% {
             transform: translateX(0px);
         }
-        15% {
-            transform: translateX(25px);
-        }
-        30% {
-            transform: translateX(-50px);
-        }
+        15%,
         60% {
             transform: translateX(25px);
         }
+        30%,
         75% {
             transform: translateX(-50px);
-        }
-        100% {
-            transform: translateX(0px);
         }
     }
     .started .swipe-hint {
