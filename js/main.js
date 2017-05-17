@@ -70,14 +70,28 @@ if ('serviceWorker' in navigator) {
 */
 // Define the database
 var db = new Dexie('quote_database');
+
 db.version(1).stores({
     users: 'name,email',
     endUsers: 'name,email,company',
     quotes: '++id,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
 });
+db.version(2).stores({
+
+});
+db.version(3).stores({
+
+});
+db.version(4).stores({
+    users2: '++id,name,email',
+    endUsers2: '++id,name,email,company',
+    users: null,
+    endUsers: null
+});
+
 // Open the database
 db.open().catch(function(error) {
-    alert("Sorry, this app does not work in Private mode. Please switch from private browsing to standard browsing mode.");
+    alert(error);
 });
 
 // count quotes in history and output to bottom navigation
@@ -101,7 +115,7 @@ if ( $('.history-page').length ) {
     | Profile Login Overlay      |
     |----------------------------|
     */
-    db.users.toCollection().count(function (count) {
+    db.users2.toCollection().count(function (count) {
         if ( count < 1 ) {
             $('.login').show();
             $('.login form').on('submit', function(e) {
@@ -110,7 +124,7 @@ if ( $('.history-page').length ) {
                 var userName = document.getElementById('userName').value,
                     userEmail = document.getElementById('userEmail').value;
 
-                db.users.add({
+                db.users2.add({
                     name: userName,
                     email: userEmail
                 });
@@ -181,7 +195,7 @@ if ($('.quote-page').length) {
     });
     
     // add user data to hidden form fields
-    db.users.limit(1).each(function(user) {
+    db.users2.limit(1).each(function(user) {
         $('#user').val(user.name);
         $('#email').val(user.email);
     });
@@ -192,7 +206,7 @@ if ($('.quote-page').length) {
     |----------------------------|
     */
 
-    db.users.toCollection().count(function (count) {
+    db.users2.toCollection().count(function (count) {
         if ( count < 1 ) {
             $('.login').show();
             $('.login form').on('submit', function(e) {
@@ -201,7 +215,7 @@ if ($('.quote-page').length) {
                 var userName = document.getElementById('userName').value,
                     userEmail = document.getElementById('userEmail').value;
 
-                db.users.add({
+                db.users2.add({
                     name: userName,
                     email: userEmail
                 });
@@ -389,7 +403,7 @@ if ($('.quote-page').length) {
                     imagefront: photosrc
                 });
                 // make new end user entry in database
-                db.endUsers.add({
+                db.endUsers2.add({
                     company: endUserCompanyVal,
                     name: endUserNameVal,
                     email: endUserEmailVal
@@ -417,7 +431,7 @@ if ($('.quote-page').length) {
                 notes: notesVal,
             });
             // make new end user entry in database
-            db.endUsers.add({
+            db.endUsers2.add({
                 company: endUserCompanyVal,
                 name: endUserNameVal,
                 email: endUserEmailVal
@@ -467,7 +481,7 @@ if ($('.profile-page').length) {
     | Profile Login Overlay      |
     |----------------------------|
     */
-    db.users.toCollection().count(function (count) {
+    db.users2.toCollection().count(function (count) {
         if ( count < 1 ) {
             $('.login').show();
             $('.login form').on('submit', function(e) {
@@ -476,13 +490,19 @@ if ($('.profile-page').length) {
                 var userName = document.getElementById('userName').value,
                     userEmail = document.getElementById('userEmail').value;
 
-                db.users.add({
+                db.users2.add({
                     name: userName,
                     email: userEmail
                 });
 
                 $('body').addClass('userRegistered');
                 $('.login').addClass('fadeOut');
+
+                db.users2.limit(1).each(function(user) {
+			        $('#user').val(user.name).parent().addClass('is-dirty');
+			        $('#email').val(user.email).parent().addClass('is-dirty');
+			    });
+			    
                 return false;
             });
         } else {
@@ -491,17 +511,17 @@ if ($('.profile-page').length) {
     });
 
     // set values on form fields
-    db.users.limit(1).each(function(user) {
+    db.users2.limit(1).each(function(user) {
         $('#user').val(user.name).parent().addClass('is-dirty');
         $('#email').val(user.email).parent().addClass('is-dirty');
     });
     
     $('#profile-form').on('submit', function() {
+
         var updatedUser = $('#user').val(),
             updatedEmail = $('#email').val();
 
-        db.friends.update(1, {name: updatedUser});
-        db.friends.update(1, {name: updatedEmail});
+        db.users2.put({id: 1, name: updatedUser, email: updatedEmail});
 
     });
 
