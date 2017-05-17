@@ -22,6 +22,7 @@
 */
 (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")
 
+
 /*
 |----------------------------|
 | Onscreen Keyboard FIX      |
@@ -31,6 +32,16 @@ $('body').on('focus', 'textarea, input[type="text"], input[type="number"]', func
     $('body').addClass('position-static');
 }).on('blur', 'textarea, input', function() {
     $('body').removeClass('position-static');
+});
+
+
+/*
+|----------------------------|
+| Swipe to Next Screen       |
+|----------------------------|
+*/
+$('body').on('change', 'fieldset input, fieldset select', function(){
+    $(this).closest('fieldset').addClass('started');
 });
 
 
@@ -307,14 +318,12 @@ if ($('.quote-page').length) {
 
         }
 
-        // Swipe for next step hint
-        $('.quote-get-started').addClass('started');
-
     });
 
     // Photo input animations
     $('#quote-form').on('change', '#photoFront, #photoBack', function() {
         $(this).next().addClass('uploaded');
+
     });
 
     // Submit form
