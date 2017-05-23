@@ -52,6 +52,9 @@ select.mdl-textfield__input {
 
 @media screen and (-ms-high-contrast: active),
 screen and (-ms-high-contrast: none) {
+    .login {
+        display: none !important;
+    }
     .ie-message {
         display: block !important;
         position: fixed;
@@ -237,6 +240,7 @@ h2 {
     display: block;
     height: auto;
     width: auto;
+    max-width: 100%;
 }
 
 .login {
