@@ -93,7 +93,10 @@ db.version(5).stores({
     endUsers2: null,
     users2: '++id,name,email,phone,company'
 });
-
+db.version(6).stores({
+    users2: null,
+    users: '++id,name,email,phone,company'
+});
 // Open the database
 db.open().catch(function(error) {
     alert(error);
@@ -120,7 +123,7 @@ if ($('.history-page').length) {
     | Profile Login Overlay      |
     |----------------------------|
     */
-    db.users2.toCollection().count(function(count) {
+    db.users.toCollection().count(function(count) {
         if (count < 1) {
             $('.login').show();
             $('.login form').on('submit', function(e) {
@@ -129,7 +132,8 @@ if ($('.history-page').length) {
                 var userName = document.getElementById('userName').value,
                     userEmail = document.getElementById('userEmail').value;
 
-                db.users2.add({
+                db.users.put({
+                    id: 1,
                     name: userName,
                     email: userEmail
                 });
@@ -200,7 +204,7 @@ if ($('.quote-page').length) {
     });
 
     // add user data to hidden form fields
-    db.users2.limit(1).each(function(user) {
+    db.users.limit(1).each(function(user) {
         $('#user').val(user.name);
         $('#email').val(user.email);
     });
@@ -211,7 +215,7 @@ if ($('.quote-page').length) {
     |----------------------------|
     */
 
-    db.users2.toCollection().count(function(count) {
+    db.users.toCollection().count(function(count) {
         if (count < 1) {
             $('.login').show();
             $('.login form').on('submit', function(e) {
@@ -220,10 +224,18 @@ if ($('.quote-page').length) {
                 var userName = document.getElementById('userName').value,
                     userEmail = document.getElementById('userEmail').value;
 
-                db.users2.add({
+                db.users.put({
+                    id: 1,
                     name: userName,
                     email: userEmail
                 });
+
+                // add to hidden form fields
+                db.users.limit(1).each(function(user) {
+                    $('#user').val(user.name);
+                    $('#email').val(user.email);
+                });
+
 
                 $('body').addClass('userRegistered');
                 $('.login').addClass('fadeOut');
@@ -236,6 +248,13 @@ if ($('.quote-page').length) {
                 return false;
             });
         } else {
+            
+            // add user data to hidden form fields
+            db.users.limit(1).each(function(user) {
+                $('#user').val(user.name);
+                $('#email').val(user.email);
+            });
+            
             $('body').addClass('userRegistered');
             $('#quote-form').show();
             $carousel.flickity('destroy');
@@ -265,27 +284,17 @@ if ($('.quote-page').length) {
             $('.quote-carousel fieldset:not(.quote-get-started)').remove();
             // insert appropriate product template
             $('.quote-carousel').append($tagQuoteTemplate);
-            // populate phone and company if already filled in
-            if ( db.users2.where('phone').above(0).count() ) {
-                // upgrade new mdl elements from template
-                componentHandler.upgradeDom();
-                // init flickity carousel
-                $carousel.flickity({
-                    prevNextButtons: false
-                });
-                // populate fields
-                db.users2.limit(1).each(function(user) {
-                    $('#phone').val(user.phone).parent().addClass('is-dirty');
-                    $('#company').val(user.company).parent().addClass('is-dirty');
-                });
-            } else {
-                // upgrade new mdl elements from template
-                componentHandler.upgradeDom();
-                // init flickity carousel
-                $carousel.flickity({
-                    prevNextButtons: false
-                });
-            }
+            // upgrade new mdl elements from template
+            componentHandler.upgradeDom();
+            // init flickity carousel
+            $carousel.flickity({
+                prevNextButtons: false
+            });
+            // populate fields
+            db.users.limit(1).each(function(user) {
+                $('#phone').val(user.phone).parent().addClass('is-dirty');
+                $('#company').val(user.company).parent().addClass('is-dirty');
+            });
         } else if (productType == 'Label') {
             // destroy existing flickity carousel
             $carousel.flickity('destroy');
@@ -293,27 +302,17 @@ if ($('.quote-page').length) {
             $('.quote-carousel fieldset:not(.quote-get-started)').remove();
             // insert appropriate product template
             $('.quote-carousel').append($labelQuoteTemplate);
-            // prepopulate phone/company fields if exists in db
-            if ( db.users2.where('phone').above(0).count() ) {
-                // upgrade new mdl elements from template
-                componentHandler.upgradeDom();
-                // init flickity carousel
-                $carousel.flickity({
-                    prevNextButtons: false
-                });
-                // populate fields
-                db.users2.limit(1).each(function(user) {
-                    $('#phone').val(user.phone).parent().addClass('is-dirty');
-                    $('#company').val(user.company).parent().addClass('is-dirty');
-                });
-            } else {
-                // upgrade new mdl elements from template
-                componentHandler.upgradeDom();
-                // init flickity carousel
-                $carousel.flickity({
-                    prevNextButtons: false
-                });
-            }
+            // upgrade new mdl elements from template
+            componentHandler.upgradeDom();
+            // init flickity carousel
+            $carousel.flickity({
+                prevNextButtons: false
+            });
+            // populate fields
+            db.users.limit(1).each(function(user) {
+                $('#phone').val(user.phone).parent().addClass('is-dirty');
+                $('#company').val(user.company).parent().addClass('is-dirty');
+            });
 
             // Label style type text
             $('#quote-form').on('change', 'input[name="style"]', function() {
@@ -339,28 +338,17 @@ if ($('.quote-page').length) {
             $('.quote-carousel fieldset:not(.quote-get-started)').remove();
             // insert appropriate product template
             $('.quote-carousel').append($signQuoteTemplate);
-            // prepopulate phone/company fields if exists in db
-            if ( db.users2.where('phone').above(0).count() ) {
-                // upgrade new mdl elements from template
-                componentHandler.upgradeDom();
-                // init flickity carousel
-                $carousel.flickity({
-                    prevNextButtons: false
-                });
-                // populate fields
-                db.users2.limit(1).each(function(user) {
-                    $('#phone').val(user.phone).parent().addClass('is-dirty');
-                    $('#company').val(user.company).parent().addClass('is-dirty');
-                });
-            } else {
-                // upgrade new mdl elements from template
-                componentHandler.upgradeDom();
-                // init flickity carousel
-                $carousel.flickity({
-                    prevNextButtons: false
-                });
-            }
-
+            // upgrade new mdl elements from template
+            componentHandler.upgradeDom();
+            // init flickity carousel
+            $carousel.flickity({
+                prevNextButtons: false
+            });
+            // populate fields
+            db.users.limit(1).each(function(user) {
+                $('#phone').val(user.phone).parent().addClass('is-dirty');
+                $('#company').val(user.company).parent().addClass('is-dirty');
+            });
             // Sign materials for indoor/outdoor
             $('#quote-form').on('change', 'input[name="environment"]', function() {
 
@@ -386,54 +374,90 @@ if ($('.quote-page').length) {
     // Photo input animations
     $('#quote-form').on('change', '#photoFront, #photoBack', function() {
         $(this).next().addClass('uploaded');
-
     });
 
-    // Submit form
+
+    $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
+    // Submit Quote
     $('#quote-form').on('submit', function(e) {
         e.preventDefault();
         $('body').removeClass('quote-sent');
 
-        // Loading Spinner
-        var loading = $('.mdl-spinner');
-        loading.addClass('is-active');
-        var dialog = document.querySelector('dialog');
-        if (!dialog.showModal) {
-            dialogPolyfill.registerDialog(dialog);
-        }
+            // Loading Spinner
+            var loading = $('.mdl-spinner');
+            loading.addClass('is-active');
+            var dialog = document.querySelector('dialog');
+            if (!dialog.showModal) {
+                dialogPolyfill.registerDialog(dialog);
+            }
 
-        // Activate Modal popup
-        dialog.showModal();
-        dialog.querySelector('.close').addEventListener('click', function() {
-            dialog.close();
-        });
+            // Activate Modal popup
+            dialog.showModal();
+            dialog.querySelector('.close').addEventListener('click', function() {
+                dialog.close();
+            });
 
-        ///////////////////////////////////
-        // add quote to local db via dexie
-        ///////////////////////////////////
+            ///////////////////////////////////
+            // add quote to local db via dexie
+            ///////////////////////////////////
 
-        // Get all values from form
-        var productTypeVal = $('input[name="productType"]:checked').val(),
-            environmentVal = $('input[name="environment"]:checked').val(),
-            shapeVal = $('input[name="shape"]:checked').val(),
-            materialVal = $('#material').val(),
-            styleVal = $('input[name="style"]:checked').val(),
-            widthVal = $('#width').val(),
-            heightVal = $('#height').val(),
-            uomVal = $('#uom').val(),
-            usageVal = $('#usage').val(),
-            quantityVal = $('#quantity').val(),
-            finishingVal = $('#finishing').val(),
-            notesVal = $('#notes').val(),
-            companyVal = $('#company').val(),
-            phoneVal = $('#phone').val();
+            // Get all values from form
+            var productTypeVal = $('input[name="productType"]:checked').val(),
+                environmentVal = $('input[name="environment"]:checked').val(),
+                shapeVal = $('input[name="shape"]:checked').val(),
+                materialVal = $('#material').val(),
+                styleVal = $('input[name="style"]:checked').val(),
+                widthVal = $('#width').val(),
+                heightVal = $('#height').val(),
+                uomVal = $('#uom').val(),
+                usageVal = $('#usage').val(),
+                quantityVal = $('#quantity').val(),
+                finishingVal = $('#finishing').val(),
+                notesVal = $('#notes').val(),
+                companyVal = $('#company').val(),
+                phoneVal = $('#phone').val();
 
-        // Convert photo to base64 for use in background image
-        var file = document.querySelector('input[type=file]').files[0];
-        if ($('input[type=file]').val()) {
-            var reader = new FileReader();
-            reader.addEventListener("load", function() {
-                var photosrc = reader.result;
+            // Convert photo to base64 for use in background image
+            var file = document.querySelector('input[type=file]').files[0];
+            if ($('input[type=file]').val()) {
+                var reader = new FileReader();
+                reader.addEventListener("load", function() {
+                    var photosrc = reader.result;
+
+                    // make a new quote entry in database
+                    db.quotes.add({
+                        product: productTypeVal,
+                        environment: environmentVal,
+                        shape: shapeVal,
+                        material: materialVal,
+                        style: styleVal,
+                        height: heightVal,
+                        width: widthVal,
+                        uom: uomVal,
+                        quantity: quantityVal,
+                        usage: usageVal,
+                        finishing: finishingVal,
+                        notes: notesVal,
+                        imagefront: photosrc
+                    });
+
+                    db.users.update(1, {
+                        phone: phoneVal,
+                        company: companyVal
+                    });
+
+                }, false);
+                // once file has loaded, init the reader function
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            } else {
 
                 // make a new quote entry in database
                 db.quotes.add({
@@ -448,70 +472,41 @@ if ($('.quote-page').length) {
                     quantity: quantityVal,
                     usage: usageVal,
                     finishing: finishingVal,
-                    notes: notesVal,
-                    imagefront: photosrc
+                    notes: notesVal
                 });
 
-                db.users2.add({
+                db.users.update(1, {
                     phone: phoneVal,
                     company: companyVal
                 });
 
-            }, false);
-            // once file has loaded, init the reader function
-            if (file) {
-                reader.readAsDataURL(file);
             }
-        } else {
 
-            // make a new quote entry in database
-            db.quotes.add({
-                product: productTypeVal,
-                environment: environmentVal,
-                shape: shapeVal,
-                material: materialVal,
-                style: styleVal,
-                height: heightVal,
-                width: widthVal,
-                uom: uomVal,
-                quantity: quantityVal,
-                usage: usageVal,
-                finishing: finishingVal,
-                notes: notesVal
+            // Send form data to phpmailer
+            var data = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: '/mailer/mail.php',
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+
+                    loading.removeClass('is-active');
+                    $('body').addClass('quote-sent');
+
+                    // reset quote carousel
+                    $carousel.flickity('destroy');
+                    $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+                    $carousel.flickity({
+                        prevNextButtons: false
+                    });
+
+                }
             });
 
-            db.users2.put({
-                id: 1,
-                phone: phoneVal,
-                company: companyVal
-            });
-
-        }
-
-        // Send form data to phpmailer
-        var data = new FormData(this);
-        $.ajax({
-            type: 'POST',
-            url: '/mailer/mail.php',
-            data: data,
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                loading.removeClass('is-active');
-                $('body').addClass('quote-sent');
-
-                // reset quote carousel
-                $carousel.flickity('destroy');
-                $('.quote-carousel fieldset:not(.quote-get-started)').remove();
-                $carousel.flickity({
-                    prevNextButtons: false
-                });
-            }
+            return false;
         });
-
-        return false;
-
-    });
 
 }
 
@@ -531,7 +526,7 @@ if ($('.profile-page').length) {
     | Profile Login Overlay      |
     |----------------------------|
     */
-    db.users2.toCollection().count(function(count) {
+    db.users.toCollection().count(function(count) {
         if (count < 1) {
             $('.login').show();
             $('.login form').on('submit', function(e) {
@@ -540,7 +535,7 @@ if ($('.profile-page').length) {
                 var userName = document.getElementById('userName').value,
                     userEmail = document.getElementById('userEmail').value;
 
-                db.users2.add({
+                db.users.update(1, {
                     name: userName,
                     email: userEmail
                 });
@@ -548,7 +543,7 @@ if ($('.profile-page').length) {
                 $('body').addClass('userRegistered');
                 $('.login').addClass('fadeOut');
 
-                db.users2.limit(1).each(function(user) {
+                db.users.limit(1).each(function(user) {
                     $('#user').val(user.name).parent().addClass('is-dirty');
                     $('#email').val(user.email).parent().addClass('is-dirty');
                 });
@@ -561,7 +556,7 @@ if ($('.profile-page').length) {
     });
 
     // set values on form fields
-    db.users2.limit(1).each(function(user) {
+    db.users.limit(1).each(function(user) {
         $('#user').val(user.name).parent().addClass('is-dirty');
         $('#email').val(user.email).parent().addClass('is-dirty');
     });
@@ -571,8 +566,7 @@ if ($('.profile-page').length) {
         var updatedUser = $('#user').val(),
             updatedEmail = $('#email').val();
 
-        db.users2.put({
-            id: 1,
+        db.users.update(1, {
             name: updatedUser,
             email: updatedEmail
         });
