@@ -561,6 +561,10 @@ if ($('.profile-page').length) {
         $('#email').val(user.email).parent().addClass('is-dirty');
     });
 
+    $('#profile-form').on('change paste keyup', 'input', function(){
+    	$('.mdl-button--accent').prop('disabled',false);
+    });
+
     $('#profile-form').on('submit', function() {
 
         var updatedUser = $('#user').val(),
