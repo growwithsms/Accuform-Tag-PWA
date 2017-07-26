@@ -198,6 +198,9 @@ if ($('.history-page').length) {
 */
 if ($('.quote-page').length) {
 
+    // Globale page variables
+    var quoteForm = $('#quote-form')
+
     // init quote carousel
     var $carousel = $('.quote-carousel').flickity({
         prevNextButtons: false
@@ -239,7 +242,7 @@ if ($('.quote-page').length) {
 
                 $('body').addClass('userRegistered');
                 $('.login').addClass('fadeOut');
-                $('#quote-form').show();
+                quoteForm.show();
                 $carousel.flickity('destroy');
                 $carousel.flickity({
                     prevNextButtons: false
@@ -256,7 +259,7 @@ if ($('.quote-page').length) {
             });
             
             $('body').addClass('userRegistered');
-            $('#quote-form').show();
+            quoteForm.show();
             $carousel.flickity('destroy');
             $carousel.flickity({
                 prevNextButtons: false
@@ -315,19 +318,23 @@ if ($('.quote-page').length) {
             });
 
             // Label style type text
-            $('#quote-form').on('change', 'input[name="style"]', function() {
+            quoteForm.on('change', 'input[name="style"]', function() {
                 var styleType = $(this).val();
                 // updates label text to appropriate style
                 $('span[data-dynamic="style"').text(styleType);
             });
 
             // Label shape: hides height when circle is selected
-            $('#quote-form').on('change', 'input[name="shape"]', function() {
+            quoteForm.on('change', 'input[name="shape"]', function() {
                 var shapeType = $(this).val();
                 if (shapeType == "Circle") {
-                    $('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4)').hide();
+                    $('.width-wrapper').hide();
+                    $('.x-wrapper').hide();
+                    $('.height-wrapper label').text('Diameter');
                 } else {
-                    $('.quote-size .mdl-grid > div:not(:first-child):not(:last-child):not(:nth-child(4))').show();
+                    $('.width-wrapper').show();
+                    $('.x-wrapper').show();
+                    $('.height-wrapper label').text('Height');
                 }
             });
 
@@ -350,7 +357,7 @@ if ($('.quote-page').length) {
                 $('#company').val(user.company).parent().addClass('is-dirty');
             });
             // Sign materials for indoor/outdoor
-            $('#quote-form').on('change', 'input[name="environment"]', function() {
+            quoteForm.on('change', 'input[name="environment"]', function() {
 
                 var environmentType = $(this).val(),
                     $indoorTemplate = $('#indoor-materials').html().trim(),
@@ -372,7 +379,7 @@ if ($('.quote-page').length) {
     });
 
     // Photo input animations
-    $('#quote-form').on('change', '#photoFront, #photoBack', function() {
+    quoteForm.on('change', '#photoFront, #photoBack', function() {
         $(this).next().addClass('uploaded');
     });
 
@@ -385,7 +392,7 @@ if ($('.quote-page').length) {
     });
 
     // Submit Quote
-    $('#quote-form').on('submit', function(e) {
+    quoteForm.on('submit', function(e) {
         e.preventDefault();
         $('body').removeClass('quote-sent');
 
@@ -561,11 +568,14 @@ if ($('.profile-page').length) {
         $('#email').val(user.email).parent().addClass('is-dirty');
     });
 
-    $('#profile-form').on('change paste keyup', 'input', function(){
+    var profileForm = $('#profile-form');
+
+    // Enable submit button when updated value exists
+    profileForm.on('change paste keyup', 'input', function(){
     	$('.mdl-button--accent').prop('disabled',false);
     });
 
-    $('#profile-form').on('submit', function() {
+    profileForm.on('submit', function() {
 
         var updatedUser = $('#user').val(),
             updatedEmail = $('#email').val();
