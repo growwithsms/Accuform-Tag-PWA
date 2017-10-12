@@ -13,4 +13,4 @@ All of the app's logic is located in "/js/main.js". All 3rd party scripts are lo
 
 PHPmailer is what powers the quote email that gets sent on a successful form submission.
 
-sw.js is the service worker that makes it a progressive web app. If you're having caching issues, it's more than likely you need to update the cache name in the service worker. This should trigger the app to update itself upon next use.
+sw.js is the service worker that makes it a progressive web app. If you're having caching issues, it's more than likely because you need to update the cache name in the service worker. This should trigger the app to update itself upon next use.
