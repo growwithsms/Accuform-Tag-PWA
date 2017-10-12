@@ -5,9 +5,10 @@ V2 rewrite of the Collect, Quote, and Save! app for Accuform
 This is a completely client-side driven app.
 
 There are 3 pages (or views, if you will):
-- the homepage '/index.html'
-- the history page '/history/index.html'
-- and the profile page '/profile/index.html'
+
+'/index.html' the home page
+'/history/index.html' the history page
+'/profile/index.html' the profile page 
 
 All of the app's logic is located in '/js/main.js'. All 3rd party scripts are located in '/js/vendor/'. '/js/main.min.js' is the concatenated and minified version of all the 3rd party scripts and the app's logic.
 
