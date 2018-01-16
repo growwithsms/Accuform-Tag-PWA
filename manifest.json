@@ -1,5 +1,11 @@
 {
-    "name": "CQS!",
+    "name": "Collect, Quote, & Save!",
+    "short_name": "CQS!",
+    "start_url": "/",
+    "theme_color": "#014d86",
+    "background_color": "#014d86",
+    "display": "standalone",
+    "orientation": "portrait",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -11,9 +17,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "theme_color": "#014d86",
-    "background_color": "#014d86",
-    "display": "standalone",
-    "orientation": "portrait"
+    ]
 }

@@ -4,7 +4,7 @@
  *
  * By David Fahlander, david.fahlander@gmail.com
  *
- * Version 2.0.0-beta.10, Tue Jan 31 2017
+ * Version 2.0.1, Mon Oct 02 2017
  *
  * http://dexie.org
  *
@@ -12,9 +12,9 @@
  */
  
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.Dexie = factory());
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global.Dexie = factory());
 }(this, (function () { 'use strict';
 
 var keys = Object.keys;
@@ -231,7 +231,8 @@ function getObjectDiff(a, b, rv, prfx) {
             var ap = a[prop], bp = b[prop];
             if (typeof ap === 'object' && typeof bp === 'object' &&
                 ap && bp &&
-                ap.constructor === bp.constructor)
+                // Now compare constructors are same (not equal because wont work in Safari)
+                ('' + ap.constructor) === ('' + bp.constructor))
                 // Same type of object but its properties may have changed
                 getObjectDiff(ap, bp, rv, prfx + prop + ".");
             else if (ap !== bp)
@@ -1205,6 +1206,7 @@ function newScope(fn, props$$1, a1, a2) {
     var globalEnv = globalPSD.env;
     psd.env = patchGlobalPromise ? {
         Promise: Promise,
+        PromiseProp: { value: Promise, configurable: true, writable: true },
         all: Promise.all,
         race: Promise.race,
         resolve: Promise.resolve,
@@ -1298,7 +1300,7 @@ function switchToZone(targetZone, bEnteringZone) {
         if (currentZone.global || targetZone.global) {
             // Leaving or entering global zone. It's time to patch / restore global Promise.
             // Set this Promise to window.Promise so that transiled async functions will work on Firefox, Safari and IE, as well as with Zonejs and angular.
-            _global.Promise = targetEnv.Promise;
+            Object.defineProperty(_global, 'Promise', targetEnv.PromiseProp);
             // Support Promise.all() etc to work indexedDB-safe also when people are including es6-promise as a module (they might
             // not be accessing global.Promise but a local reference to it)
             GlobalPromise.all = targetEnv.all;
@@ -1312,6 +1314,7 @@ function snapShot() {
     var GlobalPromise = _global.Promise;
     return patchGlobalPromise ? {
         Promise: GlobalPromise,
+        PromiseProp: Object.getOwnPropertyDescriptor(_global, "Promise"),
         all: GlobalPromise.all,
         race: GlobalPromise.race,
         resolve: GlobalPromise.resolve,
@@ -1477,13 +1480,13 @@ function Events(ctx) {
  *
  * By David Fahlander, david.fahlander@gmail.com
  *
- * Version 2.0.0-beta.10, Tue Jan 31 2017
+ * Version 2.0.1, Mon Oct 02 2017
  *
  * http://dexie.org
  *
  * Apache License Version 2.0, January 2004, http://www.apache.org/licenses/
  */
-var DEXIE_VERSION = '2.0.0-beta.10';
+var DEXIE_VERSION = '2.0.1';
 var maxString = String.fromCharCode(65535);
 var maxKey = (function () { try {
     IDBKeyRange.only([[]]);
@@ -1511,7 +1514,7 @@ function Dexie(dbName, options) {
         addons: Dexie.addons,
         autoOpen: true,
         indexedDB: deps.indexedDB,
-        IDBKeyRange: deps.IDBKeyRange // Backend IDBKeyRange api. Default to IDBShim or browser env.
+        IDBKeyRange: deps.IDBKeyRange // Backend IDBKeyRange api. Default to browser env.
     }, options);
     var addons = opts.addons, autoOpen = opts.autoOpen, indexedDB = opts.indexedDB, IDBKeyRange = opts.IDBKeyRange;
     var globalSchema = this._dbSchema = {};
@@ -1829,7 +1832,7 @@ function Dexie(dbName, options) {
     this._createTransaction = function (mode, storeNames, dbschema, parentTransaction) {
         return new Transaction(mode, storeNames, dbschema, parentTransaction);
     };
-    /* Generate a temporary transaction when db operations are done outside a transactino scope.
+    /* Generate a temporary transaction when db operations are done outside a transaction scope.
     */
     function tempTransaction(mode, storeNames, fn) {
         if (!openComplete && (!PSD.letThrough)) {
@@ -2247,7 +2250,7 @@ function Dexie(dbName, options) {
                     // Promise returned. User uses promise-style transactions.
                     Promise.resolve(returnValue).then(function (x) { return trans.active ?
                         x // Transaction still active. Continue.
-                        : rejection(new exceptions.PrematureCommit("Transaction committed too early. See http://bit.ly/2eVASrf")); })
+                        : rejection(new exceptions.PrematureCommit("Transaction committed too early. See http://bit.ly/2kdckMn")); })
                     : promiseFollowed.then(function () { return returnValue; })).then(function (x) {
                     // sub transactions don't react to idbtrans.oncomplete. We must trigger a completion:
                     if (parentTransaction)
@@ -2907,7 +2910,7 @@ function Dexie(dbName, options) {
             });
             idbtrans.onabort = wrap(function (ev) {
                 preventDefault(ev);
-                _this.active && _this._reject(new exceptions.Abort());
+                _this.active && _this._reject(new exceptions.Abort(idbtrans.error));
                 _this.active = false;
                 _this.on("abort").fire(ev);
             });
@@ -3471,7 +3474,10 @@ function Dexie(dbName, options) {
                     }
                     function union(item, cursor, advance) {
                         if (!filter || filter(cursor, advance, resolveboth, reject)) {
-                            var key = cursor.primaryKey.toString(); // Converts any Date to String, String to String, Number to String and Array to comma-separated string
+                            var primaryKey = cursor.primaryKey;
+                            var key = '' + primaryKey;
+                            if (key === '[object ArrayBuffer]')
+                                key = '' + new Uint8Array(primaryKey);
                             if (!hasOwn(set, key)) {
                                 set[key] = true;
                                 fn(item, cursor, advance);
@@ -4123,6 +4129,13 @@ function Dexie(dbName, options) {
                 }
             }
         }
+        // Bug with getAll() on Safari ver<604 on Workers only, see discussion following PR #579
+        if (/Safari/.test(navigator.userAgent) &&
+            !/(Chrome\/|Edge\/)/.test(navigator.userAgent) &&
+            _global.WorkerGlobalScope && _global instanceof _global.WorkerGlobalScope &&
+            [].concat(navigator.userAgent.match(/Safari\/(\d*)/))[1] < 604) {
+            hasGetAll = false;
+        }
     }
     function fireOnBlocked(ev) {
         db.on("blocked").fire(ev);
@@ -4263,9 +4276,6 @@ function TableSchema(name, primKey, indexes, instanceTemplate) {
     this.mappedClass = null;
     this.idxByName = arrayToObject(indexes, function (index) { return [index.name, index]; });
 }
-// Used in when defining dependencies later...
-// (If IndexedDBShim is loaded, prefer it before standard indexedDB)
-var idbshim = _global.idbModules && _global.idbModules.shimIndexedDB ? _global.idbModules : {};
 function safariMultiStoreFix(storeNames) {
     return storeNames.length === 1 ? storeNames[0] : storeNames;
 }
@@ -4452,8 +4462,8 @@ props(Dexie, {
     //
     dependencies: {
         // Required:
-        indexedDB: idbshim.shimIndexedDB || _global.indexedDB || _global.mozIndexedDB || _global.webkitIndexedDB || _global.msIndexedDB,
-        IDBKeyRange: idbshim.IDBKeyRange || _global.IDBKeyRange || _global.webkitIDBKeyRange
+        indexedDB: _global.indexedDB || _global.mozIndexedDB || _global.webkitIndexedDB || _global.msIndexedDB,
+        IDBKeyRange: _global.IDBKeyRange || _global.webkitIDBKeyRange
     },
     // API Version Number: Type Number, make sure to always set a version number that can be comparable correctly. Example: 0.9, 0.91, 0.92, 1.0, 1.01, 1.1, 1.2, 1.21, etc.
     semVer: DEXIE_VERSION,

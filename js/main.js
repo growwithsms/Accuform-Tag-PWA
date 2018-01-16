@@ -1,5 +1,4 @@
-//@prepros-prepend vendor/jquery-3.1.1.min.js
-
+//@prepros-prepend vendor/jquery-3.2.1.min.js
 //@prepros-prepend vendor/dexie.js
 //@prepros-prepend vendor/material.js
 //@prepros-prepend vendor/dialog-polyfill.js
@@ -22,11 +21,22 @@
 */
 (function(a, b, c) {
     if (c in b && b[c]) {
-        var d, e = a.location,
+        var d,
+            e = a.location,
             f = /^(a|html)$/i;
-        a.addEventListener("click", function(a) { d = a.target;
-            while (!f.test(d.nodeName)) d = d.parentNode; "href" in d && (d.href.indexOf("http") || ~d.href.indexOf(e.host)) && (a.preventDefault(), e.href = d.href) }, !1) } })(document, window.navigator, "standalone")
-
+        a.addEventListener(
+            "click",
+            function(a) {
+                d = a.target;
+                while (!f.test(d.nodeName)) d = d.parentNode;
+                "href" in d &&
+                    (d.href.indexOf("http") || ~d.href.indexOf(e.host)) &&
+                    (a.preventDefault(), (e.href = d.href));
+            },
+            !1
+        );
+    }
+})(document, window.navigator, "standalone");
 
 /*
 |----------------------------|
@@ -76,27 +86,11 @@ if ('serviceWorker' in navigator) {
 // Define the database
 var db = new Dexie('quote_database');
 
-db.version(1).stores({
-    users: 'name,email',
-    endUsers: 'name,email,company',
-    quotes: '++id,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
-});
-db.version(2).stores();
-db.version(3).stores();
-db.version(4).stores({
-    users2: '++id,name,email',
-    endUsers2: '++id,name,email,company',
-    users: null,
-    endUsers: null
-});
-db.version(5).stores({
-    endUsers2: null,
-    users2: '++id,name,email,phone,company'
-});
-db.version(6).stores({
-    users2: null,
-    users: '++id,name,email,phone,company'
-});
+db.version(10).stores({
+    users: '++id,name,email,phone,company',
+    quotes: '++id,timestamp,product,material,environment,shape,style,height,width,uom,quantity,usage,imagefront,imageback,finishing,notes'
+})
+
 // Open the database
 db.open().catch(function(error) {
     alert(error);
@@ -154,6 +148,7 @@ if ($('.history-page').length) {
             $('.card-grid').prepend('' +
                 '<div class="history-card-wide mdl-card mdl-shadow--2dp fadeIn" id="' + quote.id + '">' +
                 '<div class="mdl-card__title" style="background-image: url(' + quote.imagefront + ');">' +
+                '<time datetime="' + quote.timestamp + '">' + quote.timestamp + '</time>' +
                 '<h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>' +
                 '</div>' +
                 '<div class="mdl-card__supporting-text">' +
@@ -165,6 +160,7 @@ if ($('.history-page').length) {
             $('.card-grid').prepend('' +
                 '<div class="history-card-wide mdl-card mdl-shadow--2dp fadeIn" id="' + quote.id + '">' +
                 '<div class="mdl-card__title" style="background-image: url(' + quote.imagefront + ');">' +
+                '<time datetime="' + quote.timestamp + '">' + quote.timestamp + '</time>' +
                 '<h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>' +
                 '</div>' +
                 '<div class="mdl-card__supporting-text">' +
@@ -176,6 +172,7 @@ if ($('.history-page').length) {
             $('.card-grid').prepend('' +
                 '<div class="history-card-wide mdl-card mdl-shadow--2dp fadeIn" id="' + quote.id + '">' +
                 '<div class="mdl-card__title" style="background-image: url(' + quote.imagefront + ');">' +
+                '<time datetime="' + quote.timestamp + '">' + quote.timestamp + '</time>' +
                 '<h2 class="mdl-card__title-text">' + quote.product + ': ' + quote.material + '</h2>' +
                 '</div>' +
                 '<div class="mdl-card__supporting-text">' +
@@ -199,7 +196,7 @@ if ($('.history-page').length) {
 if ($('.quote-page').length) {
 
     // Globale page variables
-    var quoteForm = $('#quote-form')
+    var quoteForm = $('#quote-form');
 
     // init quote carousel
     var $carousel = $('.quote-carousel').flickity({
@@ -298,6 +295,22 @@ if ($('.quote-page').length) {
                 $('#phone').val(user.phone).parent().addClass('is-dirty');
                 $('#company').val(user.company).parent().addClass('is-dirty');
             });
+            // show Start and End fields for consecutive numbering
+            quoteForm.on('change', '#common-sizes', function() {
+                if( $(this).val() == "Other" ) {
+                    $('#size').removeClass('hidden');
+                } else {
+                    $('#size').addClass('hidden');
+                }
+            });
+            // show height/width inputs when "Other" size is selected
+            quoteForm.on('change', '#finishing', function() {
+                if( $(this).val() == "Consecutive Numbering" ) {
+                    $('#consecutive-numbering').removeClass('hidden');
+                } else {
+                    $('#consecutive-numbering').addClass('hidden');
+                }
+            });
         } else if (productType == 'Label') {
             // destroy existing flickity carousel
             $carousel.flickity('destroy');
@@ -358,7 +371,6 @@ if ($('.quote-page').length) {
             });
             // Sign materials for indoor/outdoor
             quoteForm.on('change', 'input[name="environment"]', function() {
-
                 var environmentType = $(this).val(),
                     $indoorTemplate = $('#indoor-materials').html().trim(),
                     $outdoorTemplate = $('#outdoor-materials').html().trim(),
@@ -371,11 +383,24 @@ if ($('.quote-page').length) {
                 } else {
                     $('select#material').empty().html($defaultTemplate);
                 }
-
             });
-
+            // show describe material field if other is selected
+            quoteForm.on('change', '#material', function() {
+                if( $(this).val() == "Other" ) {
+                    $('#material-description-wrapper').removeClass('hidden');
+                } else {
+                    $('#material-description-wrapper').addClass('hidden');
+                }
+            });
         }
-
+        // show Start and End fields for consecutive numbering
+        quoteForm.on('change', '#common-sizes', function() {
+            if( $(this).val() == "Other" ) {
+                $('#size').removeClass('hidden');
+            } else {
+                $('#size').addClass('hidden');
+            }
+        });
     });
 
     // Photo input animations
@@ -383,7 +408,7 @@ if ($('.quote-page').length) {
         $(this).next().addClass('uploaded');
     });
 
-
+    // Prevent enter key from submitting form
     $(window).keydown(function(event){
         if(event.keyCode == 13) {
             event.preventDefault();
@@ -392,128 +417,170 @@ if ($('.quote-page').length) {
     });
 
     // Submit Quote
+    quoteForm.on('click', '#submit-quote-button', function() {
+        // Activate Modal popup
+        var dialog = document.querySelector('dialog');
+        dialog.showModal();
+        if (!dialog.showModal) {
+            dialogPolyfill.registerDialog(dialog);
+        }
+        dialog.querySelector('#close').addEventListener('click', function() {
+            dialog.close();
+        });
+
+        var $yesButton = $('#yes'),
+            $noButton = $('#no'),
+            $closeButton = $('#close'),
+            $sendButton = $('#send'),
+            $someonesEmail = $('#someone-else-wrapper');
+
+        // resets from previous quote
+        $yesButton.removeClass('hidden');
+        $noButton.removeClass('hidden');
+        $closeButton.addClass('hidden');
+        $sendButton.addClass('hidden');
+        $someonesEmail.addClass('hidden');
+
+        $yesButton.on('click', function(){
+            $someonesEmail.removeClass('hidden');
+            $yesButton.addClass('hidden');
+            $noButton.addClass('hidden');
+            $('#someone-else-faux').on('keyup', function(){
+                if( $(this).is(':valid') ) {
+                    $sendButton.removeClass('hidden');
+                    // clone to real / hidden field in the form
+                    var someonesEmail = $(this).val();
+                    $('#someone-else').val(someonesEmail);
+                } else {
+                    $sendButton.addClass('hidden');
+                }
+            });
+        });
+
+        $('.send-quote').on('click', function(){
+            $yesButton.addClass('hidden');
+            $noButton.addClass('hidden');
+            $sendButton.addClass('hidden');
+            // Loading Spinner
+            var loading = $('.mdl-spinner');
+            loading.addClass('is-active');
+        });
+
+    });
+
     quoteForm.on('submit', function(e) {
         e.preventDefault();
         $('body').removeClass('quote-sent');
 
-            // Loading Spinner
-            var loading = $('.mdl-spinner');
-            loading.addClass('is-active');
-            var dialog = document.querySelector('dialog');
-            if (!dialog.showModal) {
-                dialogPolyfill.registerDialog(dialog);
-            }
+        // Send form data to phpmailer
+        formData = new FormData(this);
+        $.ajax({
+            type: 'POST',
+            url: '/mailer/mail.php',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(formData) {
+                // add quote to local db
+                function storeQuote() {
 
-            // Activate Modal popup
-            dialog.showModal();
-            dialog.querySelector('.close').addEventListener('click', function() {
-                dialog.close();
-            });
+                    // Get all values from form
+                    var productTypeVal = $('input[name="productType"]:checked').val(),
+                        environmentVal = $('input[name="environment"]:checked').val(),
+                        shapeVal = $('input[name="shape"]:checked').val(),
+                        materialVal = $('#material').val(),
+                        styleVal = $('input[name="style"]:checked').val(),
+                        widthVal = $('#width').val(),
+                        heightVal = $('#height').val(),
+                        uomVal = $('#uom').val(),
+                        usageVal = $('#usage').val(),
+                        quantityVal = $('#quantity').val(),
+                        finishingVal = $('#finishing').val(),
+                        notesVal = $('#notes').val(),
+                        companyVal = $('#company').val(),
+                        phoneVal = $('#phone').val(),
+                        currentTime = new Date();
 
-            ///////////////////////////////////
-            // add quote to local db via dexie
-            ///////////////////////////////////
+                    // Convert photo to base64 for use in background image
+                    var file = document.querySelector('input[type=file]').files[0];
+                    if ($('input[type=file]').val()) {
+                        var reader = new FileReader();
+                        reader.addEventListener("load", function() {
+                            var photosrc = reader.result;
 
-            // Get all values from form
-            var productTypeVal = $('input[name="productType"]:checked').val(),
-                environmentVal = $('input[name="environment"]:checked').val(),
-                shapeVal = $('input[name="shape"]:checked').val(),
-                materialVal = $('#material').val(),
-                styleVal = $('input[name="style"]:checked').val(),
-                widthVal = $('#width').val(),
-                heightVal = $('#height').val(),
-                uomVal = $('#uom').val(),
-                usageVal = $('#usage').val(),
-                quantityVal = $('#quantity').val(),
-                finishingVal = $('#finishing').val(),
-                notesVal = $('#notes').val(),
-                companyVal = $('#company').val(),
-                phoneVal = $('#phone').val();
+                            // make a new quote entry in database
+                            db.quotes.add({
+                                product: productTypeVal,
+                                environment: environmentVal,
+                                shape: shapeVal,
+                                material: materialVal,
+                                style: styleVal,
+                                height: heightVal,
+                                width: widthVal,
+                                uom: uomVal,
+                                quantity: quantityVal,
+                                usage: usageVal,
+                                finishing: finishingVal,
+                                notes: notesVal,
+                                imagefront: photosrc,
+                                timestamp: currentTime
+                            });
 
-            // Convert photo to base64 for use in background image
-            var file = document.querySelector('input[type=file]').files[0];
-            if ($('input[type=file]').val()) {
-                var reader = new FileReader();
-                reader.addEventListener("load", function() {
-                    var photosrc = reader.result;
+                            db.users.update(1, {
+                                phone: phoneVal,
+                                company: companyVal
+                            });
 
-                    // make a new quote entry in database
-                    db.quotes.add({
-                        product: productTypeVal,
-                        environment: environmentVal,
-                        shape: shapeVal,
-                        material: materialVal,
-                        style: styleVal,
-                        height: heightVal,
-                        width: widthVal,
-                        uom: uomVal,
-                        quantity: quantityVal,
-                        usage: usageVal,
-                        finishing: finishingVal,
-                        notes: notesVal,
-                        imagefront: photosrc
-                    });
+                        }, false);
+                        // once file has loaded, init the reader function
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        }
+                    } else {
 
-                    db.users.update(1, {
-                        phone: phoneVal,
-                        company: companyVal
-                    });
+                        // make a new quote entry in database
+                        db.quotes.add({
+                            product: productTypeVal,
+                            environment: environmentVal,
+                            shape: shapeVal,
+                            material: materialVal,
+                            style: styleVal,
+                            height: heightVal,
+                            width: widthVal,
+                            uom: uomVal,
+                            quantity: quantityVal,
+                            usage: usageVal,
+                            finishing: finishingVal,
+                            notes: notesVal,
+                            timestamp: currentTime
+                        });
 
-                }, false);
-                // once file has loaded, init the reader function
-                if (file) {
-                    reader.readAsDataURL(file);
+                        db.users.update(1, {
+                            phone: phoneVal,
+                            company: companyVal
+                        });
+
+                    }
                 }
-            } else {
-
-                // make a new quote entry in database
-                db.quotes.add({
-                    product: productTypeVal,
-                    environment: environmentVal,
-                    shape: shapeVal,
-                    material: materialVal,
-                    style: styleVal,
-                    height: heightVal,
-                    width: widthVal,
-                    uom: uomVal,
-                    quantity: quantityVal,
-                    usage: usageVal,
-                    finishing: finishingVal,
-                    notes: notesVal
+                storeQuote();
+                var loading = $('.mdl-spinner'),
+                    $closeButton = $('#close');
+                loading.removeClass('is-active');
+                $('body').addClass('quote-sent');
+                $carousel.flickity('destroy');
+                $('.quote-carousel fieldset:not(.quote-get-started)').remove();
+                $carousel.flickity({
+                    prevNextButtons: false
                 });
-
-                db.users.update(1, {
-                    phone: phoneVal,
-                    company: companyVal
+                $closeButton.removeClass('hidden');
+                $closeButton.on('click', function(){
+                    $('body').removeClass('quote-sent');
                 });
-
+                document.getElementById("quote-form").reset();
             }
-
-            // Send form data to phpmailer
-            var data = new FormData(this);
-            $.ajax({
-                type: 'POST',
-                url: '/mailer/mail.php',
-                data: data,
-                processData: false,
-                contentType: false,
-                success: function(data) {
-
-                    loading.removeClass('is-active');
-                    $('body').addClass('quote-sent');
-
-                    // reset quote carousel
-                    $carousel.flickity('destroy');
-                    $('.quote-carousel fieldset:not(.quote-get-started)').remove();
-                    $carousel.flickity({
-                        prevNextButtons: false
-                    });
-
-                }
-            });
-
-            return false;
         });
+        return false
+    });
 
 }
 

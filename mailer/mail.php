@@ -6,14 +6,22 @@ $mail = new PHPMailer;
 $mail->isSMTP();
 $mail->Host = 'sub5.mail.dreamhost.com';
 $mail->SMTPAuth = true;
-$mail->Username = 'XXXX_Username_XXXX';
-$mail->Password = 'XXXX_Password_XXXX';
+$mail->Username = 'noreply@app.collectquotesave.com';
+$mail->Password = 'DPj4qAin';
 $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
+$mail->CharSet = 'UTF-8';
 
 $mail->setFrom('noreply@app.collectquotesave.com', 'Collect, Quote, & Save!');
-$mail->addAddress('example@example.com', 'Accuform');
-$mail->addBCC('example@example.com', 'Developer Name');
+$mail->addAddress('tags@accuform.com', 'Accuform');
+$mail->addBCC('the@stefenphelps.com', 'Stefen Phelps');
+$mail->addReplyTo($_POST['email'], $_POST['user']);
+// Send to someone else if input is not empty
+$someoneElse = $_POST['someone-else'];
+if($someoneElse === NULL) {} else {
+  $mail->addAddress($someoneElse);
+}
+// $mail->addBCC('caleb.kenney@growwithsms.com', 'Caleb Kenney');
 $mail->addReplyTo($_POST['email'], $_POST['user']);
 //$mail->addCC('cc@example.com');
 //$mail->addBCC('bcc@example.com');
@@ -35,6 +43,11 @@ $usage = $_POST['usage'];
 $quantity = $_POST['quantity'];
 $finishing = $_POST['finishing'];
 $notes = $_POST['notes'];
+$commonSizes = $_POST['common-sizes'];
+$consecutiveStart = $_POST['consecutive-start'];
+$consecutiveEnd = $_POST['consecutive-end'];
+$materialDescription = $_POST['material-description'];
+
 
 // Time stuff
 date_default_timezone_set("America/New_York");
@@ -401,17 +414,37 @@ $mail->Body    = '
                                   <th class="expander" style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0;"></th>
                                 </tr>
                               </table>
-                              	<h1 style="Margin: 0; Margin-bottom: 10px; color: inherit; font-family: Helvetica, Arial, sans-serif; font-size: 34px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left; word-wrap: normal;">Product Type: '.$productType.'</h1>
-								<p><strong>Environment:</strong> '.$environment.'</p>
-								<p><strong>Shape:</strong> '.$shape.'</p>
-								<p><strong>Material:</strong> '.$material.'</p>
-								<p><strong>Finishing:</strong> '.$finishing.'</p>
-								<p><strong>Style:</strong> '.$style.'</p>
-								<p><strong>Size:</strong> '.$height.' x '.$width.' &nbsp;'.$uom.'.</p>
-								<p><strong>Annual Usage:</strong> '.$usage.'</p>
-								<p><strong>Per Order Quantity:</strong> '.$quantity.'</p>
-								<p><strong>Notes:</strong> '.$notes.'</p>
-							</th>
+                              <h1 style="Margin: 0; Margin-bottom: 10px; color: inherit; font-family: Helvetica, Arial, sans-serif; font-size: 34px; font-weight: normal; line-height: 1.3; margin: 0; margin-bottom: 10px; padding: 0; text-align: left; word-wrap: normal;">Product Type: '.$productType.'</h1>';
+                              if($environment === NULL) {} else {
+                                $mail->Body .= '<p><strong>Environment:</strong> '.$environment.'</p>';
+                              }
+                              if($shape === NULL) {} else {
+                                $mail->Body .= '<p><strong>Shape:</strong> '.$shape.'</p>';
+                              }
+                              if($material === NULL) {} else {
+                                $mail->Body .= '<p><strong>Material:</strong> '.$material.'</p>';
+                              }
+                              if($materialDescription === NULL) {} else {
+                                $mail->Body .= '<p><strong>Material Description:</strong> '.$materialDescription.'</p>';
+                              }
+                              if($finishing === NULL) {} else {
+                                $mail->Body .= '<p><strong>Finishing:</strong> '.$finishing.'</p>';
+                              }
+                              if($consecutiveStart === NULL) {} else {
+                                $mail->Body .= '<p><strong>Consecutive Numbering:</strong> '.$consecutiveStart.' - '.$consecutiveEnd.'</p>';
+                              }
+                              if($style === NULL) {} else {
+                                $mail->Body .= '<p><strong>Style:</strong> '.$style.'</p>';
+                              }
+                              if($commonSizes === NULL) {
+                                $mail->Body .= '<p><strong>Size:</strong> '.$height.' x '.$width.' &nbsp;'.$uom.'.</p>';
+                              } else {
+                                $mail->Body .= '<p><strong>Size:</strong> '.$commonSizes.' in.</p>';
+                              }
+                              $mail->Body .= '<p><strong>Annual Usage:</strong> '.$usage.'</p>
+                              <p><strong>Per Order Quantity:</strong> '.$quantity.'</p>
+                              <p><strong>Notes:</strong> '.$notes.'</p>
+                            </th>
                             <th class="expander" style="Margin: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: normal; line-height: 1.3; margin: 0; padding: 0 !important; text-align: left; visibility: hidden; width: 0;"></th>
                           </tr>
                         </table>
@@ -460,19 +493,20 @@ $mail->Body    = '
     </td>
   </tr>
 </table>
-</html>
-';
+</html>';
 $mail->AltBody = '
-	Product Type:'.$productType.'
-	Environment: '.$environment.'
-	Shape: '.$shape.'
-	Material: '.$material.'
-	Finishing: '.$finishing.'
-	Style: '.$style.'
-	Size: '.$height.' x '.$width.' &nbsp;'.$uom.'.
-	Annual Usage: '.$usage.'
-	Per Order Quantity: '.$quantity.'
-	Notes: '.$notes.'
+  Product Type:'.$productType.'
+  Environment: '.$environment.'
+  Shape: '.$shape.'
+  Material: '.$material.'
+  Material Description: '.$materialDescription.'
+  Finishing: '.$finishing.'
+  Consecutive Numbering: '.$consecutiveStart.' - '.$consecutiveEnd.'
+  Style: '.$style.'
+  Size: '.$height.' x '.$width.' &nbsp;'.$uom.'. '.$commonSizes.'
+  Annual Usage: '.$usage.'
+  Per Order Quantity: '.$quantity.'
+  Notes: '.$notes.'
 ';
 
 if (!$mail->send()) {

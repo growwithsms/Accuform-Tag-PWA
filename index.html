@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -22,7 +21,6 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#014D86">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
-
 <body class="quote-page">
     <svg style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
@@ -127,6 +125,12 @@
             <symbol id="icon-send" viewBox="0 0 24 24">
                 <title>send</title>
                 <path d="M2.016 21v-6.984l15-2.016-15-2.016v-6.984l21 9z"></path>
+            </symbol>
+			<symbol id="icon-add" viewBox="0 0 32 32">
+                <title>add</title>
+                
+				<path d="M31 12h-11v-11c0-0.552-0.448-1-1-1h-6c-0.552 0-1 0.448-1 1v11h-11c-0.552 0-1 0.448-1 1v6c0 0.552 0.448 1 1 1h11v11c0 0.552 0.448 1 1 1h6c0.552 0 1-0.448 1-1v-11h11c0.552 0 1-0.448 1-1v-6c0-0.552-0.448-1-1-1z"></path>
+			</symbol>
             </symbol>
             <symbol id="icon-outdoor" viewBox="0 0 24 24">
                 <title>outdoor</title>
@@ -249,7 +253,7 @@
                                     <option value="PF-Cardstock (10-MIL)">PF-Cardstock (10-MIL)</option>
                                     <option value="RP-Plastic (15-MIL)">RP-Plastic (15-MIL)</option>
                                     <option value="HS-Laminate (24-MIL)">HS-Laminate (24-MIL)</option>
-                                    <option value="Tyvek™">Tyvek™</option>
+                                    <option value="Tyvek™">Tyvek&#8482;</option>
                                     <option value="Self-Laminating PF Cardstock">Self-Laminating PF Cardstock</option>
                                     <option value="Site-Tag®">Site-Tag®</option>
                                     <option value="Self-Laminating RP-Plastic">Self-Laminating RP-Plastic</option>
@@ -269,6 +273,20 @@
                     <h2>Size</h2>
                     <p class="subheader">Input tag size</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <select class="mdl-textfield__input" name="common-sizes" id="common-sizes">
+                                    <option selected="true" disabled="disabled" value="">- Make a Selection -</option>
+                                    <option value="3 x 2 ⅛">3 x 2 ⅛</option>
+                                    <option value="4 ¼ x 2 ⅛">4 ¼ x 2 ⅛</option>
+                                    <option value="5 ¾ x 3 ¼">5 ¾ x 3 ¼</option>
+                                    <option value="8 ½ x 3 ⅞">8 ½ x 3 ⅞</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-grid mdl-grid--no-spacing hidden" id="size">
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="height" name="height">
@@ -328,7 +346,7 @@
                 <fieldset class="quote-quantity">
                     <h2>Order Quantity</h2>
                     <p class="subheader">Input per order quantity</p>
-                    <div class="mdl-grid mdl-grid--no-spacing">
+                    <div class="mdl-grid mdl-grid--no-spacing" id="other-quantity">
                         <div class="mdl-cell mdl-cell--6-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="number" id="quantity" name="quantity">
@@ -400,9 +418,28 @@
                                     <optgroup label="Other Finishing">
                                         <option value='Perforation'>Perforation</option>
                                         <option value='Consecutive Numbering'>Consecutive Numbering</option>
-                                        <option value='Other (see below)'>Other (describe below)</option>
+                                        <option value='Other'>Other</option>
                                     </optgroup>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="hidden" id="consecutive-numbering">
+                            <div class="mdl-grid mdl-grid--no-spacing">
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="consecutive-start" name="consecutive-start" value="">
+                                        <label class="mdl-textfield__label" for="consecutive-start">Start</label>
+                                    </div>
+                                </div>
+                                <div class="mdl-cell mdl-cell--1-col mdl-cell--middle">
+                                    -
+                                </div>
+                                <div class="mdl-cell mdl-cell--4-col">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                        <input class="mdl-textfield__input" type="text" id="consecutive-end" name="consecutive-end">
+                                        <label class="mdl-textfield__label" for="consecutive-end">End</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -437,7 +474,13 @@
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            <!-- <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Add additional items
+                                <svg class="icon icon-add">
+                                    <use xlink:href="#icon-add"></use>
+                                </svg>
+                            </button> -->
+                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit-quote-button">
                                 Submit Quote
                                 <svg class="icon icon-send">
                                     <use xlink:href="#icon-send"></use>
@@ -745,7 +788,13 @@
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            <!-- <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Add additional items
+                                <svg class="icon icon-add">
+                                    <use xlink:href="#icon-add"></use>
+                                </svg>
+                            </button> -->
+                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit-quote-button">
                                 Submit Quote
                                 <svg class="icon icon-send">
                                     <use xlink:href="#icon-send"></use>
@@ -833,7 +882,7 @@
                                         <option value="Lumi-Glow™ Flex Vinyl">Lumi-Glow™ Flex Vinyl</option>
                                         <option value="Magnetic">Magnetic</option>
                                         <option value="Plastic">Plastic</option>
-                                        <option value="I don't see the material I need (see below)">I don't see the material I need (Describe)</option>
+                                        <option value="Other">I don't see the material I need (Describe)</option>
                                     </optgroup>
                                     <optgroup label="Other Materials that can be used Indoors">
                                         <option value="Accu-Shield™  (Guar. 15-Years)">Accu-Shield™ (Guar. 15-Years)</option>
@@ -888,8 +937,14 @@
                                     <option value="Galvanized Steel">Galvanized Steel</option>
                                     <option value="Banner Material">Banner Material</option>
                                     <option value="Fence-Wrap Material">Fence-Wrap™ Material</option>
-                                    <option value="Other">Other (please note)</option>
+                                    <option value="Other">Other (describe below)</option>
                                 </template>
+                            </div>
+                            <div class="hidden" id="material-description-wrapper">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <textarea class="mdl-textfield__input" type="text" rows= "3" name="material-description" id="material-description"></textarea>
+                                    <label class="mdl-textfield__label" for="material-description">Describe material...</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -904,6 +959,27 @@
                     <h2>Size</h2>
                     <p class="subheader">Input sign size</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <select class="mdl-textfield__input" name="common-sizes" id="common-sizes">
+                                    <option selected="true" disabled="disabled" value="">- Make a Selection -</option>
+                                    <option value="3 ½ x 5">3 ½ x 5</option>
+                                    <option value="5 x 7">5 x 7</option>
+                                    <option value="7 x 10">7 x 10</option>
+                                    <option value="10 x 7">10 x 7</option>
+                                    <option value="9 x 12">9 x 12</option>
+                                    <option value="10 x 14">10 x 14</option>
+                                    <option value="14 x 10">14 x 10</option>
+                                    <option value="12 x 18">12 x 18</option>
+                                    <option value="18 x 12">18 x 12</option>
+                                    <option value="14 x 20">14 x 20</option>
+                                    <option value="18 x 24">18 x 24</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mdl-grid mdl-grid--no-spacing hidden" id="size">
                         <div class="mdl-cell mdl-cell--4-col">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" id="height" name="height">
@@ -1040,7 +1116,13 @@
                             </div>
                         </div>
                         <div class="mdl-cell mdl-cell--12-col">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                            <!-- <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                Add additional items
+                                <svg class="icon icon-add">
+                                    <use xlink:href="#icon-add"></use>
+                                </svg>
+                            </button> -->
+                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="submit-quote-button">
                                 Submit Quote
                                 <svg class="icon icon-send">
                                     <use xlink:href="#icon-send"></use>
@@ -1050,23 +1132,25 @@
                     </div>
                 </fieldset>
             </template>
+            <input type="email" id="someone-else" name="someone-else" value="">
+            <input type="submit" id="submit-form" class="hidden">
         </form>
         <nav class="bottom-nav">
             <ul>
                 <li>
-                    <a href="https://app.collectquotesave.com/history/">
+                    <a href="/history/">
                         <svg class="icon icon-history">
                             <use xlink:href="#icon-history"></use>
                         </svg> History</a>
                 </li>
                 <li>
-                    <a href="https://app.collectquotesave.com/" class="active">
+                    <a href="/" class="active">
                         <svg class="icon icon-quote">
                             <use xlink:href="#icon-quote"></use>
                         </svg> Quote</a>
                 </li>
                 <li>
-                    <a href="https://app.collectquotesave.com/profile/">
+                    <a href="/profile/">
                         <svg class="icon icon-profile">
                             <use xlink:href="#icon-profile"></use>
                         </svg> Profile</a>
@@ -1075,15 +1159,30 @@
         </nav>
     </section>
     <dialog class="mdl-dialog">
-        <h4 class="mdl-dialog__title">Quote Sent Successfully!</h4>
+        <h4 class="mdl-dialog__title">
+            <span  class="before-submit">Quick Question</span>
+            <span class="after-submit">Quote Sent Successfully!</span>
+        </h4>
         <div class="mdl-dialog__content">
+            <div class="before-submit">
+                <p>Would you liked to send this quote to someone else?</p>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label hidden" id="someone-else-wrapper">
+                    <input class="mdl-textfield__input" type="email" id="someone-else-faux" value="">
+                    <label class="mdl-textfield__label" for="someone-else-faux">Email...</label>
+                </div>
+            </div>
+            <div class="after-submit">
+                <p>Accuform will email a quote back to you in 20 minutes or less*! Check your email soon.</p>
+                <p>To quote another item, tap close and begin again.</p>
+                <p style="text-align: right; font-size: .75em;">*Normal business hours</p>
+            </div>
             <div class="mdl-spinner mdl-js-spinner"></div>
-            <p>Accuform will email a quote back to you in 20 minutes or less*! Check your email soon.
-            <p>To quote another item, tap close and begin again.</p>
-            <p style="text-align: right; font-size: .75em;">*Normal business hours</p>
         </div>
         <div class="mdl-dialog__actions">
-            <button type="button" class="mdl-button close">Close</button>
+            <button type="button" class="mdl-button" id="yes">Yes</button>
+            <label type="button" class="mdl-button send-quote" id="no" for="submit-form" tabindex="0">No</label>
+            <label type="button" class="mdl-button hidden send-quote" id="send" for="submit-form" tabindex="0">Send</label>
+            <button type="button" class="mdl-button hidden" id="close">Close</button>
         </div>
     </dialog>
     <script type="text/javascript" src="/js/main.min.js?v=2.39"></script>
@@ -1096,5 +1195,4 @@
       ga('send', 'pageview');
     </script>
 </body>
-
 </html>
